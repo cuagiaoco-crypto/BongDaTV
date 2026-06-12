@@ -1,0 +1,28 @@
+CẤU HÌNH OBS CHO B79 TV
+
+1) OBS Studio -> Settings -> Stream
+Service: Custom
+Server: rtmp://yourdomain.com/live
+Stream Key: canada-bosnia
+
+2) Server streaming sẽ xuất ra HLS:
+https://yourdomain.com/hls/canada-bosnia.m3u8
+
+3) Mở matches.json và sửa url của trận tương ứng:
+"servers": [
+  {
+    "name": "OBS HD",
+    "type": "hls",
+    "url": "https://yourdomain.com/hls/canada-bosnia.m3u8"
+  }
+]
+
+4) Muốn tự cập nhật lịch thật:
+- Dùng backend/API ghi lịch mới vào matches.json, hoặc
+- Đổi B79_CONFIG.matchesUrl trong data.js thành link API của bạn.
+
+Gợi ý API lịch đấu:
+- API-FOOTBALL / API-SPORTS: có fixtures, livescore, status.elapsed, status.short.
+- football-data.org: có matches API và trạng thái trận.
+
+Lưu ý: không để API key trực tiếp trong frontend nếu API tính phí hoặc cần bảo mật. Nên tạo backend proxy.

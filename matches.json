@@ -1,0 +1,58 @@
+{
+  "matches": [
+    {
+      "id": "canada-bosnia-2026",
+      "home": "Canada",
+      "away": "Bosnia & Herzegovina",
+      "homeScore": 0,
+      "awayScore": 0,
+      "startTime": "2026-06-13T02:00:00+07:00",
+      "endTime": "2026-06-13T04:00:00+07:00",
+      "league": "Giao hữu quốc tế",
+      "homeLogo": "https://flagcdn.com/w160/ca.png",
+      "awayLogo": "https://flagcdn.com/w160/ba.png",
+      "servers": [
+        {
+          "name": "OBS HD",
+          "type": "hls",
+          "url": "https://yourdomain.com/hls/canada-bosnia.m3u8"
+        }
+      ],
+      "commentary": [
+        "Tín hiệu sẽ lên khi OBS bắt đầu phát.",
+        "Trận này dùng luồng HLS từ OBS/server của bạn."
+      ],
+      "lineup": ["Đang cập nhật đội hình."],
+      "stats": ["Đang cập nhật thống kê."],
+      "h2h": ["Đang cập nhật đối đầu."]
+    },
+    {
+      "id": "demo-live-1",
+      "home": "Brazil",
+      "away": "Argentina",
+      "homeScore": 1,
+      "awayScore": 1,
+      "startTime": "2026-06-13T20:00:00+07:00",
+      "endTime": "2026-06-13T22:00:00+07:00",
+      "league": "Demo Cup",
+      "homeLogo": "https://flagcdn.com/w160/br.png",
+      "awayLogo": "https://flagcdn.com/w160/ar.png",
+      "servers": [
+        {
+          "name": "OBS HD",
+          "type": "hls",
+          "url": "https://yourdomain.com/hls/demo-live-1.m3u8"
+        },
+        {
+          "name": "Demo YouTube",
+          "type": "embed",
+          "url": "https://www.youtube.com/embed/jfKfPfyJRdk"
+        }
+      ],
+      "commentary": ["Trận demo để test giao diện."],
+      "lineup": ["Brazil: Demo", "Argentina: Demo"],
+      "stats": ["Kiểm soát bóng: 51% - 49%", "Sút bóng: 7 - 6"],
+      "h2h": ["Demo đối đầu."]
+    }
+  ]
+}
