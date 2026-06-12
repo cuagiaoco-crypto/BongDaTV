@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B79 TV - Xem trực tiếp</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">B79<span>TV</span></div>
+    <nav>
+      <a href="index.html">Trang chủ</a>
+      <a href="#info">Thông tin</a>
+      <a href="#other">Trận khác</a>
+    </nav>
+  </header>
+
+  <main class="watch-layout">
+    <section class="left-col">
+      <div class="score-card">
+        <div class="team"><img id="homeLogo" /><b id="homeName"></b></div>
+        <div class="score"><span id="homeScore">0</span><em>-</em><span id="awayScore">0</span><small id="matchTime"></small></div>
+        <div class="team"><img id="awayLogo" /><b id="awayName"></b></div>
+      </div>
+
+      <div class="video-box">
+        <iframe id="videoFrame" allowfullscreen allow="autoplay; fullscreen; picture-in-picture"></iframe>
+      </div>
+
+      <div class="server-row" id="serverButtons"></div>
+
+      <div class="tabs">
+        <button class="tab active" data-tab="commentary">Diễn biến</button>
+        <button class="tab" data-tab="lineup">Đội hình</button>
+        <button class="tab" data-tab="stats">Thống kê</button>
+        <button class="tab" data-tab="h2h">Đối đầu</button>
+      </div>
+      <div id="tabContent" class="tab-content"></div>
+
+      <article id="info" class="article">
+        <h2 id="articleTitle"></h2>
+        <p>Trang B79 TV cập nhật lịch thi đấu, thông tin trận đấu và link xem bóng đá trực tuyến chất lượng cao. Bạn có thể thay đổi nội dung trận, logo, giờ đá và link phát trong file <b>data.js</b>.</p>
+        <p>Lưu ý: chỉ nên dùng nguồn phát có bản quyền, video tự sở hữu hoặc các nguồn được phép nhúng công khai.</p>
+      </article>
+    </section>
+
+    <aside class="right-col">
+      <div class="chat-box">
+        <h3>Chat trận đấu</h3>
+        <div id="chatMessages" class="chat-messages"></div>
+        <div class="chat-input">
+          <input id="chatInput" placeholder="Nhập bình luận..." />
+          <button id="sendChat">Gửi</button>
+        </div>
+      </div>
+
+      <div id="other" class="side-card">
+        <h3>Trận khác</h3>
+        <div id="otherMatches"></div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>© 2026 B79 TV. Chỉ sử dụng nguồn phát hợp pháp.</footer>
+  <script src="data.js"></script>
+  <script src="watch.js"></script>
+</body>
+</html>
