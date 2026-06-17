@@ -54,7 +54,78 @@
 </main>
 <div class="newsbar"><div class="ticker">🔥 Cập nhật live bóng đá hôm nay • World Cup • Euro • Ngoại Hạng Anh • LaLiga • Serie A • Bundesliga • Ligue 1 • AFC • V-League •</div></div>
 <script>
-function makeDemoComments(count){const names=['Minh','Hoàng','Tuấn','Nam','Hải','Dũng','Long','Khánh','Phúc','Quân','Huy','Đạt','Khoa','Tâm','Bảo','Sơn','Thắng','Việt','Lâm','Tín','Nghĩa','Kiên','Phong','An','Bình','Cường','Mạnh','Hiếu','Trọng','Tú','Thành','Nhật','Tùng','Vũ','Quang','Đức','Duy','Hưng','Toàn','Khang'];const texts=['Vào web thấy live ngay quá tiện','Hình ảnh chạy ổn đó','Có bình luận nhìn vui hơn hẳn','Trận này đội áo vàng đá căng quá','Ai mới vào xem cho vui nè','Web mượt hơn bản trước rồi','Cờ đội bóng nhìn chuyên nghiệp','Có link live là chạy luôn ngon','Mọi người dự đoán tỉ số bao nhiêu','Đá nhanh thật sự','Xem trên điện thoại cũng ổn','Bình luận đông vui mới có không khí','Trận này có vẻ còn nhiều bàn','Giao diện đẹp hơn rồi','Admin cập nhật nhanh ghê','Âm thanh bật lên là xem đã','Đội khách ép sân liên tục','Chờ bàn thắng thôi anh em','Mình xem không bị lag','Live này rõ hơn lúc nãy'];const arr=[];for(let i=1;i<=count;i++){arr.push({n:names[(i-1)%names.length]+' '+String(i).padStart(3,'0'),m:texts[(i*7)%texts.length]})}return arr}
+function makeDemoComments(count){
+  const firstNames=['Minh','Hoàng','Tuấn','Nam','Hải','Dũng','Long','Khánh','Phúc','Quân','Huy','Đạt','Khoa','Tâm','Bảo','Sơn','Thắng','Việt','Lâm','Tín','Nghĩa','Kiên','Phong','An','Bình','Cường','Mạnh','Hiếu','Trọng','Tú','Thành','Nhật','Tùng','Vũ','Quang','Đức','Duy','Hưng','Toàn','Khang','Hà','Lộc','Thịnh','Vinh','Nhân','Phát','Trí','Hào','Kỳ','Lợi'];
+  const tags=['FC','Live','WorldCup','BóngĐá','AnhEm','SânCỏ','FanBDN','24h','Pro','New','Online','Vip','HD','Sport','Arena','Gol','Win','Goal'];
+  const promoTexts=[
+    'Anh em nhìn nút Nhận 999K ở trên kìa, nổi bật quá.',
+    'Nút Nhận 999K nhấp nháy nhìn dễ thấy thật.',
+    'Ai mới vào thì xem thử phần Nhận 999K phía trên nha.',
+    'Mình thấy banner Nhận 999K ở trên nhìn bắt mắt đó anh em.',
+    'Nút Nhận 999K làm đẹp hơn rồi, nhìn chuyên nghiệp hơn.',
+    'Anh em nào quan tâm ưu đãi thì bấm nút Nhận 999K phía trên xem thử.',
+    'Banner trên đầu trang nổi ghê, mới vào là thấy liền.',
+    'Nhận 999K ở trên nhìn sáng quá, dễ bấm hơn bản cũ.',
+    'Có 2 nút trên đầu trang nhìn giống web thật hơn rồi.',
+    'Anh em mới vào cứ xem bóng trước, nút Nhận 999K nằm ngay phía trên.',
+    'Giao diện có banner nhấp nháy nên nhìn sống động hơn.',
+    'Nút vàng đỏ phía trên nhìn hút mắt thật.',
+    'Mình thấy nút Nhận 999K đặt chỗ đó hợp lý.',
+    'Banner này để trên đầu trang là khách dễ thấy nhất.',
+    'Bấm vào nút trên đầu trang là mở link riêng đúng không anh em?'
+  ];
+  const matchTexts=[
+    'Yếu tim quá anh em ơi, pha vừa rồi căng thật.',
+    'Bồ Đào Nha đá hay quá anh em.',
+    'CHDC Congo phòng ngự khá chắc đó.',
+    'Trận này xem cuốn thật sự.',
+    'Bồ Đào Nha đang kiểm soát bóng tốt.',
+    'Đội khách phản công cũng nguy hiểm phết.',
+    'Căng quá, suýt có bàn rồi.',
+    'Pha bóng vừa rồi xử lý hay thật.',
+    'Thủ môn bắt ổn quá anh em.',
+    'Hiệp 1 mà nhịp trận nhanh ghê.',
+    'Bồ Đào Nha ép sân liên tục rồi.',
+    'Congo đang chờ cơ hội phản công.',
+    'Xem trên web mượt hơn mình tưởng.',
+    'Không khí bình luận đông vui mới có cảm giác xem live.',
+    'Anh em dự đoán cuối trận tỉ số bao nhiêu?',
+    'Trận này chắc còn bàn thắng nữa.',
+    'Đá kiểu này hiệp 2 sẽ căng lắm.',
+    'Bồ Đào Nha lên bóng cánh trái hay quá.',
+    'Pha chuyền dài vừa rồi khá nét.',
+    'Đội áo vàng đang chạy chỗ liên tục.',
+    'Vừa vào web là thấy live luôn, tiện thật.',
+    'Hình ảnh đang ổn đó anh em.',
+    'Có bình luận chạy liên tục nhìn thật hơn hẳn.',
+    'Pha này mà sút sớm là nguy hiểm rồi.',
+    'Cổ động viên trận này đông ghê.',
+    'Bồ Đào Nha giữ nhịp trận tốt quá.',
+    'CHDC Congo không dễ bị bắt nạt đâu.',
+    'Đang xem mà hồi hộp quá.',
+    'Pha bóng sát vòng cấm căng thật.',
+    'Anh em vào xem đông vui quá.'
+  ];
+  const arr=[];
+  for(let i=1;i<=count;i++){
+    const name=firstNames[(i*7)%firstNames.length]+' '+tags[(i*11)%tags.length]+' '+String(1000+i);
+    const pool=(i%3===0)?promoTexts:matchTexts;
+    const msg=pool[(i*13)%pool.length];
+    arr.push({n:name,m:msg});
+  }
+  return arr;
+}
+function addAutoDemoComment(){
+  const box=document.getElementById('comments');
+  if(!box)return;
+  const one=makeDemoComments(1+Math.floor(Math.random()*999))[0];
+  const el=document.createElement('div');
+  el.className='comment';
+  el.innerHTML='<b>'+esc(one.n)+'</b><br>'+esc(one.m);
+  box.insertBefore(el,box.firstChild);
+  while(box.children.length>120)box.removeChild(box.lastChild);
+}
+setInterval(addAutoDemoComment,12000);
 const DEFAULT={
  liveId:'m1',
  matches:[
