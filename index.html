@@ -1,77 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>World Cup Live - Vào là xem trực tiếp</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WC LIVE - World Cup trực tiếp</title>
   <style>
     :root{
-      --bg:#08111f;--card:#101b2e;--card2:#13233b;--text:#f5f7fb;--muted:#9fb0ca;--line:#223452;--gold:#ffd166;--green:#27d17f;--red:#ff5c7a;--blue:#55a7ff;
+      --bg:#06101e; --bg2:#0b1b31; --card:#101f36; --card2:#132743; --line:#28405f;
+      --text:#f5f8ff; --muted:#9fb3d1; --yellow:#ffd15c; --red:#e22c32; --green:#1ee68c;
     }
-    *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,#173763 0,#08111f 44%,#050915 100%);color:var(--text)}
-    a{text-decoration:none;color:inherit}.wrap{max-width:1180px;margin:auto;padding:0 16px}.top{position:sticky;top:0;z-index:50;background:rgba(8,17,31,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;height:66px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:22px}.logo{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffd166,#ff7b54);color:#07111f}.menu{display:flex;gap:10px;flex-wrap:wrap}.menu a{padding:10px 13px;border-radius:999px;color:var(--muted);font-weight:700}.menu a.active,.menu a:hover{background:#1b2d4d;color:#fff}.hero{padding:36px 0 24px}.heroGrid{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.heroCard{background:linear-gradient(135deg,rgba(34,74,130,.92),rgba(12,27,49,.96));border:1px solid var(--line);border-radius:24px;padding:28px;min-height:285px;position:relative;overflow:hidden}.heroCard:after{content:"WORLD CUP";position:absolute;right:-16px;bottom:18px;font-size:84px;font-weight:900;color:rgba(255,255,255,.045)}
-    h1{font-size:42px;margin:0 0 10px}.sub{color:#c7d4e8;line-height:1.55}.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}.btn{border:0;border-radius:14px;padding:13px 16px;font-weight:900;cursor:pointer;background:var(--gold);color:#111}.btn.dark{background:#203554;color:#fff;border:1px solid #31517c}.liveBox{background:#091321;border:1px solid var(--line);border-radius:24px;padding:18px}.section{padding:14px 0 28px}.title{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:14px}.title h2{margin:0;font-size:24px}.pill{background:#1b2d4d;color:#cfe0ff;border:1px solid #29446d;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:700}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:rgba(16,27,46,.94);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:0 12px 28px rgba(0,0,0,.16)}.match{cursor:pointer;transition:.2s}.match:hover{transform:translateY(-2px);border-color:#456a9f}.league{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:12px}.teams{display:grid;gap:10px}.team{display:flex;align-items:center;justify-content:space-between;gap:10px}.teamName{display:flex;align-items:center;gap:10px;font-weight:900}.flag{font-size:28px}.score{font-size:22px;font-weight:900;color:var(--gold)}.time{margin-top:12px;color:#c6d5ec;font-size:14px}.status{color:var(--green);font-weight:900}.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.input,.select{background:#0d1829;color:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 13px;outline:0}.input{min-width:240px}.table{width:100%;border-collapse:collapse;overflow:hidden}.table th,.table td{border-bottom:1px solid var(--line);padding:12px;text-align:left}.table th{color:#9fb0ca;font-size:13px}.newsGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.newsImg{height:120px;border-radius:16px;background:linear-gradient(135deg,#21466f,#0d1829);display:grid;place-items:center;font-size:40px}.player{aspect-ratio:16/9;background:#03070d;border-radius:18px;border:1px solid #1c2d49;display:grid;place-items:center;position:relative;overflow:hidden}.player:before{content:"";position:absolute;inset:0;background:radial-gradient(circle,rgba(85,167,255,.16),transparent 45%)}.play{position:relative;text-align:center}.playIcon{width:72px;height:72px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#111;font-size:34px;margin:0 auto 12px}.layout{display:grid;grid-template-columns:2fr 1fr;gap:16px}.chat{height:420px;display:flex;flex-direction:column}.msgs{flex:1;overflow:auto;display:grid;gap:10px}.msg{background:#0d1829;border-radius:14px;padding:10px;color:#dbe7fb}.chatInput{display:flex;gap:8px;margin-top:12px}.chatInput input{flex:1}.footer{border-top:1px solid var(--line);padding:22px 0;color:#91a2bd;text-align:center;margin-top:20px}.hidden{display:none!important}.countdown{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.liveHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}.liveTeams{font-size:24px;font-weight:900}.liveBadge{background:rgba(39,209,127,.12);color:var(--green);border:1px solid rgba(39,209,127,.38);border-radius:999px;padding:8px 12px;font-weight:900}.bigPlayer{min-height:430px}.cd{background:#0b1423;border:1px solid #2b456b;border-radius:14px;padding:10px 12px;text-align:center;min-width:72px}.cd b{display:block;font-size:22px;color:var(--gold)}
-    @media(max-width:850px){.heroGrid,.layout,.grid,.newsGrid{grid-template-columns:1fr}.nav{height:auto;padding:12px 0;align-items:flex-start;gap:12px;flex-direction:column}.menu{width:100%;overflow:auto;flex-wrap:nowrap}.heroCard{padding:22px}h1{font-size:32px}.input{min-width:100%;width:100%}}
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#07101e,#081426 45%,#050b15);color:var(--text);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none} .wrap{max-width:1260px;margin:auto;padding:0 18px}
+    header{position:sticky;top:0;z-index:5;background:rgba(6,13,24,.96);border-bottom:1px solid #203554;backdrop-filter:blur(10px)}
+    .top{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900}.brand .ball{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ffb84c,#ff6d4c);font-size:24px}.brand small{display:block;color:var(--yellow);font-size:12px;margin-top:2px}.nav{display:flex;gap:10px;flex-wrap:wrap}.nav a{padding:11px 16px;border-radius:13px;color:#bfd0ea;font-weight:800}.nav a.active,.nav a:hover{background:#20375a;color:#fff}.clock{text-align:right;color:#c8d6ee;font-size:14px}.clock b{font-size:19px;color:#fff}
+    main{padding:28px 0 38px}.layout{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:18px}.card{background:linear-gradient(180deg,rgba(20,39,67,.98),rgba(10,24,43,.98));border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+    .liveHead{padding:22px 22px 16px}.status{display:inline-flex;align-items:center;gap:8px;color:var(--green);background:rgba(30,230,140,.13);border:1px solid rgba(30,230,140,.35);padding:9px 13px;border-radius:999px;font-weight:900}.dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green)}
+    .teams{display:grid;grid-template-columns:1fr 170px 1fr;align-items:center;gap:10px;margin-top:16px}.team{display:flex;align-items:center;gap:14px}.team.right{justify-content:flex-end;text-align:right}.flag{width:56px;height:38px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.35);object-fit:cover;background:#fff}.team small{display:block;color:#b6c7e5;font-weight:700;text-transform:uppercase}.team b{font-size:25px}.score{text-align:center}.score .num{font-size:54px;font-weight:1000;color:var(--red);letter-spacing:4px}.score p{margin:4px 0 0;color:#e7eefc}
+    .video{height:430px;margin:0 18px 18px;border-radius:16px;background:#02070d;border:1px solid #223959;display:grid;place-items:center;text-align:center;position:relative;overflow:hidden}.video:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(255,255,255,.05),transparent 55%)}.play{width:78px;height:78px;border-radius:50%;background:var(--yellow);color:#06101e;display:grid;place-items:center;font-size:34px;margin:auto}.video h3{margin:16px 0 8px}.video p{color:#b9c9e5;margin:0 12px}.liveBadge{position:absolute;right:18px;top:18px;background:var(--red);padding:8px 11px;border-radius:8px;font-weight:900}.controls{position:absolute;left:0;right:0;bottom:0;padding:14px 18px;display:flex;align-items:center;gap:14px;background:linear-gradient(transparent,rgba(0,0,0,.75));font-weight:900}.bar{height:4px;background:rgba(255,255,255,.18);flex:1;border-radius:9px;overflow:hidden}.bar i{display:block;width:55%;height:100%;background:var(--red)}
+    .info{margin:0 18px 18px;padding:16px;border:1px solid var(--line);border-radius:15px;color:#dbe8ff}.info b{color:#fff}.info .green{color:var(--green)}
+    .side{display:flex;flex-direction:column;gap:14px}.box{padding:16px}.box h2{font-size:19px;margin:0 0 14px}.commentList{display:flex;flex-direction:column;gap:10px;max-height:430px;overflow:auto;padding-right:4px}.comment{display:flex;gap:10px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);padding:11px;border-radius:14px}.avatar{min-width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#243d63;font-weight:900}.comment b{font-size:14px}.comment p{margin:3px 0 0;color:#c9d7ef;font-size:14px;line-height:1.35}.commentForm{display:flex;gap:8px;margin-top:12px}.commentForm input{flex:1;background:#081321;border:1px solid var(--line);border-radius:12px;color:#fff;padding:12px}.commentForm button,.btn{border:0;border-radius:12px;background:var(--yellow);color:#06101e;font-weight:900;padding:12px 14px;cursor:pointer}
+    .section{margin-top:18px}.titleRow{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}.titleRow h2{margin:0}.matches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.match{padding:14px;border-radius:15px;background:rgba(16,31,54,.9);border:1px solid var(--line)}.match.live{border-color:var(--red)}.matchTop{display:flex;justify-content:space-between;color:#bfd0ea;font-size:13px}.matchTeams{margin:18px 0;display:flex;align-items:center;justify-content:space-between;gap:8px}.miniTeam{display:flex;align-items:center;gap:8px;font-weight:900}.miniFlag{width:32px;height:22px;border-radius:5px;object-fit:cover;background:#fff}.vs{color:#8298bb}.match small{color:#b8c8e3}
+    .table{width:100%;border-collapse:collapse;font-size:14px}.table th,.table td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left}.table th{color:#a9bbd7;font-size:12px}.rankTeam{display:flex;align-items:center;gap:8px;font-weight:800}
+    .ticker{margin-top:18px;display:flex;gap:16px;align-items:center;overflow:hidden;padding:12px 14px}.ticker b{background:var(--red);padding:9px 13px;border-radius:10px}.ticker span{white-space:nowrap;color:#d6e2f7}.mobileOnly{display:none}
+    @media(max-width:980px){.layout{grid-template-columns:1fr}.matches{grid-template-columns:repeat(2,1fr)}.clock{display:none}.video{height:320px}.teams{grid-template-columns:1fr}.score{order:2}.team.right{justify-content:flex-start;text-align:left}.nav{font-size:13px}.side{order:2}}
+    @media(max-width:560px){.top{height:auto;padding:12px 0;align-items:flex-start}.nav{width:100%;justify-content:flex-start}.brand div:last-child{font-size:18px}.layout{gap:12px}.liveHead{padding:16px}.teams{gap:12px}.team b{font-size:20px}.score .num{font-size:42px}.video{height:260px;margin:0 12px 12px}.matches{grid-template-columns:1fr}.commentList{max-height:300px}.wrap{padding:0 12px}.desktopOnly{display:none}.mobileOnly{display:block}}
   </style>
 </head>
 <body>
-<header class="top"><div class="wrap nav"><a class="brand" href="#home"><span class="logo">⚽</span><span>WC LIVE</span></a><nav class="menu"><a href="#home" data-nav="home">Trang chủ</a><a href="#schedule" data-nav="schedule">Lịch thi đấu</a><a href="#results" data-nav="results">Kết quả</a><a href="#standings" data-nav="standings">BXH</a><a href="#news" data-nav="news">Tin tức</a></nav></div></header>
-<main class="wrap">
-  <section id="home" class="page section">
-    <div class="title"><h2>Trực tiếp World Cup</h2><span class="pill">Vào web là xem ngay</span></div>
-    <div class="layout">
-      <div class="card">
-        <div class="liveHeader" id="homeLiveHeader"></div>
-        <div class="player bigPlayer"><div class="play"><div class="playIcon">▶</div><b id="homePlayerText">Khung livestream đang chờ gắn luồng</b><p class="sub">Sau này gắn link HLS .m3u8 hoặc iframe vào đây, khách vào web sẽ thấy video ngay.</p></div></div>
-        <div id="homeWatchInfo" style="margin-top:14px"></div>
-      </div>
-      <div class="card">
-        <h3>Đội đang đá</h3>
-        <div id="homeFeatured"></div>
-        <div style="margin-top:14px"><button class="btn" onclick="showPage('schedule')">Xem lịch World Cup</button></div>
-      </div>
+  <header>
+    <div class="wrap top">
+      <div class="brand"><div class="ball">⚽</div><div>WC LIVE<small>WORLD CUP TRỰC TIẾP</small></div></div>
+      <nav class="nav"><a class="active" href="#live">Trực tiếp</a><a href="#schedule">Lịch thi đấu</a><a href="#result">Kết quả</a><a href="#rank">BXH</a><a href="#news">Tin tức</a></nav>
+      <div class="clock"><b id="time">--:--:--</b><br><span id="date">--</span></div>
     </div>
-    <div class="section" style="padding-bottom:0">
-      <div class="title"><h2>Các trận sắp tới</h2><span class="pill">Bấm trận để xem</span></div>
-      <div class="grid" id="homeUpcoming"></div>
-    </div>
-  </section>
-  <section id="schedule" class="page section"><div class="title"><h2>Lịch thi đấu World Cup</h2><span class="pill">Theo ngày & bảng đấu</span></div><div class="filters"><input class="input" id="search" placeholder="Tìm đội: Việt hóa tên đội, ví dụ Bồ Đào Nha..." oninput="renderMatches()"><select class="select" id="groupFilter" onchange="renderMatches()"><option value="all">Tất cả bảng</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option><option>F</option><option>G</option><option>H</option><option>I</option><option>J</option><option>K</option><option>L</option></select></div><div class="grid" id="matchGrid"></div></section>
-  <section id="results" class="page section"><div class="title"><h2>Kết quả World Cup</h2><span class="pill">Trận đã kết thúc</span></div><div class="grid" id="resultGrid"></div></section>
-  <section id="standings" class="page section"><div class="title"><h2>Bảng xếp hạng</h2><span class="pill">Demo dữ liệu để dựng giao diện</span></div><div id="standingBox"></div></section>
-  <section id="news" class="page section"><div class="title"><h2>Tin tức World Cup</h2><span class="pill">Khu vực đăng bài</span></div><div class="newsGrid" id="newsGrid"></div></section>
-  <section id="watch" class="page section hidden"><div class="title"><h2 id="watchTitle">Xem trận đấu</h2><button class="btn dark" onclick="showPage('schedule')">← Quay lại lịch</button></div><div class="layout"><div class="card"><div class="player"><div class="play"><div class="playIcon">▶</div><b id="playerText">Khung livestream</b><p class="sub">Sau này gắn link HLS .m3u8 hoặc iframe phát trực tiếp tại đây.</p></div></div><div id="watchInfo" style="margin-top:14px"></div></div><div class="card chat"><h3>Chat trực tiếp</h3><div class="msgs" id="msgs"><div class="msg"><b>Minh:</b> Trận này đáng xem quá!</div><div class="msg"><b>Hoàng:</b> Chờ gắn live thật là chạy được.</div><div class="msg"><b>Admin:</b> Chat hiện là demo giao diện.</div></div><div class="chatInput"><input class="input" id="chatText" placeholder="Nhập bình luận..."><button class="btn" onclick="sendMsg()">Gửi</button></div></div></div></section>
-</main><footer class="footer"><div class="wrap">WC LIVE · Website xem bóng đá World Cup sạch quảng cáo · Bản V5.1 · Trang chủ mở thẳng video</div></footer>
-<script>
-const matches=[
-{id:'por-cod',g:'K',date:'2026-06-18 00:00',home:['Bồ Đào Nha','🇵🇹'],away:['CHDC Congo','🇨🇩'],status:'Đang trực tiếp'},
-{id:'eng-cro',g:'L',date:'2026-06-18 03:00',home:['Anh','🏴'],away:['Croatia','🇭🇷'],status:'Sắp diễn ra'},
-{id:'gha-pan',g:'L',date:'2026-06-18 06:00',home:['Ghana','🇬🇭'],away:['Panama','🇵🇦'],status:'Sắp diễn ra'},
-{id:'uzb-col',g:'K',date:'2026-06-18 09:00',home:['Uzbekistan','🇺🇿'],away:['Colombia','🇨🇴'],status:'Sắp diễn ra'},
-{id:'mex-kor',g:'A',date:'2026-06-19 08:00',home:['Mexico','🇲🇽'],away:['Hàn Quốc','🇰🇷'],status:'Sắp diễn ra'},
-{id:'bra-hai',g:'C',date:'2026-06-20 07:30',home:['Brazil','🇧🇷'],away:['Haiti','🇭🇹'],status:'Sắp diễn ra'},
-{id:'ger-civ',g:'E',date:'2026-06-21 03:00',home:['Đức','🇩🇪'],away:['Bờ Biển Ngà','🇨🇮'],status:'Sắp diễn ra'},
-{id:'arg-aut',g:'J',date:'2026-06-23 00:00',home:['Argentina','🇦🇷'],away:['Áo','🇦🇹'],status:'Sắp diễn ra'},
-{id:'mex-rsa',g:'A',date:'2026-06-11 02:00',home:['Mexico','🇲🇽'],away:['Nam Phi','🇿🇦'],status:'Đã kết thúc',score:'2 - 0'},
-{id:'fra-sen',g:'I',date:'2026-06-17 02:00',home:['Pháp','🇫🇷'],away:['Senegal','🇸🇳'],status:'Đã kết thúc',score:'3 - 1'},
-{id:'arg-alg',g:'J',date:'2026-06-17 08:00',home:['Argentina','🇦🇷'],away:['Algeria','🇩🇿'],status:'Đã kết thúc',score:'3 - 0'}
-];
-const standings={A:[['Mexico','🇲🇽',3,1,1,0,0],['Hàn Quốc','🇰🇷',3,1,1,0,0],['Nam Phi','🇿🇦',0,1,0,0,1]],K:[['Bồ Đào Nha','🇵🇹',0,0,0,0,0],['Colombia','🇨🇴',0,0,0,0,0],['Uzbekistan','🇺🇿',0,0,0,0,0],['CHDC Congo','🇨🇩',0,0,0,0,0]],L:[['Anh','🏴',0,0,0,0,0],['Croatia','🇭🇷',0,0,0,0,0],['Ghana','🇬🇭',0,0,0,0,0],['Panama','🇵🇦',0,0,0,0,0]]};
-const news=['Đội tuyển Anh sẵn sàng cho trận mở màn bảng L','Bồ Đào Nha được kỳ vọng tạo màn trình diễn tấn công đẹp mắt','Argentina tiếp tục phong độ cao sau chiến thắng thuyết phục','World Cup năm nay có lịch thi đấu dày đặc theo từng bảng','Các đội châu Á đặt mục tiêu vượt qua vòng bảng','Khu vực này có thể nối API tin tức sau'];
-function card(m){return `<div class="card match" onclick="openMatch('${m.id}')"><div class="league"><span>Bảng ${m.g}</span><span>${m.status}</span></div><div class="teams"><div class="team"><span class="teamName"><span class="flag">${m.home[1]}</span>${m.home[0]}</span><span class="score">${m.score?m.score.split(' - ')[0]:''}</span></div><div class="team"><span class="teamName"><span class="flag">${m.away[1]}</span>${m.away[0]}</span><span class="score">${m.score?m.score.split(' - ')[1]:''}</span></div></div><div class="time">${m.date} · <b>${m.score||'Xem ngay'}</b></div></div>`}
-function renderMatches(){let q=(document.getElementById('search')?.value||'').toLowerCase();let g=document.getElementById('groupFilter')?.value||'all';let arr=matches.filter(m=>m.status!=='Đã kết thúc').filter(m=>(g==='all'||m.g===g)&&((m.home[0]+m.away[0]).toLowerCase().includes(q)));document.getElementById('matchGrid').innerHTML=arr.map(card).join('')||'<p class="sub">Không tìm thấy trận.</p>'}
-function renderResults(){document.getElementById('resultGrid').innerHTML=matches.filter(m=>m.status==='Đã kết thúc').map(card).join('')}
+  </header>
 
-function renderHomeLive(){let live=matches.find(m=>m.status==='Đang trực tiếp')||matches.find(m=>m.status!=='Đã kết thúc')||matches[0];document.getElementById('homeLiveHeader').innerHTML=`<div class="liveTeams"><span class="flag">${live.home[1]}</span> ${live.home[0]} <span style="color:var(--gold)">vs</span> ${live.away[0]} <span class="flag">${live.away[1]}</span></div><span class="liveBadge">● ${live.status}</span>`;document.getElementById('homeWatchInfo').innerHTML=`<div class="card" style="background:#0d1829"><b>Bảng ${live.g}</b><p>${live.date}</p><p>Trạng thái: <span class="status">${live.status}</span></p><p class="sub">Đây là vị trí chính để gắn luồng live. Khách vào trang là thấy khung video và hai đội đang đá ngay, không cần bấm thêm.</p></div>`;document.getElementById('homeFeatured').innerHTML=card(live);document.getElementById('homeUpcoming').innerHTML=matches.filter(m=>m.id!==live.id&&m.status!=='Đã kết thúc').slice(0,6).map(card).join('')}
-function renderFeatured(){document.getElementById('featured').innerHTML=card(matches[0])}
-function renderStandings(){let html='';Object.entries(standings).forEach(([g,rows])=>{html+=`<div class="card" style="margin-bottom:14px"><h3>Bảng ${g}</h3><table class="table"><tr><th>Đội</th><th>Tr</th><th>T</th><th>H</th><th>B</th><th>Điểm</th></tr>${rows.map(r=>`<tr><td>${r[1]} <b>${r[0]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td><td>${r[5]}</td><td><b>${r[6]}</b></td></tr>`).join('')}</table></div>`});document.getElementById('standingBox').innerHTML=html}
-function renderNews(){document.getElementById('newsGrid').innerHTML=news.map((n,i)=>`<div class="card"><div class="newsImg">${['🏆','⚽','🔥','📅','🌏','📰'][i]}</div><h3>${n}</h3><p class="sub">Đây là nội dung demo. Sau này có thể kết nối bài viết thật.</p></div>`).join('')}
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.dataset.nav===id));location.hash=id}
-function openMatch(id){let m=matches.find(x=>x.id===id)||matches[0];document.querySelectorAll('.page').forEach(p=>p.classList.add('hidden'));document.getElementById('watch').classList.remove('hidden');document.getElementById('watchTitle').innerText=`${m.home[1]} ${m.home[0]} vs ${m.away[0]} ${m.away[1]}`;document.getElementById('playerText').innerText=m.status==='Đã kết thúc'?'Video highlight / phát lại':'Khung livestream chờ trận';document.getElementById('watchInfo').innerHTML=`<div class="card" style="background:#0d1829"><b>Bảng ${m.g}</b><p>${m.date}</p><p>Trạng thái: <span class="status">${m.status}</span></p><p class="sub">Vị trí gắn luồng: thay phần player bằng thẻ video HLS hoặc iframe.</p></div>`;history.pushState(null,'',`?match=${m.id}#watch`)}
-function sendMsg(){let v=document.getElementById('chatText').value.trim();if(!v)return;document.getElementById('msgs').insertAdjacentHTML('beforeend',`<div class="msg"><b>Bạn:</b> ${v.replaceAll('<','&lt;')}</div>`);document.getElementById('chatText').value=''}
-function tick(){let target=new Date(matches[0].date.replace(' ','T')+':00+07:00');let diff=Math.max(0,target-new Date());let d=Math.floor(diff/86400000),h=Math.floor(diff/3600000)%24,m=Math.floor(diff/60000)%60,s=Math.floor(diff/1000)%60;document.getElementById('countdown').innerHTML=[['Ngày',d],['Giờ',h],['Phút',m],['Giây',s]].map(x=>`<div class="cd"><b>${x[1]}</b>${x[0]}</div>`).join('')}
-renderHomeLive();renderFeatured();renderMatches();renderResults();renderStandings();renderNews();tick();setInterval(tick,1000);let initial=location.hash?.replace('#','')||'home';if(document.getElementById(initial)&&initial!=='watch')showPage(initial);let mid=new URLSearchParams(location.search).get('match');if(mid)openMatch(mid);
-</script>
+  <main class="wrap">
+    <section id="live" class="layout">
+      <div class="card">
+        <div class="liveHead">
+          <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+            <h1 style="margin:0;font-size:26px">Trực tiếp World Cup</h1>
+            <span class="status"><i class="dot"></i> Đang trực tiếp</span>
+          </div>
+          <div class="teams">
+            <div class="team"><img class="flag" src="https://flagcdn.com/w80/pt.png" alt="Bồ Đào Nha"><div><small>Portugal</small><b>Bồ Đào Nha</b></div></div>
+            <div class="score"><div class="num">0 - 0</div><p>Hiệp 1 · 12:34</p></div>
+            <div class="team right"><div><small>DR Congo</small><b>CHDC Congo</b></div><img class="flag" src="https://flagcdn.com/w80/cd.png" alt="CHDC Congo"></div>
+          </div>
+        </div>
+        <div class="video">
+          <span class="liveBadge">● LIVE</span>
+          <div>
+            <div class="play">▶</div>
+            <h3>Khung livestream đang chờ gắn luồng</h3>
+            <p>Sau này bạn gắn link HLS .m3u8 hoặc iframe vào đây, khách vào web sẽ thấy video ngay.</p>
+          </div>
+          <div class="controls"><span>❚❚</span><span>🔊</span><span style="color:var(--red)">●</span><span>TRỰC TIẾP</span><div class="bar"><i></i></div><span>⚙</span><span>⛶</span></div>
+        </div>
+        <div class="info">
+          <b>Bảng K</b><br><br>
+          2026-06-18 00:00 · Trạng thái: <b class="green">Đang trực tiếp</b><br><br>
+          Khách vào trang là thấy ngay khung video, tên đội, cờ quốc gia và tỷ số. Không cần bấm thêm vào Trang chủ.
+        </div>
+      </div>
+
+      <aside class="side">
+        <div class="card box">
+          <h2>Bình luận của khách</h2>
+          <div class="commentList" id="comments">
+            <div class="comment"><div class="avatar">A</div><div><b>Anh Minh</b><p>Vào web là thấy trận đang đá luôn, rất dễ xem.</p></div></div>
+            <div class="comment"><div class="avatar">H</div><div><b>Hoàng</b><p>Bồ Đào Nha ép sân mạnh quá.</p></div></div>
+            <div class="comment"><div class="avatar">L</div><div><b>Linh</b><p>Cờ đội bóng hiện rõ rồi, nhìn chuyên nghiệp hơn.</p></div></div>
+            <div class="comment"><div class="avatar">T</div><div><b>Tuấn</b><p>Chờ gắn live thật là xem được ngay.</p></div></div>
+          </div>
+          <div class="commentForm"><input id="commentInput" placeholder="Nhập bình luận..."><button onclick="addComment()">Gửi</button></div>
+        </div>
+        <div class="card box" id="rank">
+          <h2>Bảng xếp hạng - Bảng K</h2>
+          <table class="table"><thead><tr><th>#</th><th>Đội</th><th>Tr</th><th>HS</th><th>Đ</th></tr></thead><tbody>
+            <tr><td>1</td><td><span class="rankTeam"><img class="miniFlag" src="https://flagcdn.com/w40/pt.png">Bồ Đào Nha</span></td><td>1</td><td>0</td><td>1</td></tr>
+            <tr><td>2</td><td><span class="rankTeam"><img class="miniFlag" src="https://flagcdn.com/w40/co.png">Colombia</span></td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>3</td><td><span class="rankTeam"><img class="miniFlag" src="https://flagcdn.com/w40/uz.png">Uzbekistan</span></td><td>0</td><td>0</td><td>0</td></tr>
+            <tr><td>4</td><td><span class="rankTeam"><img class="miniFlag" src="https://flagcdn.com/w40/cd.png">CHDC Congo</span></td><td>1</td><td>0</td><td>1</td></tr>
+          </tbody></table>
+        </div>
+      </aside>
+    </section>
+
+    <section id="schedule" class="section">
+      <div class="titleRow"><h2>Lịch thi đấu hôm nay</h2><button class="btn">Tất cả</button></div>
+      <div class="matches">
+        <article class="match live"><div class="matchTop"><b>TRỰC TIẾP</b><span>Bảng K</span></div><div class="matchTeams"><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/pt.png">Bồ Đào Nha</span><span class="vs">0 - 0</span><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/cd.png">CHDC Congo</span></div><small>Đang trực tiếp</small></article>
+        <article class="match"><div class="matchTop"><b>17:00</b><span>Bảng E</span></div><div class="matchTeams"><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/de.png">Đức</span><span class="vs">vs</span><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/jp.png">Nhật Bản</span></div><small>Sắp diễn ra</small></article>
+        <article class="match"><div class="matchTop"><b>20:00</b><span>Bảng D</span></div><div class="matchTeams"><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/fr.png">Pháp</span><span class="vs">vs</span><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/au.png">Australia</span></div><small>Sắp diễn ra</small></article>
+        <article class="match"><div class="matchTop"><b>23:00</b><span>Bảng B</span></div><div class="matchTeams"><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/es.png">Tây Ban Nha</span><span class="vs">vs</span><span class="miniTeam"><img class="miniFlag" src="https://flagcdn.com/w40/cr.png">Costa Rica</span></div><small>Sắp diễn ra</small></article>
+      </div>
+    </section>
+
+    <section id="news" class="ticker card"><b>TIN TỨC</b><span>World Cup 2026: lịch thi đấu mới nhất</span><span>•</span><span>Bồ Đào Nha ra sân tại bảng K</span><span>•</span><span>Cập nhật tỷ số trực tiếp từng phút</span></section>
+  </main>
+
+  <script>
+    function tick(){const d=new Date();document.getElementById('time').textContent=d.toLocaleTimeString('vi-VN');document.getElementById('date').textContent=d.toLocaleDateString('vi-VN',{weekday:'long',year:'numeric',month:'2-digit',day:'2-digit'});} tick(); setInterval(tick,1000);
+    function addComment(){const input=document.getElementById('commentInput');const text=input.value.trim();if(!text)return;const box=document.getElementById('comments');const item=document.createElement('div');item.className='comment';item.innerHTML='<div class="avatar">K</div><div><b>Khách</b><p></p></div>';item.querySelector('p').textContent=text;box.appendChild(item);input.value='';box.scrollTop=box.scrollHeight;}
+    document.getElementById('commentInput').addEventListener('keydown',e=>{if(e.key==='Enter')addComment()});
+  </script>
 </body>
 </html>
