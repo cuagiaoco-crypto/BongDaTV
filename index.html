@@ -22,7 +22,7 @@
     @keyframes promoPulse{0%,100%{transform:scale(1);filter:saturate(1)}50%{transform:scale(1.045);filter:saturate(1.35) brightness(1.08)}}
     @keyframes shine{0%{left:-55%}55%,100%{left:125%}}
     main{max-width:1280px;margin:auto;padding:24px 18px}.layout{display:grid;grid-template-columns:1fr 380px;gap:20px}.card{background:rgba(16,28,48,.94);border:1px solid var(--line);border-radius:18px;overflow:hidden}.pad{padding:18px}
-    .scoreTop{display:grid;grid-template-columns:1fr 210px 1fr;align-items:center;gap:12px;background:#132540;padding:22px}.team{display:flex;align-items:center;gap:14px}.team.away{justify-content:flex-end;text-align:right}.flag{font-size:42px}.code{font-size:13px;color:#9fb1ca}.name{font-size:26px;font-weight:900}.center{text-align:center}.live{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,53,71,.6);color:#ff6776;padding:8px 16px;border-radius:999px;font-weight:900}.dot{width:8px;height:8px;border-radius:50%;background:#ff3547;box-shadow:0 0 10px #ff3547}.score{font-size:58px;font-weight:1000;color:#ff3547;line-height:1.1}.minute{color:#eaf1ff;margin-top:8px}
+    .scoreTop{display:grid;grid-template-columns:1fr 210px 1fr;align-items:center;gap:12px;background:#132540;padding:22px}.team{display:flex;align-items:center;gap:14px}.team.away{justify-content:flex-end;text-align:right}.flag{font-size:42px}.code{font-size:13px;color:#9fb1ca}.name{font-size:26px;font-weight:900}.center{text-align:center}.live{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,53,71,.6);color:#ff6776;padding:8px 16px;border-radius:999px;font-weight:900}.dot{width:8px;height:8px;border-radius:50%;background:#ff3547;box-shadow:0 0 10px #ff3547}.score{font-size:58px;font-weight:1000;color:#ff3547;line-height:1.1}.minute{display:none}
     .player{height:470px;background:#02060b;display:grid;place-items:center;position:relative}.player video,.player iframe{width:100%;height:100%;border:0;background:#000}.empty{display:grid;place-items:center;text-align:center;padding:30px;color:#dbe8ff}.play{width:74px;height:74px;border-radius:50%;background:#ffd45a;color:#07111f;display:grid;place-items:center;font-size:32px;margin:auto auto 14px}.badge{display:inline-block;background:#0b1729;border:1px solid #2a4165;border-radius:999px;padding:10px 16px;font-weight:800;margin-top:14px}
     .sectionTitle{font-size:22px;font-weight:900;margin:0 0 16px}.comments{height:410px;overflow:auto;padding-right:5px}.comment{border:1px solid #263a5b;background:#0c182b;padding:12px;border-radius:12px;margin-bottom:10px}.comment b{color:#ffd45a}.chatForm{display:grid;grid-template-columns:1fr 1fr 56px;gap:8px;margin-top:12px}.inp{width:100%;background:#091524;border:1px solid #2a4165;color:#fff;border-radius:10px;padding:12px}.btn{border:0;border-radius:10px;background:#ffd45a;color:#07111f;font-weight:900;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.match{border:1px solid #263a5b;background:#0c182b;border-radius:14px;padding:14px;cursor:pointer}.match:hover{border-color:#ff3547}.matchLive{border-color:#ff3547}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.small{font-size:13px;color:#9fb1ca}.stand table{width:100%;border-collapse:collapse}.stand th,.stand td{border-bottom:1px solid #243653;padding:10px;text-align:left}.newsbar{display:flex;gap:22px;white-space:nowrap;overflow:hidden;background:#081321;border-top:1px solid #1f304b;padding:14px 0;color:#e8f1ff}.ticker{animation:ticker 28s linear infinite}@keyframes ticker{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
     @media(max-width:980px){.topPromos{gap:10px;padding:0 10px}.promoBtn{min-width:142px;padding:11px 14px}.promoBtn span{font-size:25px}.promoBtn.blue span{font-size:23px}.layout{grid-template-columns:1fr}.scoreTop{grid-template-columns:1fr}.team,.team.away{justify-content:center;text-align:center}.player{height:280px}.grid{grid-template-columns:1fr}nav{gap:4px}.navbtn{padding:9px 10px;font-size:13px}.bar{height:auto;padding:12px;flex-direction:column;gap:10px}}
@@ -39,7 +39,7 @@
     <div class="card">
       <div class="scoreTop">
         <div class="team"><div class="flag" id="homeFlag">🇵🇹</div><div><div class="code" id="homeCode">POR</div><div class="name" id="homeName">Bồ Đào Nha</div></div></div>
-        <div class="center"><div class="live"><span class="dot"></span><span id="statusText">Đang trực tiếp</span></div><div class="score"><span id="homeScore">0</span> - <span id="awayScore">0</span></div><div class="minute" id="minuteText">Hiệp 1 · 00:30</div></div>
+        <div class="center"><div class="live"><span class="dot"></span><span id="statusText">Đang trực tiếp</span></div><div class="score"><span id="homeScore">0</span> - <span id="awayScore">0</span></div></div>
         <div class="team away"><div><div class="code" id="awayCode">COD</div><div class="name" id="awayName">CHDC Congo</div></div><div class="flag" id="awayFlag">🇨🇩</div></div>
       </div>
       <div class="player" id="playerBox"></div>
@@ -140,7 +140,7 @@ function data(){return JSON.parse(localStorage.getItem('football_v13')||JSON.str
 function save(d){localStorage.setItem('football_v13',JSON.stringify(d))}
 function pickLive(d){return d.matches.find(x=>x.id===d.liveId)||d.matches.find(x=>x.status==='Đang trực tiếp')||d.matches[0]}
 function render(){const d=data(),m=pickLive(d); ['homeName','homeCode','homeFlag','awayName','awayCode','awayFlag'].forEach(id=>document.getElementById(id).textContent=m[id.replace('Name','').replace('Code','').replace('Flag','')+ (id.includes('Name')?'': '')]||'');
- document.getElementById('homeName').textContent=m.home;document.getElementById('homeCode').textContent=m.homeCode;document.getElementById('homeFlag').textContent=m.homeFlag;document.getElementById('awayName').textContent=m.away;document.getElementById('awayCode').textContent=m.awayCode;document.getElementById('awayFlag').textContent=m.awayFlag;document.getElementById('homeScore').textContent=m.hs;document.getElementById('awayScore').textContent=m.as;document.getElementById('minuteText').textContent=m.minute;document.getElementById('statusText').textContent=m.status;document.getElementById('leagueText').textContent=m.group+' · '+m.league;
+ document.getElementById('homeName').textContent=m.home;document.getElementById('homeCode').textContent=m.homeCode;document.getElementById('homeFlag').textContent=m.homeFlag;document.getElementById('awayName').textContent=m.away;document.getElementById('awayCode').textContent=m.awayCode;document.getElementById('awayFlag').textContent=m.awayFlag;document.getElementById('homeScore').textContent=m.hs;document.getElementById('awayScore').textContent=m.as;document.getElementById('statusText').textContent=m.status;document.getElementById('leagueText').textContent=m.group+' · '+m.league;
  renderPlayer(m.stream); renderComments(d.comments); renderMatches(d); renderRank(d.matches);}
 function renderPlayer(src){const box=document.getElementById('playerBox');box.innerHTML=''; if(!src){box.innerHTML='<div class="empty"><div><div class="play">▶</div><b>Khung livestream đang chờ gắn luồng</b><p>Sau này admin dán link .m3u8, MP4 hoặc iframe là khách xem được.</p></div></div>';return}
  if(src.includes('<iframe')||src.includes('youtube.com/embed')){box.innerHTML=src.includes('<iframe')?src:`<iframe src="${src}" allowfullscreen allow="autoplay; fullscreen"></iframe>`;return}
@@ -156,104 +156,85 @@ window.renderPlayer=renderPlayer;window.renderComments=renderComments;window.add
 </script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
-const firebaseConfig={apiKey:"AIzaSyD1uEpTdgNYg7aMxyMJaRShQC0DmuO4jsw",authDomain:"bongdatv-89d63.firebaseapp.com",databaseURL:"https://bongdatv-89d63-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bongdatv-89d63",storageBucket:"bongdatv-89d63.firebasestorage.app",messagingSenderId:"962226885219",appId:"1:962226885219:web:38432737d3df761062de56",measurementId:"G-FVYB4B95FY"};
-const app=initializeApp(firebaseConfig),db=getDatabase(app);
-function safeSet(id,v){const el=document.getElementById(id); if(el) el.textContent=(v??'')}
+import { getDatabase, ref, onValue, push, update } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 
-let liveClockTimer=null;
-let currentAutoKey='';
-function getMatchKey(m){
-  return String((m.teamHome||m.home||'home')+'_'+(m.teamAway||m.away||'away')+'_'+(m.streamUrl||m.stream||'stream')).replace(/\W+/g,'_').slice(0,80);
-}
-function getAutoState(m){
-  const key=getMatchKey(m);
-  const raw=localStorage.getItem('wc_live_auto_state');
-  let st=null;
-  try{st=raw?JSON.parse(raw):null}catch(e){st=null}
-  if(!st||st.key!==key){
-    st={
-      key,
-      startAt:Date.now(),
-      scoreHome:Number(m.scoreHome??m.hs??0)||0,
-      scoreAway:Number(m.scoreAway??m.as??0)||0,
-      goals:[]
-    };
-    localStorage.setItem('wc_live_auto_state',JSON.stringify(st));
+const firebaseConfig={
+  apiKey:"AIzaSyD1uEpTdgNYg7aMxyMJaRShQC0DmuO4jsw",
+  authDomain:"bongdatv-89d63.firebaseapp.com",
+  databaseURL:"https://bongdatv-89d63-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId:"bongdatv-89d63",
+  storageBucket:"bongdatv-89d63.firebasestorage.app",
+  messagingSenderId:"962226885219",
+  appId:"1:962226885219:web:38432737d3df761062de56",
+  measurementId:"G-FVYB4B95FY"
+};
+
+const app=initializeApp(firebaseConfig);
+const db=getDatabase(app);
+let currentStreamUrl='';
+
+function safeSet(id,v){const el=document.getElementById(id); if(el) el.textContent=(v??'')}
+function isNum(v){return v!==undefined && v!==null && v!=='' && !Number.isNaN(Number(v))}
+function normalizeScore(v){return isNum(v)?Number(v):0}
+function renderTeamLogo(id, logoUrl, fallbackText){
+  const el=document.getElementById(id);
+  if(!el) return;
+  if(logoUrl){
+    el.innerHTML='<img src="'+logoUrl+'" alt="logo" style="width:42px;height:42px;object-fit:contain;border-radius:8px;background:#fff;padding:4px">';
+  }else{
+    el.textContent=fallbackText || '';
   }
-  return st;
 }
-function saveAutoState(st){localStorage.setItem('wc_live_auto_state',JSON.stringify(st))}
-function formatMinute(totalMin){
-  totalMin=Math.max(0,Math.min(95,totalMin));
-  if(totalMin<45) return 'Hiệp 1 · '+String(totalMin).padStart(2,'0')+':00';
-  if(totalMin<60) return 'Nghỉ giữa hiệp';
-  return 'Hiệp 2 · '+String(Math.min(90,totalMin-15)).padStart(2,'0')+':00';
-}
-function maybeAutoGoal(st,minute){
-  if(minute<3||minute>90)return;
-  if(st.goals.includes(minute))return;
-  // Mô phỏng bàn thắng: thỉnh thoảng tự tăng tỉ số để web nhìn đang live.
-  const chanceMinutes=[8,17,26,34,43,52,61,70,79,88];
-  const near=chanceMinutes.includes(minute);
-  if(!near && Math.random()>0.08)return;
-  if(near && Math.random()>0.38)return;
-  const homeBetter=Math.random()<0.58;
-  if(homeBetter) st.scoreHome++; else st.scoreAway++;
-  st.goals.push(minute);
-  saveAutoState(st);
-  addGoalComment(homeBetter,minute);
-}
-function addGoalComment(isHome,minute){
-  const team=isHome?(document.getElementById('homeName')?.textContent||'đội nhà'):(document.getElementById('awayName')?.textContent||'đội khách');
-  const names=['Minh Live','Hoàng FC','Dũng SânCỏ','Fan WorldCup','Tuấn Goal','Khoa Win','AnhEm BóngĐá','Quân Sport'];
-  const msgs=[
-    'Vào rồi anh em ơi! '+team+' ghi bàn phút '+minute,
-    'Bàn thắng rồi, trận này căng thật!',
-    team+' vừa có bàn, xem cuốn quá anh em.',
-    'Tỉ số cập nhật rồi nha, trận này nóng thật.',
-    'Pha bóng vừa rồi quá hay, '+team+' có bàn rồi!'
-  ];
-  const box=document.getElementById('comments');
-  if(!box)return;
-  const el=document.createElement('div');
-  el.className='comment';
-  el.innerHTML='<b>'+names[Math.floor(Math.random()*names.length)]+'</b><br>'+msgs[Math.floor(Math.random()*msgs.length)];
-  box.insertBefore(el,box.firstChild);
-}
-function startAutoLiveTicker(m){
-  if(liveClockTimer) clearInterval(liveClockTimer);
-  const key=getMatchKey(m);
-  currentAutoKey=key;
-  const tick=()=>{
-    const st=getAutoState(m);
-    if(st.key!==currentAutoKey)return;
-    const minute=Math.floor((Date.now()-st.startAt)/60000);
-    maybeAutoGoal(st,minute);
-    safeSet('minuteText',formatMinute(minute));
-    safeSet('homeScore',st.scoreHome);
-    safeSet('awayScore',st.scoreAway);
-  };
-  tick();
-  liveClockTimer=setInterval(tick,1000);
-}
-function applyLive(m){
-  if(!m)return;
-  safeSet('homeName',m.teamHome||m.home);
-  safeSet('awayName',m.teamAway||m.away);
+function applyMatchToPage(m){
+  if(!m) return;
+  safeSet('homeName',m.teamHome||m.home||'Đội nhà');
+  safeSet('awayName',m.teamAway||m.away||'Đội khách');
   safeSet('homeCode',m.abbrHome||m.homeCode||'');
   safeSet('awayCode',m.abbrAway||m.awayCode||'');
-  safeSet('homeFlag',m.flagHome||m.homeFlag||'');
-  safeSet('awayFlag',m.flagAway||m.awayFlag||'');
+  renderTeamLogo('homeFlag',m.logoHome||'',m.flagHome||m.homeFlag||'');
+  renderTeamLogo('awayFlag',m.logoAway||'',m.flagAway||m.awayFlag||'');
+  safeSet('homeScore',normalizeScore(m.scoreHome ?? m.hs));
+  safeSet('awayScore',normalizeScore(m.scoreAway ?? m.as));
   safeSet('statusText',m.status||'Đang trực tiếp');
   safeSet('leagueText',(m.group||'')+' · '+(m.league||'World Cup'));
-  if(m.streamUrl&&window.renderPlayer)window.renderPlayer(m.streamUrl);
-  startAutoLiveTicker(m);
+  const nextStream=m.streamUrl||m.stream||'';
+  if(nextStream && nextStream!==currentStreamUrl && window.renderPlayer){
+    currentStreamUrl=nextStream;
+    window.renderPlayer(nextStream);
+  }
 }
-onValue(ref(db,'liveMatch'),snap=>applyLive(snap.val()));
-onValue(ref(db,'banners'),snap=>{const b=snap.val()||{};const p1=document.getElementById('promo1'),p2=document.getElementById('promo2'); if(p1&&b.link1){p1.href=b.link1}else if(p1){p1.href='#'} if(p2&&b.link2){p2.href=b.link2}else if(p2){p2.href='#'}});
-onValue(ref(db,'comments'),snap=>{const real=[];snap.forEach(c=>{const v=c.val()||{}; real.unshift({n:v.name||v.n||'Khách',m:v.message||v.m||''})}); const demo=makeDemoComments(1000); window.firebaseComments=real.concat(demo); if(window.renderComments)window.renderComments(window.firebaseComments)});
-window.addCommentFirebase=async function(){const n=document.getElementById('cName')?.value||'Khách';const m=document.getElementById('cMsg')?.value||'';if(!m.trim())return;await push(ref(db,'comments'),{name:n,message:m,time:Date.now()});document.getElementById('cMsg').value=''};
+
+onValue(ref(db,'liveMatch'),snap=>{
+  const m=snap.val();
+  if(!m) return;
+  applyMatchToPage(m);
+});
+
+onValue(ref(db,'banners'),snap=>{
+  const b=snap.val()||{};
+  const p1=document.getElementById('promo1'),p2=document.getElementById('promo2');
+  if(p1) p1.href=b.link1||'#';
+  if(p2) p2.href=b.link2||'#';
+});
+
+onValue(ref(db,'comments'),snap=>{
+  const real=[];
+  snap.forEach(c=>{const v=c.val()||{}; real.unshift({n:v.name||v.n||'Khách',m:v.message||v.m||''})});
+  const demo=makeDemoComments(1000);
+  window.firebaseComments=real.concat(demo);
+  if(window.renderComments) window.renderComments(window.firebaseComments);
+});
+
+window.addCommentFirebase=async function(){
+  const n=document.getElementById('cName')?.value||'Khách';
+  const m=document.getElementById('cMsg')?.value||'';
+  if(!m.trim()) return;
+  await push(ref(db,'comments'),{name:n,message:m,time:Date.now()});
+  document.getElementById('cMsg').value='';
+};
+
+// Tỉ số, đội bóng, trạng thái và luồng live lấy từ Firebase.
+// Admin nhập tay trong admin.html rồi bấm Lưu là trang khách cập nhật ngay.
 </script>
 
 </body>
