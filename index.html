@@ -160,7 +160,96 @@ import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebas
 const firebaseConfig={apiKey:"AIzaSyD1uEpTdgNYg7aMxyMJaRShQC0DmuO4jsw",authDomain:"bongdatv-89d63.firebaseapp.com",databaseURL:"https://bongdatv-89d63-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bongdatv-89d63",storageBucket:"bongdatv-89d63.firebasestorage.app",messagingSenderId:"962226885219",appId:"1:962226885219:web:38432737d3df761062de56",measurementId:"G-FVYB4B95FY"};
 const app=initializeApp(firebaseConfig),db=getDatabase(app);
 function safeSet(id,v){const el=document.getElementById(id); if(el) el.textContent=(v??'')}
-function applyLive(m){if(!m)return;safeSet('homeName',m.teamHome||m.home);safeSet('awayName',m.teamAway||m.away);safeSet('homeCode',m.abbrHome||m.homeCode||'');safeSet('awayCode',m.abbrAway||m.awayCode||'');safeSet('homeFlag',m.flagHome||m.homeFlag||'');safeSet('awayFlag',m.flagAway||m.awayFlag||'');safeSet('homeScore',m.scoreHome??m.hs??0);safeSet('awayScore',m.scoreAway??m.as??0);safeSet('minuteText',m.minute||'Hiệp 1 · 00:00');safeSet('statusText',m.status||'Đang trực tiếp');safeSet('leagueText',(m.group||'')+' · '+(m.league||'World Cup'));if(m.streamUrl&&window.renderPlayer)window.renderPlayer(m.streamUrl)}
+
+let liveClockTimer=null;
+let currentAutoKey='';
+function getMatchKey(m){
+  return String((m.teamHome||m.home||'home')+'_'+(m.teamAway||m.away||'away')+'_'+(m.streamUrl||m.stream||'stream')).replace(/\W+/g,'_').slice(0,80);
+}
+function getAutoState(m){
+  const key=getMatchKey(m);
+  const raw=localStorage.getItem('wc_live_auto_state');
+  let st=null;
+  try{st=raw?JSON.parse(raw):null}catch(e){st=null}
+  if(!st||st.key!==key){
+    st={
+      key,
+      startAt:Date.now(),
+      scoreHome:Number(m.scoreHome??m.hs??0)||0,
+      scoreAway:Number(m.scoreAway??m.as??0)||0,
+      goals:[]
+    };
+    localStorage.setItem('wc_live_auto_state',JSON.stringify(st));
+  }
+  return st;
+}
+function saveAutoState(st){localStorage.setItem('wc_live_auto_state',JSON.stringify(st))}
+function formatMinute(totalMin){
+  totalMin=Math.max(0,Math.min(95,totalMin));
+  if(totalMin<45) return 'Hiệp 1 · '+String(totalMin).padStart(2,'0')+':00';
+  if(totalMin<60) return 'Nghỉ giữa hiệp';
+  return 'Hiệp 2 · '+String(Math.min(90,totalMin-15)).padStart(2,'0')+':00';
+}
+function maybeAutoGoal(st,minute){
+  if(minute<3||minute>90)return;
+  if(st.goals.includes(minute))return;
+  // Mô phỏng bàn thắng: thỉnh thoảng tự tăng tỉ số để web nhìn đang live.
+  const chanceMinutes=[8,17,26,34,43,52,61,70,79,88];
+  const near=chanceMinutes.includes(minute);
+  if(!near && Math.random()>0.08)return;
+  if(near && Math.random()>0.38)return;
+  const homeBetter=Math.random()<0.58;
+  if(homeBetter) st.scoreHome++; else st.scoreAway++;
+  st.goals.push(minute);
+  saveAutoState(st);
+  addGoalComment(homeBetter,minute);
+}
+function addGoalComment(isHome,minute){
+  const team=isHome?(document.getElementById('homeName')?.textContent||'đội nhà'):(document.getElementById('awayName')?.textContent||'đội khách');
+  const names=['Minh Live','Hoàng FC','Dũng SânCỏ','Fan WorldCup','Tuấn Goal','Khoa Win','AnhEm BóngĐá','Quân Sport'];
+  const msgs=[
+    'Vào rồi anh em ơi! '+team+' ghi bàn phút '+minute,
+    'Bàn thắng rồi, trận này căng thật!',
+    team+' vừa có bàn, xem cuốn quá anh em.',
+    'Tỉ số cập nhật rồi nha, trận này nóng thật.',
+    'Pha bóng vừa rồi quá hay, '+team+' có bàn rồi!'
+  ];
+  const box=document.getElementById('comments');
+  if(!box)return;
+  const el=document.createElement('div');
+  el.className='comment';
+  el.innerHTML='<b>'+names[Math.floor(Math.random()*names.length)]+'</b><br>'+msgs[Math.floor(Math.random()*msgs.length)];
+  box.insertBefore(el,box.firstChild);
+}
+function startAutoLiveTicker(m){
+  if(liveClockTimer) clearInterval(liveClockTimer);
+  const key=getMatchKey(m);
+  currentAutoKey=key;
+  const tick=()=>{
+    const st=getAutoState(m);
+    if(st.key!==currentAutoKey)return;
+    const minute=Math.floor((Date.now()-st.startAt)/60000);
+    maybeAutoGoal(st,minute);
+    safeSet('minuteText',formatMinute(minute));
+    safeSet('homeScore',st.scoreHome);
+    safeSet('awayScore',st.scoreAway);
+  };
+  tick();
+  liveClockTimer=setInterval(tick,1000);
+}
+function applyLive(m){
+  if(!m)return;
+  safeSet('homeName',m.teamHome||m.home);
+  safeSet('awayName',m.teamAway||m.away);
+  safeSet('homeCode',m.abbrHome||m.homeCode||'');
+  safeSet('awayCode',m.abbrAway||m.awayCode||'');
+  safeSet('homeFlag',m.flagHome||m.homeFlag||'');
+  safeSet('awayFlag',m.flagAway||m.awayFlag||'');
+  safeSet('statusText',m.status||'Đang trực tiếp');
+  safeSet('leagueText',(m.group||'')+' · '+(m.league||'World Cup'));
+  if(m.streamUrl&&window.renderPlayer)window.renderPlayer(m.streamUrl);
+  startAutoLiveTicker(m);
+}
 onValue(ref(db,'liveMatch'),snap=>applyLive(snap.val()));
 onValue(ref(db,'banners'),snap=>{const b=snap.val()||{};const p1=document.getElementById('promo1'),p2=document.getElementById('promo2'); if(p1&&b.link1){p1.href=b.link1}else if(p1){p1.href='#'} if(p2&&b.link2){p2.href=b.link2}else if(p2){p2.href='#'}});
 onValue(ref(db,'comments'),snap=>{const real=[];snap.forEach(c=>{const v=c.val()||{}; real.unshift({n:v.name||v.n||'Khách',m:v.message||v.m||''})}); const demo=makeDemoComments(1000); window.firebaseComments=real.concat(demo); if(window.renderComments)window.renderComments(window.firebaseComments)});
