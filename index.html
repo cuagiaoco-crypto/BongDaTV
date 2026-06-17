@@ -214,11 +214,11 @@ function toggleFullScreen(e){
  if(!box)return;
  if(!document.fullscreenElement){box.requestFullscreen?.()}else{document.exitFullscreen?.()}
 }
-function renderComments(c){document.getElementById('comments').innerHTML=c.map(x=>`<div class="comment"><b>${esc(x.n)}</b><br>${esc(x.m)}</div>`).join('')}
+function renderComments(c){const box=document.getElementById('comments');box.innerHTML=c.map(x=>`<div class="comment"><b>${esc(x.n)}</b><br>${esc(x.m)}</div>`).join('');box.scrollTop=box.scrollHeight}
 function renderMatches(d){document.getElementById('matches').innerHTML=d.matches.map(m=>`<div class="match ${m.id===d.liveId?'matchLive':''}" onclick="setLive('${m.id}')"><div class="row"><span class="small">${m.league}</span><b>${m.status}</b></div><h3>${m.homeFlag} ${m.home} <span style="color:#ffd45a">${m.hs} - ${m.as}</span> ${m.away} ${m.awayFlag}</h3><div class="small">${m.group} · ${m.minute}</div></div>`).join('')}
 function renderRank(ms){document.getElementById('rankBody').innerHTML=ms.slice(0,6).flatMap((m,i)=>[{team:m.home,flag:m.homeFlag,p:i===0?3:0},{team:m.away,flag:m.awayFlag,p:0}]).slice(0,6).map((x,i)=>`<tr><td>${i+1}</td><td>${x.flag} ${x.team}</td><td>1</td><td>${i?'0':'+1'}</td><td>${x.p}</td></tr>`).join('')}
 function setLive(id){const d=data();d.liveId=id;save(d);render();scrollTo(0,0)}
-function addComment(){if(window.addCommentFirebase){window.addCommentFirebase();return}const d=data();const n=document.getElementById('cName').value||'Khách';const m=document.getElementById('cMsg').value;if(!m.trim())return;d.comments.unshift({n,m});save(d);document.getElementById('cMsg').value='';renderComments(d.comments)}
+function addComment(){if(window.addCommentFirebase){window.addCommentFirebase();return}const d=data();const n=document.getElementById('cName').value||'Khách';const m=document.getElementById('cMsg').value;if(!m.trim())return;d.comments.push({n,m});save(d);document.getElementById('cMsg').value='';renderComments(d.comments)}
 function esc(s){return String(s).replace(/[&<>"]/g,a=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[a]))}
 
 /* Bình luận ảo tự chạy liên tục, hạn chế trùng nội dung */
@@ -286,8 +286,8 @@ function addAutoCommentToBox(){
   const div=document.createElement('div');
   div.className='comment';
   div.innerHTML='<b>'+esc(c.n)+'</b><br>'+esc(c.m);
-  box.insertBefore(div, box.firstChild);
-  while(box.children.length>120){box.removeChild(box.lastChild);}
+  box.appendChild(div);
+  while(box.children.length>120){box.removeChild(box.firstChild);} box.scrollTop = box.scrollHeight;
 }
 
 setInterval(addAutoCommentToBox, 3500);
@@ -304,7 +304,7 @@ function safeSet(id,v){const el=document.getElementById(id); if(el) el.textConte
 function applyLive(m){if(!m)return;safeSet('homeName',m.teamHome||m.home);safeSet('awayName',m.teamAway||m.away);safeSet('homeCode',m.abbrHome||m.homeCode||'');safeSet('awayCode',m.abbrAway||m.awayCode||'');safeSet('homeFlag',m.flagHome||m.homeFlag||'');safeSet('awayFlag',m.flagAway||m.awayFlag||'');safeSet('homeScore',m.scoreHome??m.hs??0);safeSet('awayScore',m.scoreAway??m.as??0);safeSet('minuteText',m.minute||'Hiệp 1 · 00:00');safeSet('statusText',m.status||'Đang trực tiếp');safeSet('leagueText',(m.group||'')+' · '+(m.league||'World Cup'));if(m.streamUrl&&window.renderPlayer)window.renderPlayer(m.streamUrl)}
 onValue(ref(db,'liveMatch'),snap=>applyLive(snap.val()));
 onValue(ref(db,'banners'),snap=>{const b=snap.val()||{};const p1=document.getElementById('promo1'),p2=document.getElementById('promo2'); if(p1&&b.link1){p1.href=b.link1}else if(p1){p1.href='#'} if(p2&&b.link2){p2.href=b.link2}else if(p2){p2.href='#'}});
-onValue(ref(db,'comments'),snap=>{const real=[];snap.forEach(c=>{const v=c.val()||{}; real.unshift({n:v.name||v.n||'Khách',m:v.message||v.m||''})}); const demo=makeDemoComments(1000); window.firebaseComments=real.concat(demo); if(window.renderComments)window.renderComments(window.firebaseComments)});
+onValue(ref(db,'comments'),snap=>{const real=[];snap.forEach(c=>{const v=c.val()||{}; real.push({n:v.name||v.n||'Khách',m:v.message||v.m||''})}); const demo=makeDemoComments(1000); window.firebaseComments=real.concat(demo); if(window.renderComments)window.renderComments(window.firebaseComments)});
 window.addCommentFirebase=async function(){const n=document.getElementById('cName')?.value||'Khách';const m=document.getElementById('cMsg')?.value||'';if(!m.trim())return;await push(ref(db,'comments'),{name:n,message:m,time:Date.now()});document.getElementById('cMsg').value=''};
 </script>
 
