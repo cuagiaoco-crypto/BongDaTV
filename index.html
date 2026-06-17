@@ -3,7 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WC LIVE - Xem bóng đá trực tiếp</title>
+
+  <title>WC LIVE - Xem Bóng Đá Trực Tiếp World Cup 2026</title>
+  <meta name="description" content="WC LIVE xem bóng đá trực tiếp World Cup 2026, lịch thi đấu World Cup, bảng xếp hạng và bình luận bóng đá mới nhất." />
+  <meta name="keywords" content="WC LIVE, xem bóng đá trực tiếp, lịch thi đấu World Cup 2026, bóng đá live, trực tiếp bóng đá hôm nay, bongdatv" />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://bongdatv.vercel.app/" />
+
+  <meta property="og:title" content="WC LIVE - Xem Bóng Đá Trực Tiếp World Cup 2026" />
+  <meta property="og:description" content="Xem bóng đá trực tiếp, lịch đá World Cup, bảng xếp hạng và bình luận bóng đá." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bongdatv.vercel.app/" />
+  <meta property="og:site_name" content="WC LIVE" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WC LIVE - Xem Bóng Đá Trực Tiếp World Cup 2026" />
+  <meta name="twitter:description" content="Xem bóng đá trực tiếp World Cup 2026, lịch thi đấu và bảng xếp hạng mới nhất." />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "WC LIVE",
+    "url": "https://bongdatv.vercel.app/",
+    "description": "Xem bóng đá trực tiếp World Cup 2026, lịch thi đấu và bảng xếp hạng.",
+    "inLanguage": "vi-VN"
+  }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     :root{--bg:#07111f;--card:#101c30;--card2:#0c1728;--line:#243653;--txt:#fff;--muted:#9fb1ca;--red:#ff3547;--yellow:#ffd45a;--green:#22df82}
@@ -146,7 +172,7 @@
   </style>
 </head>
 <body>
-<header><div class="bar"><div><div class="logo"><span>⚽</span><div>WC LIVE<div class="sub">XEM BÓNG ĐÁ TRỰC TIẾP</div></div></div></div><nav><a class="navbtn active" href="#live">TRỰC TIẾP</a><a class="navbtn" href="#schedule">LỊCH THI ĐẤU</a><a class="navbtn" href="#rank">BXH</a></nav></div></header>
+<header><div class="bar"><div><div class="logo"><span>⚽</span><div>WC LIVE<div class="sub">XEM BÓNG ĐÁ TRỰC TIẾP</div></div></div></div><nav><a class="navbtn active" href="/">TRỰC TIẾP</a><a class="navbtn" href="/">LỊCH THI ĐẤU</a><a class="navbtn" href="/">BXH</a></nav></div></header>
 <div class="topPromos">
   <a id="promo1" class="promoBtn" href="#" target="_blank" rel="noopener"><small>Nhận</small><span>999K</span></a>
   <a id="promo2" class="promoBtn blue" href="#" target="_blank" rel="noopener"><span>Cược ngay</span></a>
@@ -392,6 +418,25 @@ document.addEventListener('DOMContentLoaded',()=>{
       }
     });
   }
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const links=[...document.querySelectorAll('nav a')];
+  links.forEach(a=>{
+    const t=(a.textContent||'').trim();
+    if(t==='TRỰC TIẾP'){
+      a.addEventListener('click',e=>{e.preventDefault();document.getElementById('live')?.scrollIntoView({behavior:'smooth'});history.replaceState(null,'','/');});
+    }
+    if(t==='LỊCH THI ĐẤU'){
+      a.addEventListener('click',e=>{e.preventDefault();document.getElementById('schedule')?.scrollIntoView({behavior:'smooth'});history.replaceState(null,'','/');});
+    }
+    if(t==='BXH'){
+      a.addEventListener('click',e=>{e.preventDefault();document.getElementById('rank')?.scrollIntoView({behavior:'smooth'});history.replaceState(null,'','/');});
+    }
+  });
 });
 </script>
 
