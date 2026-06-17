@@ -21,9 +21,9 @@
     .promoBtn:hover{transform:translateY(-2px) scale(1.03);filter:brightness(1.1)}
     @keyframes promoPulse{0%,100%{transform:scale(1);filter:saturate(1)}50%{transform:scale(1.045);filter:saturate(1.35) brightness(1.08)}}
     @keyframes shine{0%{left:-55%}55%,100%{left:125%}}
-    main{max-width:1280px;margin:auto;padding:24px 18px}.layout{display:grid;grid-template-columns:1fr 380px;gap:20px}.card{background:rgba(16,28,48,.94);border:1px solid var(--line);border-radius:18px;overflow:hidden}.pad{padding:18px}
+    main{max-width:1280px;margin:auto;padding:24px 18px 90px}.layout{display:grid;grid-template-columns:1fr 380px;gap:20px}.card{background:rgba(16,28,48,.94);border:1px solid var(--line);border-radius:18px;overflow:hidden}.pad{padding:14px 18px}
     .scoreTop{display:grid;grid-template-columns:1fr 210px 1fr;align-items:center;gap:12px;background:#132540;padding:22px}.team{display:flex;align-items:center;gap:14px}.team.away{justify-content:flex-end;text-align:right}.flag{font-size:42px}.code{font-size:13px;color:#9fb1ca}.name{font-size:26px;font-weight:900}.center{text-align:center}.live{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,53,71,.6);color:#ff6776;padding:8px 16px;border-radius:999px;font-weight:900}.dot{width:8px;height:8px;border-radius:50%;background:#ff3547;box-shadow:0 0 10px #ff3547}.score{font-size:58px;font-weight:1000;color:#ff3547;line-height:1.1}.minute{color:#eaf1ff;margin-top:8px}
-    .player{height:470px;background:#02060b;display:grid;place-items:center;position:relative}.player video,.player iframe{width:100%;height:100%;border:0;background:#000}.empty{display:grid;place-items:center;text-align:center;padding:30px;color:#dbe8ff}.play{width:74px;height:74px;border-radius:50%;background:#ffd45a;color:#07111f;display:grid;place-items:center;font-size:32px;margin:auto auto 14px}.badge{display:inline-block;background:#0b1729;border:1px solid #2a4165;border-radius:999px;padding:10px 16px;font-weight:800;margin-top:14px}
+    .player{height:470px;background:#02060b;display:grid;place-items:center;position:relative}.player video,.player iframe{width:100%;height:100%;border:0;background:#000}.empty{display:grid;place-items:center;text-align:center;padding:30px;color:#dbe8ff}.play{width:74px;height:74px;border-radius:50%;background:#ffd45a;color:#07111f;display:grid;place-items:center;font-size:32px;margin:auto auto 14px}.badge{display:inline-block;background:#0b1729;border:1px solid #2a4165;border-radius:999px;padding:10px 16px;font-weight:800;margin-top:0}
 
 
     /* V14 responsive clean video overlay */
@@ -146,8 +146,8 @@
   </style>
 </head>
 <body>
-<nav>
-   
+<header><div class="bar"><div><div class="logo"><span>⚽</span><div>WC LIVE<div class="sub">XEM BÓNG ĐÁ TRỰC TIẾP</div></div></div></div><nav><a class="navbtn active" href="#live">TRỰC TIẾP</a><a class="navbtn" href="#schedule">LỊCH THI ĐẤU</a><a class="navbtn" href="#rank">BXH</a></nav></div></header>
+<div class="topPromos">
   <a id="promo1" class="promoBtn" href="#" target="_blank" rel="noopener"><small>Nhận</small><span>999K</span></a>
   <a id="promo2" class="promoBtn blue" href="#" target="_blank" rel="noopener"><span>Cược ngay</span></a>
 </div>
@@ -160,7 +160,7 @@
         <div class="team away"><div><div class="code" id="awayCode">COD</div><div class="name" id="awayName">CHDC Congo</div></div><div class="flag" id="awayFlag">🇨🇩</div></div>
       </div>
       <div class="player" id="playerBox"></div>
-      <div class="pad"><div class="badge" id="leagueText">Bảng K · World Cup</div><p id="descText" style="display:none"></p></div>
+      <div class="pad"><div class="badge" id="leagueText">Bảng K · World Cup</div></div>
     </div>
     <aside>
       <div class="card pad"><h2 class="sectionTitle">Bình Luận</h2><div id="pinnedComment" class="pinnedComment" style="display:none"></div><div class="comments" id="comments"></div><div class="chatForm"><input class="inp" id="cName" placeholder="Tên"><input class="inp" id="cMsg" placeholder="Nhập bình luận..."><button class="btn" onclick="addComment()">Gửi</button></div></div>
@@ -181,7 +181,7 @@
   </table>
 </section>
 </main>
-<div class="newsbar"><div class="ticker">🔥 Cập nhật live bóng đá hôm nay • World Cup • Euro • Ngoại Hạng Anh • LaLiga • Serie A • Bundesliga • Ligue 1 • AFC • V-League •</div></div>
+
 <script>
 function makeDemoComments(count){const names=['Minh','Hoàng','Tuấn','Nam','Hải','Dũng','Long','Khánh','Phúc','Quân','Huy','Đạt','Khoa','Tâm','Bảo','Sơn','Thắng','Việt','Lâm','Tín','Nghĩa','Kiên','Phong','An','Bình','Cường','Mạnh','Hiếu','Trọng','Tú','Thành','Nhật','Tùng','Vũ','Quang','Đức','Duy','Hưng','Toàn','Khang'];const texts=['Vào web thấy live ngay quá tiện','Hình ảnh chạy ổn đó','Có bình luận nhìn vui hơn hẳn','Trận này đội áo vàng đá căng quá','Ai mới vào xem cho vui nè','Web mượt hơn bản trước rồi','Cờ đội bóng nhìn chuyên nghiệp','Có link live là chạy luôn ngon','Mọi người dự đoán tỉ số bao nhiêu','Đá nhanh thật sự','Xem trên điện thoại cũng ổn','Bình luận đông vui mới có không khí','Trận này có vẻ còn nhiều bàn','Giao diện đẹp hơn rồi','Admin cập nhật nhanh ghê','Âm thanh bật lên là xem đã','Đội khách ép sân liên tục','Chờ bàn thắng thôi anh em','Mình xem không bị lag','Live này rõ hơn lúc nãy'];const arr=[];for(let i=1;i<=count;i++){arr.push({n:names[(i-1)%names.length]+' '+String(i).padStart(3,'0'),m:texts[(i*7)%texts.length]})}return arr}
 
