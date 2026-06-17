@@ -147,7 +147,7 @@
     <div class="card">
       <div class="scoreTop">
         <div class="team"><div class="flag" id="homeFlag">🇵🇹</div><div><div class="code" id="homeCode">POR</div><div class="name" id="homeName">Bồ Đào Nha</div></div></div>
-        <div class="center"><div class="live"><span class="dot"></span><span id="statusText">Đang trực tiếp</span></div><div class="score"><span id="homeScore">0</span> - <span id="awayScore">0</span></div><div class="minute" id="minuteText">Hiệp 1 · 00:30</div></div>
+        <div class="center"><div class="live"><span class="dot"></span><span id="statusText">Đang trực tiếp</span></div><div class="score"><span id="homeScore">0</span> - <span id="awayScore">0</span></div><div class="minute" id="minuteText" style="display:none"></div></div>
         <div class="team away"><div><div class="code" id="awayCode">COD</div><div class="name" id="awayName">CHDC Congo</div></div><div class="flag" id="awayFlag">🇨🇩</div></div>
       </div>
       <div class="player" id="playerBox"></div>
@@ -177,7 +177,7 @@ function data(){return JSON.parse(localStorage.getItem('football_v13')||JSON.str
 function save(d){localStorage.setItem('football_v13',JSON.stringify(d))}
 function pickLive(d){return d.matches.find(x=>x.id===d.liveId)||d.matches.find(x=>x.status==='Đang trực tiếp')||d.matches[0]}
 function render(){const d=data(),m=pickLive(d); ['homeName','homeCode','homeFlag','awayName','awayCode','awayFlag'].forEach(id=>document.getElementById(id).textContent=m[id.replace('Name','').replace('Code','').replace('Flag','')+ (id.includes('Name')?'': '')]||'');
- document.getElementById('homeName').textContent=m.home;document.getElementById('homeCode').textContent=m.homeCode;document.getElementById('homeFlag').textContent=m.homeFlag;document.getElementById('awayName').textContent=m.away;document.getElementById('awayCode').textContent=m.awayCode;document.getElementById('awayFlag').textContent=m.awayFlag;document.getElementById('homeScore').textContent=m.hs;document.getElementById('awayScore').textContent=m.as;document.getElementById('minuteText').textContent=m.minute;document.getElementById('statusText').textContent=m.status;document.getElementById('leagueText').textContent=m.group+' · '+m.league;
+ document.getElementById('homeName').textContent=m.home;document.getElementById('homeCode').textContent=m.homeCode;document.getElementById('homeFlag').textContent=m.homeFlag;document.getElementById('awayName').textContent=m.away;document.getElementById('awayCode').textContent=m.awayCode;document.getElementById('awayFlag').textContent=m.awayFlag;document.getElementById('homeScore').textContent=m.hs;document.getElementById('awayScore').textContent=m.as;const minuteEl=document.getElementById('minuteText'); if(minuteEl){minuteEl.textContent=''; minuteEl.style.display='none';}document.getElementById('statusText').textContent=m.status;document.getElementById('leagueText').textContent=m.group+' · '+m.league;
  renderPlayer(m.stream); renderComments(d.comments); renderMatches(d); renderRank(d.matches);}
 function videoMasks(){return `<div class="maskTopRight">WC LIVE</div><div class="centerVideoControls"><button class="centerBtn" title="Âm thanh" aria-label="Âm thanh" onclick="toggleSound(event)">🔊</button><button class="centerBtn" title="Phóng to" aria-label="Phóng to" onclick="toggleFullScreen(event)">⛶</button></div><div class="maskBottomFull"><div class="maskLive">● LIVE</div><div class="bannerRegister">Đăng ký ngay</div><div class="bannerMain">Hoàn <span class="big">100%</span> Bóng Đá</div><div class="bannerBall">⚽🏆</div></div>`}
 function attachVideoUI(){
@@ -301,11 +301,44 @@ import { getDatabase, ref, onValue, push } from "https://www.gstatic.com/firebas
 const firebaseConfig={apiKey:"AIzaSyD1uEpTdgNYg7aMxyMJaRShQC0DmuO4jsw",authDomain:"bongdatv-89d63.firebaseapp.com",databaseURL:"https://bongdatv-89d63-default-rtdb.asia-southeast1.firebasedatabase.app",projectId:"bongdatv-89d63",storageBucket:"bongdatv-89d63.firebasestorage.app",messagingSenderId:"962226885219",appId:"1:962226885219:web:38432737d3df761062de56",measurementId:"G-FVYB4B95FY"};
 const app=initializeApp(firebaseConfig),db=getDatabase(app);
 function safeSet(id,v){const el=document.getElementById(id); if(el) el.textContent=(v??'')}
-function applyLive(m){if(!m)return;safeSet('homeName',m.teamHome||m.home);safeSet('awayName',m.teamAway||m.away);safeSet('homeCode',m.abbrHome||m.homeCode||'');safeSet('awayCode',m.abbrAway||m.awayCode||'');safeSet('homeFlag',m.flagHome||m.homeFlag||'');safeSet('awayFlag',m.flagAway||m.awayFlag||'');safeSet('homeScore',m.scoreHome??m.hs??0);safeSet('awayScore',m.scoreAway??m.as??0);safeSet('minuteText',m.minute||'Hiệp 1 · 00:00');safeSet('statusText',m.status||'Đang trực tiếp');safeSet('leagueText',(m.group||'')+' · '+(m.league||'World Cup'));if(m.streamUrl&&window.renderPlayer)window.renderPlayer(m.streamUrl)}
+function applyLive(m){if(!m)return;safeSet('homeName',m.teamHome||m.home);safeSet('awayName',m.teamAway||m.away);safeSet('homeCode',m.abbrHome||m.homeCode||'');safeSet('awayCode',m.abbrAway||m.awayCode||'');safeSet('homeFlag',m.flagHome||m.homeFlag||'');safeSet('awayFlag',m.flagAway||m.awayFlag||'');safeSet('homeScore',m.scoreHome??m.hs??0);safeSet('awayScore',m.scoreAway??m.as??0);const mt=document.getElementById('minuteText'); if(mt){mt.textContent=''; mt.style.display='none';}safeSet('statusText',m.status||'Đang trực tiếp');safeSet('leagueText',(m.group||'')+' · '+(m.league||'World Cup'));if(m.streamUrl&&window.renderPlayer)window.renderPlayer(m.streamUrl)}
 onValue(ref(db,'liveMatch'),snap=>applyLive(snap.val()));
 onValue(ref(db,'banners'),snap=>{const b=snap.val()||{};const p1=document.getElementById('promo1'),p2=document.getElementById('promo2'); if(p1&&b.link1){p1.href=b.link1}else if(p1){p1.href='#'} if(p2&&b.link2){p2.href=b.link2}else if(p2){p2.href='#'}});
-onValue(ref(db,'comments'),snap=>{const real=[];snap.forEach(c=>{const v=c.val()||{}; real.push({n:v.name||v.n||'Khách',m:v.message||v.m||''})}); const demo=makeDemoComments(1000); window.firebaseComments=real.concat(demo); if(window.renderComments)window.renderComments(window.firebaseComments)});
-window.addCommentFirebase=async function(){const n=document.getElementById('cName')?.value||'Khách';const m=document.getElementById('cMsg')?.value||'';if(!m.trim())return;await push(ref(db,'comments'),{name:n,message:m,time:Date.now()});document.getElementById('cMsg').value=''};
+onValue(ref(db,'comments'),snap=>{const real=[];snap.forEach(c=>{const v=c.val()||{}; real.push({n:v.name||v.n||'Khách',m:v.message||v.m||''})}); const demo=makeDemoComments(1000); window.firebaseComments=demo.concat(real); if(window.renderComments)window.renderComments(window.firebaseComments)});
+window.addCommentFirebase=async function(){
+  const n=document.getElementById('cName')?.value||'Khách';
+  const m=document.getElementById('cMsg')?.value||'';
+  if(!m.trim())return;
+
+  const box=document.getElementById('comments');
+  if(box){
+    const div=document.createElement('div');
+    div.className='comment';
+    div.innerHTML='<b>'+esc(n)+'</b><br>'+esc(m);
+    box.appendChild(div);
+    while(box.children.length>120){box.removeChild(box.firstChild);}
+    box.scrollTop=box.scrollHeight;
+  }
+
+  await push(ref(db,'comments'),{name:n,message:m,time:Date.now()});
+  const input=document.getElementById('cMsg');
+  if(input) input.value='';
+};
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  const msg=document.getElementById('cMsg');
+  if(msg){
+    msg.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){
+        e.preventDefault();
+        addComment();
+      }
+    });
+  }
+});
 </script>
 
 </body>
