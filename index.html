@@ -1,33 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>B79 TV - Trực tiếp bóng đá</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorldCup TV V3 - Tên đội tiếng Việt và logo quốc gia</title>
+  <style>
+    :root{--bg:#061015;--panel:#0e1b23;--panel2:#122933;--line:#24434f;--text:#eefbff;--muted:#9eb7bf;--green:#19d67a;--gold:#ffd166;--red:#ff4d5e;--blue:#48a7ff;--radius:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,#12313b 0,#061015 38%,#050b0e 100%);color:var(--text)}
+    a{color:inherit;text-decoration:none}button,input,select{font:inherit}.wrap{max-width:1220px;margin:auto;padding:0 14px}.top{position:sticky;top:0;z-index:50;background:rgba(6,16,21,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .head{height:68px;display:flex;align-items:center;gap:14px}.brand{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:1000}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--green),#c6fff0);display:grid;place-items:center;color:#061015;font-size:24px;box-shadow:0 0 24px rgba(25,214,122,.25)}
+    .nav{display:flex;gap:7px;margin-left:auto}.nav a{padding:10px 13px;border-radius:999px;color:var(--muted);font-weight:800}.nav a:hover,.nav a.active{background:#142f3a;color:white}.menu{display:none;margin-left:auto;background:#142f3a;color:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px}.hero{padding:22px 0 10px}.alert{padding:12px 16px;background:linear-gradient(90deg,#103523,#162830);border:1px solid #275a43;border-radius:var(--radius);font-weight:800;color:#dffff0;margin-bottom:16px}
+    .layout{display:grid;grid-template-columns:1.55fr .85fr;gap:16px}.card{background:rgba(14,27,35,.94);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 12px 34px rgba(0,0,0,.22);overflow:hidden}.player{aspect-ratio:16/9;background:radial-gradient(circle at 50% 35%,#214652,#061015 72%);position:relative;display:grid;place-items:center;text-align:center;padding:24px}.player:before{content:"";position:absolute;inset:0;background:linear-gradient(transparent,rgba(0,0,0,.35));pointer-events:none}.playerInner{position:relative;z-index:1}.tag{position:absolute;top:16px;left:16px;background:var(--red);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:1000;z-index:2}.quality{position:absolute;top:16px;right:16px;background:#10232b;border:1px solid #315867;border-radius:999px;padding:7px 12px;font-weight:1000;z-index:2}.play{width:86px;height:86px;border:0;border-radius:50%;background:var(--green);color:#061015;font-size:34px;font-weight:1000;box-shadow:0 0 0 10px rgba(25,214,122,.14);cursor:pointer}.player h1{margin:18px 0 8px;font-size:30px}.player p{margin:0;color:#c3d8de}.controls{display:flex;gap:9px;flex-wrap:wrap;padding:12px;background:#0a151b;border-top:1px solid var(--line)}.btn{border:0;border-radius:13px;padding:10px 14px;background:var(--green);color:#061015;font-weight:1000;cursor:pointer}.btn.dark{background:#142f3a;color:#eafcff;border:1px solid var(--line)}.btn.red{background:#27151a;color:#ffbac1;border:1px solid #5d2b34}
+    .section{display:flex;align-items:center;justify-content:space-between;padding:15px 16px;border-bottom:1px solid var(--line)}.section h2{font-size:18px;margin:0}.small{font-size:13px;color:var(--muted)}.filters{display:grid;grid-template-columns:1fr 160px;gap:8px;padding:14px}.filters input,.filters select{width:100%;background:#081318;color:#fff;border:1px solid var(--line);border-radius:13px;padding:12px;outline:none}.chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 14px 14px}.chip{border:1px solid var(--line);background:#132d37;color:#dff8ff;border-radius:999px;padding:8px 11px;font-weight:800;cursor:pointer}.chip.on{background:var(--green);color:#061015;border-color:var(--green)}
+    .matches{padding:8px}.match{display:grid;grid-template-columns:78px 1fr auto;gap:10px;align-items:center;padding:13px;border:1px solid transparent;border-radius:15px;cursor:pointer}.match:hover,.match.active{background:#132d37;border-color:#315767}.time{font-weight:1000;color:var(--gold)}.league{font-size:12px;color:var(--muted);margin-top:4px}.teams{font-weight:1000}.teamline{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.flag{width:26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;background:#0a151b;border:1px solid #315867;font-size:17px;box-shadow:0 0 0 2px rgba(255,255,255,.03)}.vs{color:var(--muted);font-size:13px;font-weight:900;margin:0 2px}.teamName{white-space:nowrap}.score{font-weight:1000;color:var(--green);white-space:nowrap}.status{font-size:12px;border-radius:999px;padding:5px 8px;background:#0c1e25;color:#cfeff5;border:1px solid var(--line)}.status.live{background:#36151b;color:#ffcbd0;border-color:#7a2b37}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}.news{padding:13px;display:grid;gap:12px}.newsItem{display:grid;grid-template-columns:84px 1fr;gap:11px;align-items:center}.thumb{height:58px;border-radius:13px;background:linear-gradient(135deg,#256073,#0a9c60);display:grid;place-items:center;font-size:25px}.newsItem b{display:block}.newsItem span{color:var(--muted);font-size:13px}.rank{width:100%;border-collapse:collapse}.rank th,.rank td{padding:12px;border-bottom:1px solid var(--line);text-align:left}.rank th{color:#bad0d7;font-size:13px}.rank td:last-child,.rank th:last-child{text-align:right;color:var(--green);font-weight:1000}.chat{display:flex;flex-direction:column;height:338px}.chatBody{padding:12px;display:grid;gap:10px;overflow:auto;flex:1}.msg{background:#10242d;border:1px solid #24434f;border-radius:13px;padding:9px 10px;color:#ddf7fb}.msg b{color:var(--gold)}.chatInput{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}.chatInput input{flex:1;background:#081318;color:#fff;border:1px solid var(--line);border-radius:12px;padding:11px}.footer{margin-top:26px;padding:22px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}.hidden{display:none!important}
+    @media(max-width:900px){.layout,.grid2{grid-template-columns:1fr}.nav{display:none;position:absolute;top:68px;left:12px;right:12px;background:#071217;border:1px solid var(--line);border-radius:16px;padding:10px;flex-direction:column}.nav.open{display:flex}.menu{display:block}.player h1{font-size:23px}.match{grid-template-columns:64px 1fr}.match .score{grid-column:2}.filters{grid-template-columns:1fr}.brand{font-size:19px}}
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="logo">B79<span>TV</span></div>
-    <nav>
-      <a href="index.html">Trang chủ</a>
-      <a href="#hot">Trận hot</a>
-      <a href="#schedule">Lịch thi đấu</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <h1>Xem bóng đá trực tuyến HD</h1>
-    <p>Lịch bóng đá hôm nay, link xem nhanh, giao diện tối ưu điện thoại.</p>
-  </section>
-
-  <main class="container">
-    <h2 id="schedule">Trận đang phát / sắp phát</h2>
-    <div id="matchList" class="match-grid"></div>
-  </main>
-
-  <footer>© 2026 B79 TV. Chỉ sử dụng nguồn phát hợp pháp.</footer>
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+<header class="top"><div class="wrap head"><div class="brand"><div class="logo">🏆</div><span>WorldCup TV V3</span></div><nav class="nav" id="nav"><a class="active" href="#home">World Cup</a><a href="#schedule">Lịch thi đấu</a><a href="#live">Livescore</a><a href="#rank">Bảng đấu</a><a href="#news">Tin tức</a></nav><button class="menu" onclick="nav.classList.toggle('open')">☰</button></div></header>
+<main class="wrap hero" id="home">
+  <div class="alert">Bản V3 World Cup: tên đội bóng bằng tiếng Việt, có logo/cờ quốc gia, không logo cá cược, không quảng cáo.</div>
+  <div class="layout">
+    <section class="card">
+      <div class="player" id="player"><span class="tag">WORLD CUP LIVE</span><span class="quality">HD 1080p</span><div class="playerInner"><button class="play" onclick="togglePlay()" id="playBtn">▶</button><h1 id="matchTitle">Bồ Đào Nha vs CHDC Congo</h1><p id="matchDesc">World Cup 2026 • Bảng K • Bình luận tiếng Việt • Server 1</p></div></div>
+      <div class="controls"><button class="btn" onclick="changeServer(1)">Server 1</button><button class="btn dark" onclick="changeServer(2)">Server 2</button><button class="btn dark" onclick="changeServer(3)">Server 3</button><button class="btn red" onclick="alert('Chưa gắn luồng video thật. Bước sau bạn chỉ cần gắn HLS .m3u8 hoặc iframe hợp pháp vào khung này.')">Báo lỗi</button></div>
+    </section>
+    <aside class="card" id="schedule"><div class="section"><h2>Lịch World Cup</h2><span class="small" id="countText">0 trận</span></div><div class="filters"><input id="search" placeholder="Tìm đội tuyển, bảng đấu..." oninput="renderMatches()"><select id="group" onchange="renderMatches()"><option value="all">Tất cả bảng</option><option>Bảng A</option><option>Bảng B</option><option>Bảng C</option><option>Bảng D</option><option>Bảng E</option><option>Bảng F</option><option>Bảng G</option><option>Bảng H</option><option>Bảng I</option><option>Bảng J</option><option>Bảng K</option><option>Bảng L</option></select></div><div class="chips"><button class="chip on" onclick="setDay('today',this)">Hôm nay</button><button class="chip" onclick="setDay('tomorrow',this)">Ngày mai</button><button class="chip" onclick="setDay('hot',this)">Trận hot</button></div><div class="matches" id="matchList"></div></aside>
+  </div>
+  <div class="grid2">
+    <section class="card" id="live"><div class="section"><h2>Livescore World Cup</h2><span class="small">Giao diện chờ nối API</span></div><div class="matches" id="scoreList"></div></section>
+    <section class="card chat"><div class="section"><h2>Chat World Cup</h2><span class="small">Demo</span></div><div class="chatBody" id="chatBody"><div class="msg"><b>Minh:</b> Chỉ World Cup nhìn gọn hơn nhiều</div><div class="msg"><b>Hoàng:</b> Sau này gắn live vào là chạy</div><div class="msg"><b>An:</b> Không quảng cáo cá cược là đẹp</div></div><div class="chatInput"><input id="chatText" placeholder="Nhập bình luận..."><button class="btn" onclick="sendChat()">Gửi</button></div></section>
+  </div>
+  <div class="grid2">
+    <section class="card" id="rank"><div class="section"><h2>Bảng đấu World Cup</h2><span class="small">Demo nhóm bảng</span></div><table class="rank"><thead><tr><th>Bảng</th><th>Đội nổi bật</th><th>Trận</th><th>Điểm</th></tr></thead><tbody><tr><td>A</td><td><span class="flag">🇲🇽</span> Mexico</td><td>1</td><td>3</td></tr><tr><td>D</td><td><span class="flag">🇺🇸</span> Hoa Kỳ</td><td>1</td><td>3</td></tr><tr><td>F</td><td><span class="flag">🇸🇪</span> Thụy Điển</td><td>1</td><td>3</td></tr><tr><td>J</td><td><span class="flag">🇦🇷</span> Argentina</td><td>1</td><td>3</td></tr></tbody></table></section>
+    <section class="card" id="news"><div class="section"><h2>Tin World Cup</h2><span class="small">Không quảng cáo</span></div><div class="news"><div class="newsItem"><div class="thumb">🏆</div><div><b>Tên đội tiếng Việt + logo quốc gia</b><span>Lịch trận, livescore và bảng đấu dùng tên đội bằng tiếng Việt.</span></div></div><div class="newsItem"><div class="thumb">🔥</div><div><b>Logo quốc gia dễ nhìn</b><span>Mỗi đội có cờ/logo để nhìn giống web bóng đá thật hơn.</span></div></div><div class="newsItem"><div class="thumb">📺</div><div><b>Sẵn khung gắn livestream</b><span>Sau này có thể gắn HLS .m3u8 hoặc iframe hợp pháp.</span></div></div></div></section>
+  </div>
+</main>
+<footer class="wrap footer">© 2026 WorldCup TV V3. Website demo chỉ về World Cup, tên đội tiếng Việt, có logo quốc gia, không logo cá cược, không quảng cáo. Bạn cần có quyền phát sóng hợp pháp trước khi gắn luồng live.</footer>
+<script>
+const teams={
+ 'AUT':{name:'Áo',flag:'🇦🇹'},'JOR':{name:'Jordan',flag:'🇯🇴'},'POR':{name:'Bồ Đào Nha',flag:'🇵🇹'},'COD':{name:'CHDC Congo',flag:'🇨🇩'},
+ 'ENG':{name:'Anh',flag:'🏴'},'CRO':{name:'Croatia',flag:'🇭🇷'},'GHA':{name:'Ghana',flag:'🇬🇭'},'PAN':{name:'Panama',flag:'🇵🇦'},
+ 'UZB':{name:'Uzbekistan',flag:'🇺🇿'},'COL':{name:'Colombia',flag:'🇨🇴'},'CZE':{name:'Séc',flag:'🇨🇿'},'RSA':{name:'Nam Phi',flag:'🇿🇦'},
+ 'SUI':{name:'Thụy Sĩ',flag:'🇨🇭'},'BIH':{name:'Bosnia & Herzegovina',flag:'🇧🇦'},'CAN':{name:'Canada',flag:'🇨🇦'},'QAT':{name:'Qatar',flag:'🇶🇦'},
+ 'MEX':{name:'Mexico',flag:'🇲🇽'},'KOR':{name:'Hàn Quốc',flag:'🇰🇷'},'USA':{name:'Hoa Kỳ',flag:'🇺🇸'},'SWE':{name:'Thụy Điển',flag:'🇸🇪'},'ARG':{name:'Argentina',flag:'🇦🇷'}
+};
+const matches=[
+ {time:'00:00',home:'AUT',away:'JOR',group:'Bảng J',score:'3 - 1',day:'today',hot:false},
+ {time:'00:00',home:'POR',away:'COD',group:'Bảng K',score:'Sắp diễn ra',day:'today',hot:true},
+ {time:'03:00',home:'ENG',away:'CRO',group:'Bảng L',score:'Sắp diễn ra',day:'today',hot:true},
+ {time:'06:00',home:'GHA',away:'PAN',group:'Bảng L',score:'Sắp diễn ra',day:'today',hot:false},
+ {time:'09:00',home:'UZB',away:'COL',group:'Bảng K',score:'Sắp diễn ra',day:'today',hot:false},
+ {time:'23:00',home:'CZE',away:'RSA',group:'Bảng A',score:'Ngày mai',day:'tomorrow',hot:false},
+ {time:'02:00',home:'SUI',away:'BIH',group:'Bảng B',score:'Ngày mai',day:'tomorrow',hot:false},
+ {time:'05:00',home:'CAN',away:'QAT',group:'Bảng B',score:'Ngày mai',day:'tomorrow',hot:false},
+ {time:'08:00',home:'MEX',away:'KOR',group:'Bảng A',score:'Ngày mai',day:'tomorrow',hot:true}
+];
+function teamText(m){return teams[m.home].name+' vs '+teams[m.away].name}
+function teamHtml(m){return `<div class="teamline"><span class="flag">${teams[m.home].flag}</span><span class="teamName">${teams[m.home].name}</span><span class="vs">vs</span><span class="flag">${teams[m.away].flag}</span><span class="teamName">${teams[m.away].name}</span></div>`}
+let currentDay='today';
+function setDay(day,el){currentDay=day;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');renderMatches()}
+function renderMatches(){const q=document.getElementById('search').value.toLowerCase();const gp=document.getElementById('group').value;let data=matches.filter(m=>(currentDay==='hot'?m.hot:m.day===currentDay));if(gp!=='all')data=data.filter(m=>m.group===gp);if(q)data=data.filter(m=>(teamText(m)+' '+m.group).toLowerCase().includes(q));document.getElementById('countText').textContent=data.length+' trận';document.getElementById('matchList').innerHTML=data.map((m,i)=>`<div class="match ${i===0?'active':''}" onclick="selectMatch('${teamText(m)}','${m.group}',this)"><div><div class="time">${m.time}</div><div class="league">${m.group}</div></div><div class="teams">${teamHtml(m)}</div><div class="score">${m.score}</div></div>`).join('')||'<p class="small" style="padding:12px">Không tìm thấy trận phù hợp.</p>';document.getElementById('scoreList').innerHTML=matches.slice(0,6).map(m=>`<div class="match"><div><div class="time">${m.time}</div><div class="league">${m.group}</div></div><div class="teams">${teamHtml(m)}</div><div class="status ${m.score.includes('Live')?'live':''}">${m.score}</div></div>`).join('')}
+function selectMatch(team,group,el){document.querySelectorAll('#matchList .match').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('matchTitle').textContent=team;document.getElementById('matchDesc').textContent='World Cup 2026 • '+group+' • Bình luận tiếng Việt • Server 1';window.scrollTo({top:0,behavior:'smooth'})}
+function togglePlay(){document.getElementById('playBtn').textContent=document.getElementById('playBtn').textContent==='▶'?'❚❚':'▶'}
+function changeServer(n){document.getElementById('matchDesc').textContent=document.getElementById('matchDesc').textContent.replace(/Server \d/,'Server '+n)}
+function sendChat(){const input=document.getElementById('chatText');if(!input.value.trim())return;const div=document.createElement('div');div.className='msg';div.innerHTML='<b>Bạn:</b> '+input.value.replace(/[<>]/g,'');document.getElementById('chatBody').appendChild(div);input.value='';document.getElementById('chatBody').scrollTop=9999}
+renderMatches();
+</script>
 </body>
 </html>
