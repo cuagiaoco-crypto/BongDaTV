@@ -1,0 +1,8 @@
+Bản này chỉ sửa đúng 2 logo bạn khoanh đỏ:
+1. Logo WC LIVE trên header.
+2. Logo WC LIVE nằm trong khung video.
+
+Cả 2 logo đều dùng ảnh bạn gửi:
+assets/wc-live-logo.png
+
+Không đổi stream, không đổi API, không đổi lịch/BXH.
