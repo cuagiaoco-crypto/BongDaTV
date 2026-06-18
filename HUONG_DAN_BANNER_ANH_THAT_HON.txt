@@ -1,0 +1,11 @@
+BẢN SỬA BANNER KHÁC HẲN BẢN CŨ
+
+Đã thêm thư mục assets:
+- assets/banner-left.svg
+- assets/banner-right.svg
+- assets/banner-top.svg
+
+Trang dùng banner dạng ảnh SVG, nhìn giống ảnh mẫu hơn và không còn icon cúp hoạt hình cũ.
+Giữ nguyên stream/video, API, BXH, lịch.
+
+Upload toàn bộ file + thư mục assets lên GitHub.

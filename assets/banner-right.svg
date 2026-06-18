@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="1100" viewBox="0 0 300 1100">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#071c38"/><stop offset=".5" stop-color="#07101f"/><stop offset="1" stop-color="#140807"/></linearGradient>
+<radialGradient id="spot" cx="50%" cy="20%" r="62%"><stop stop-color="#1f75d1"/><stop offset=".45" stop-color="#0a1f3e"/><stop offset="1" stop-color="#020711"/></radialGradient>
+<linearGradient id="cup" x1="0" x2="1"><stop stop-color="#9f5a00"/><stop offset=".25" stop-color="#ffd35b"/><stop offset=".48" stop-color="#fff5ad"/><stop offset=".75" stop-color="#e09600"/><stop offset="1" stop-color="#7c3900"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="300" height="1100" rx="18" fill="url(#bg)"/>
+<rect x="5" y="5" width="290" height="1090" rx="16" fill="none" stroke="#ffbf2f" stroke-width="3"/>
+<rect x="18" y="38" width="264" height="470" rx="16" fill="url(#spot)" stroke="#244369"/>
+<g opacity=".95">
+<g transform="translate(52 80)"><circle cx="55" cy="45" r="34" fill="#d0a06a"/><path d="M20 108c17-36 55-43 83-15 14 14 19 34 19 65H0c1-24 6-39 20-50z" fill="#1f5ab2"/><text x="60" y="185" text-anchor="middle" font-family="Arial Black" font-size="16" fill="#fff">FRANCE</text></g>
+<g transform="translate(142 170)"><circle cx="55" cy="45" r="34" fill="#c68755"/><path d="M20 108c17-36 55-43 83-15 14 14 19 34 19 65H0c1-24 6-39 20-50z" fill="#e4bd27"/><text x="60" y="185" text-anchor="middle" font-family="Arial Black" font-size="16" fill="#fff">BRAZIL</text></g>
+<g transform="translate(36 278)"><circle cx="55" cy="45" r="34" fill="#c98b67"/><path d="M20 108c17-36 55-43 83-15 14 14 19 34 19 65H0c1-24 6-39 20-50z" fill="#75baf2"/><text x="60" y="185" text-anchor="middle" font-family="Arial Black" font-size="16" fill="#fff">ARG</text></g>
+<g transform="translate(145 340)"><circle cx="55" cy="45" r="34" fill="#b87952"/><path d="M20 108c17-36 55-43 83-15 14 14 19 34 19 65H0c1-24 6-39 20-50z" fill="#b30e1e"/><text x="60" y="185" text-anchor="middle" font-family="Arial Black" font-size="16" fill="#fff">POR</text></g>
+</g>
+<g filter="url(#glow)" transform="translate(83 510) scale(.75)">
+<path d="M57 20c-24 10-37 35-32 62 6 39 35 70 49 80v43H51c-13 0-24 11-24 24v18h128v-18c0-13-11-24-24-24h-23v-43c14-10 43-41 49-80 5-27-8-52-32-62-14-6-27-3-34 8-7-11-20-14-34-8z" fill="url(#cup)" stroke="#fff1a0" stroke-width="4"/>
+<path d="M38 69c-23 2-35 18-29 43 6 29 28 51 58 64" fill="none" stroke="url(#cup)" stroke-width="14" stroke-linecap="round"/>
+<path d="M144 69c23 2 35 18 29 43-6 29-28 51-58 64" fill="none" stroke="url(#cup)" stroke-width="14" stroke-linecap="round"/>
+<path d="M62 249h58l18 28H44z" fill="url(#cup)" stroke="#fff1a0" stroke-width="3"/>
+</g>
+<text x="150" y="760" text-anchor="middle" font-family="Arial Black" font-size="40" fill="#ffd24b" font-weight="900">WORLD CUP</text>
+<text x="150" y="830" text-anchor="middle" font-family="Arial Black" font-size="62" fill="#fff" font-weight="900">LIVE</text>
+<text x="150" y="900" text-anchor="middle" font-family="Arial Black" font-size="55" fill="#ffd24b" font-weight="900">2026</text>
+<text x="150" y="970" text-anchor="middle" font-family="Arial Black" font-size="22" fill="#fff">ĐAM MÊ BÓNG ĐÁ</text>
+<text x="150" y="1004" text-anchor="middle" font-family="Arial Black" font-size="22" fill="#fff">KẾT NỐI ĐAM MÊ</text>
+<circle cx="52" cy="65" r="4" fill="#ffcd40"/><circle cx="248" cy="83" r="4" fill="#ff5533"/><circle cx="72" cy="1030" r="4" fill="#ffcd40"/><circle cx="248" cy="1006" r="4" fill="#249bff"/>
+</svg>
