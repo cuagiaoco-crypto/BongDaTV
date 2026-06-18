@@ -1,19 +1,19 @@
-HƯỚNG DẪN BẬT BẢNG XẾP HẠNG TỰ ĐỘNG
+HƯỚNG DẪN
 
-Website đã có sẵn API route:
-  /api/standings
+Đã giữ lại:
+- Khung bình luận thật
+- Lịch thi đấu
+- Bảng xếp hạng
+- Giao diện cũ
 
-Bạn cần tạo API token miễn phí/trả phí tại:
-  https://www.football-data.org/
+Đã xóa:
+- Bình luận ảo tự chạy
+- Bình luận mẫu ban đầu
 
-Sau đó vào Vercel:
-  Project -> Settings -> Environment Variables
+Đã thêm:
+- api/standings.js để lấy bảng xếp hạng qua FOOTBALL_DATA_TOKEN
 
-Thêm biến:
-  Name: FOOTBALL_DATA_TOKEN
-  Value: token của bạn
-
-Sau đó Redeploy website.
-
-Khi bật xong, index.html sẽ tự gọi /api/standings mỗi 60 giây để cập nhật bảng xếp hạng World Cup.
-Nếu chưa thêm token, web vẫn hiển thị bảng dự phòng.
+Sau khi upload GitHub:
+1. Vercel -> Environment Variables -> FOOTBALL_DATA_TOKEN
+2. Save
+3. Deployments -> Redeploy
