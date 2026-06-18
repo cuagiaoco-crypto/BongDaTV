@@ -1,0 +1,3 @@
+Đã sửa full màn hình responsive và thêm lớp che WC LIVE trên video.
+
+Lưu ý: nếu nguồn phát iframe tự fullscreen trực tiếp thì trình duyệt có thể bỏ qua lớp che của website. Bản này đã thêm JS để bấm fullscreen sẽ cố mở fullscreen khung player của web, giúp lớp che vẫn phủ được.
