@@ -688,6 +688,394 @@ main{
   max-width:none !important;
 }
 
+
+/* ===== REALISTIC WORLD CUP UI - giống mẫu, bớt hoạt hình ===== */
+html,body{
+  width:100%!important;
+  min-width:0!important;
+  overflow-x:hidden!important;
+  margin:0!important;
+}
+
+body{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(0,72,145,.18),transparent 38%),
+    linear-gradient(180deg,#020611 0%,#07111f 55%,#020611 100%)!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  color:#fff!important;
+}
+
+body:before{
+  opacity:.22!important;
+}
+
+.top,header{
+  background:#030a14!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  box-shadow:none!important;
+}
+
+.nav{
+  max-width:1460px!important;
+  width:100%!important;
+  margin:0 auto!important;
+  height:70px!important;
+  padding:0 18px!important;
+}
+
+.logo .ball,.ball{
+  background:linear-gradient(135deg,#ffd560,#c57b09)!important;
+  box-shadow:0 0 14px rgba(255,190,50,.35)!important;
+}
+
+.brand,.logo .brand{
+  font-size:25px!important;
+  font-weight:1000!important;
+  text-shadow:none!important;
+}
+
+.brand small,.logo .brand small{
+  color:#ffd45a!important;
+  font-size:11px!important;
+}
+
+.menu .liveBtn,.liveBtn,.menu a:first-child{
+  background:#f5334f!important;
+  border-radius:999px!important;
+  padding:14px 28px!important;
+  box-shadow:none!important;
+}
+
+.menu a{
+  font-size:14px!important;
+  font-weight:900!important;
+}
+
+/* Full desktop 3-column layout like reference */
+.wc-shell{
+  width:100%!important;
+  max-width:1500px!important;
+  margin:0 auto!important;
+  padding:14px 14px 24px!important;
+  display:grid!important;
+  grid-template-columns:200px minmax(780px,1fr) 200px!important;
+  gap:18px!important;
+}
+
+.wc-main{
+  min-width:0!important;
+  width:100%!important;
+}
+
+main{
+  margin:0!important;
+  padding:0!important;
+  width:100%!important;
+  max-width:none!important;
+}
+
+/* Replace cartoon side banners with realistic flat image-like CSS banners */
+.wc-side{
+  display:block!important;
+  position:sticky!important;
+  top:84px!important;
+}
+
+.wc-3d-banner{
+  min-height:760px!important;
+  border-radius:14px!important;
+  border:2px solid #ffbd2e!important;
+  background:
+    linear-gradient(rgba(2,7,16,.25),rgba(2,7,16,.72)),
+    radial-gradient(circle at 50% 18%,rgba(255,193,48,.36),transparent 22%),
+    radial-gradient(circle at 50% 75%,rgba(255,104,0,.20),transparent 24%),
+    linear-gradient(180deg,#0a1831 0%,#050b16 100%)!important;
+  box-shadow:0 0 22px rgba(255,185,42,.28)!important;
+  overflow:hidden!important;
+}
+
+.wc-3d-banner:before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  background:
+    linear-gradient(135deg,transparent 0 38%,rgba(255,255,255,.08) 39%,transparent 48%),
+    radial-gradient(circle at 20% 12%,#ffd45a 0 3px,transparent 4px),
+    radial-gradient(circle at 78% 18%,#ff5b35 0 3px,transparent 4px),
+    radial-gradient(circle at 28% 88%,#ffb000 0 3px,transparent 4px),
+    radial-gradient(circle at 82% 84%,#1594ff 0 3px,transparent 4px)!important;
+  opacity:.75!important;
+  animation:none!important;
+}
+
+.wc-3d-banner:after{
+  content:""!important;
+  position:absolute!important;
+  inset:auto -20px 0 -20px!important;
+  height:220px!important;
+  background:linear-gradient(180deg,transparent,rgba(255,103,0,.11),rgba(255,186,39,.08))!important;
+  opacity:1!important;
+  animation:none!important;
+}
+
+.wc-banner-inner{
+  position:relative!important;
+  z-index:2!important;
+  height:100%!important;
+  padding:26px 15px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  text-align:center!important;
+}
+
+.wc-cup{
+  font-size:96px!important;
+  line-height:1!important;
+  margin:20px 0 18px!important;
+  filter:drop-shadow(0 0 20px rgba(255,199,55,.75))!important;
+  animation:none!important;
+}
+
+.wc-title-big{
+  font-size:27px!important;
+  line-height:1.08!important;
+  font-weight:1000!important;
+  color:#ffd45a!important;
+  text-shadow:0 3px 0 rgba(97,46,0,.75),0 0 15px rgba(255,212,90,.45)!important;
+  margin:8px 0!important;
+}
+
+.wc-year{
+  font-size:47px!important;
+  font-weight:1000!important;
+  color:#fff!important;
+  text-shadow:0 0 16px rgba(255,255,255,.35)!important;
+}
+
+.wc-stat{
+  width:100%!important;
+  background:rgba(11,27,52,.84)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:12px!important;
+  padding:12px 10px!important;
+  margin-top:16px!important;
+  box-shadow:none!important;
+}
+
+.wc-stat .ico{font-size:28px!important}
+.wc-stat b{font-size:26px!important}
+.wc-stat span{font-size:12px!important;color:#fff!important}
+
+.wc-ad-btn{
+  display:block!important;
+  width:100%!important;
+  margin-top:22px!important;
+  padding:15px 8px!important;
+  border-radius:10px!important;
+  background:linear-gradient(180deg,#f22929,#a90000)!important;
+  border:2px solid #ffb22c!important;
+  box-shadow:0 0 16px rgba(255,0,0,.38)!important;
+  color:#fff!important;
+  font-size:18px!important;
+  font-weight:1000!important;
+  text-shadow:0 2px 0 rgba(0,0,0,.35)!important;
+}
+
+.wc-ad-sub{
+  margin-top:12px!important;
+  color:#ffd45a!important;
+  font-size:16px!important;
+  font-weight:900!important;
+}
+
+.wc-right-teams{
+  margin-top:16px!important;
+  width:100%!important;
+  border-radius:12px!important;
+  background:rgba(9,23,44,.72)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  padding:12px!important;
+}
+
+.wc-team-card{
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:10px!important;
+  padding:8px!important;
+  box-shadow:none!important;
+}
+
+.wc-avatar{
+  background:linear-gradient(135deg,#ffeaa0,#d58a14)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+
+/* top hero */
+.wc-top-hero{
+  width:100%!important;
+  min-height:96px!important;
+  margin:0 0 14px!important;
+  border-radius:10px!important;
+  border:1px solid rgba(255,212,90,.32)!important;
+  background:
+    linear-gradient(rgba(5,14,31,.18),rgba(5,14,31,.55)),
+    radial-gradient(circle at 70% 50%,rgba(255,208,68,.22),transparent 16%),
+    linear-gradient(90deg,#061528 0%,#0b2a5a 48%,#061528 100%)!important;
+  box-shadow:0 0 18px rgba(0,120,255,.16)!important;
+}
+
+.wc-top-hero:before{
+  animation:none!important;
+  background:linear-gradient(90deg,rgba(255,255,255,.04),transparent 28%,rgba(255,212,90,.07) 50%,transparent 72%,rgba(255,255,255,.04))!important;
+}
+
+.wc-top-title b{
+  font-size:32px!important;
+  color:#ffc63f!important;
+  text-shadow:0 2px 0 rgba(111,54,0,.85),0 0 12px rgba(255,199,63,.38)!important;
+}
+
+.wc-top-title span{
+  font-size:15px!important;
+  color:#fff!important;
+}
+
+.wc-top-cup{
+  font-size:50px!important;
+}
+
+/* center content layout */
+.grid,.layout,.main-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 330px!important;
+  gap:14px!important;
+  align-items:start!important;
+}
+
+.card{
+  border-radius:12px!important;
+  border:1px solid rgba(106,152,218,.25)!important;
+  background:linear-gradient(180deg,#10213b,#0b182d)!important;
+  box-shadow:none!important;
+}
+
+.score,.scoreTop{
+  background:#122744!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  padding:20px 22px!important;
+}
+
+.name,#homeName,#awayName{
+  font-size:24px!important;
+  font-weight:1000!important;
+  text-shadow:none!important;
+}
+
+.scoreNum,#homeScore,#awayScore{
+  font-size:58px!important;
+  font-weight:1000!important;
+  color:#ff3155!important;
+  text-shadow:none!important;
+}
+
+.status,.live{
+  background:rgba(255,49,85,.12)!important;
+  border:1px solid rgba(255,49,85,.65)!important;
+  color:#ff5875!important;
+  box-shadow:none!important;
+}
+
+.player{
+  background:#000!important;
+  border:0!important;
+}
+
+.watermark{
+  background:#10213b!important;
+  border:1px solid rgba(255,212,90,.36)!important;
+  border-radius:8px!important;
+  box-shadow:none!important;
+}
+
+.banner{
+  height:58px!important;
+  background:linear-gradient(90deg,#ff8300,#ffbd37 48%,#ff8500)!important;
+  box-shadow:none!important;
+}
+
+.banner .btn{
+  background:linear-gradient(180deg,#fff06b,#ffc400)!important;
+  color:#0b4a91!important;
+  border:2px solid #fff!important;
+  border-radius:9px!important;
+  box-shadow:none!important;
+}
+
+.badge,#leagueText{
+  background:#08172a!important;
+  border:1px solid rgba(255,212,90,.28)!important;
+  border-radius:999px!important;
+}
+
+.chatMsg,.chatMessages>div{
+  background:#08172a!important;
+  border:1px solid rgba(106,152,218,.23)!important;
+  border-radius:9px!important;
+}
+
+.chatForm input,input{
+  background:#061326!important;
+  border:1px solid rgba(106,152,218,.28)!important;
+}
+
+.chatForm button,button,#sendChat{
+  background:linear-gradient(180deg,#ffde61,#ffc22f)!important;
+  color:#061326!important;
+  border-radius:9px!important;
+  box-shadow:none!important;
+}
+
+.rankTablePretty td,.rankTable td,.table td,.scheduleTable td{
+  background:#08172a!important;
+  border-color:rgba(106,152,218,.16)!important;
+}
+
+.rankTop1 td,.pos1 td{
+  background:linear-gradient(90deg,rgba(255,211,78,.22),#08172a)!important;
+}
+
+.schedule,.wcScheduleBox{
+  margin-top:16px!important;
+}
+
+/* responsive */
+@media(max-width:1300px){
+  .wc-shell{grid-template-columns:150px minmax(0,1fr) 150px!important;gap:12px!important}
+  .wc-cup{font-size:72px!important}.wc-title-big{font-size:22px!important}.wc-year{font-size:34px!important}
+  .wc-ad-btn{font-size:14px!important}
+  .grid,.layout,.main-grid{grid-template-columns:minmax(0,1fr) 300px!important}
+}
+
+@media(max-width:1050px){
+  .wc-shell{display:block!important;padding:10px!important}
+  .wc-side{display:none!important}
+  .grid,.layout,.main-grid{grid-template-columns:1fr!important}
+}
+
+@media(max-width:700px){
+  .nav{height:auto!important;flex-wrap:wrap!important;padding:10px!important}
+  .menu{width:100%!important;justify-content:center!important;gap:8px!important;flex-wrap:wrap!important}
+  .wc-top-hero{min-height:74px!important;padding:10px!important}
+  .wc-top-title b{font-size:18px!important}
+  .wc-top-title span{font-size:11px!important}
+  .wc-top-cup{font-size:32px!important}
+  .score,.scoreTop{grid-template-columns:1fr!important;text-align:center!important}
+  .team,.team.away{justify-content:center!important;text-align:center!important}
+}
+
 </style>
 </head>
 <body>

@@ -1,0 +1,11 @@
+BẢN GIAO DIỆN WORLD CUP GIỐNG MẪU - BỚT HOẠT HÌNH
+
+Đã chỉnh:
+- Giao diện giống ảnh mẫu bạn gửi hơn.
+- Banner hai bên dạng cúp World Cup chuyên nghiệp, bớt hoạt hình.
+- Banner ngang ở trên.
+- Full màn hình máy tính, responsive điện thoại/tablet.
+- Giữ nguyên stream/video.
+- Giữ nguyên API, lịch, BXH, bình luận.
+
+Upload toàn bộ lên GitHub -> Commit -> chờ Vercel Ready -> Ctrl + F5.
