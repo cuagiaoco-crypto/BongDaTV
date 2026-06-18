@@ -191,6 +191,10 @@
 .rankTop1 td{background:linear-gradient(90deg,rgba(255,196,34,.26),rgba(16,34,58,.96))}
 @media(max-width:820px){.rankTablePretty thead th:nth-child(5),.rankTablePretty tbody td:nth-child(5),.rankTablePretty thead th:nth-child(6),.rankTablePretty tbody td:nth-child(6){display:none}.rankTeam{max-width:120px}.rankLiveStatus{font-size:10px}}
 
+
+.autoLiveLine{font-size:12px;color:#80ffb0;font-weight:900;margin-top:5px;text-shadow:0 0 8px rgba(71,255,142,.25)}
+.autoLiveLine.err{color:#ffd45a}
+
 </style>
 </head>
 <body>
@@ -451,6 +455,110 @@ function setLive(id){const d=data();d.liveId=id;save(d);render();scrollTo(0,0)}
 function addComment(){if(window.addCommentFirebase){window.addCommentFirebase();return}const d=data();const n=document.getElementById('cName').value||'Khách';const m=document.getElementById('cMsg').value;if(!m.trim())return;d.comments.push({n,m});save(d);document.getElementById('cMsg').value='';renderComments(d.comments)}
 function esc(s){return String(s).replace(/[&<>"]/g,a=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[a]))}
 window.renderPlayer=renderPlayer;window.renderComments=renderComments;window.addEventListener('storage',render); render();
+
+/* === WC LIVE V4: Tự động cập nhật trận đang phát từ Football-Data API === */
+const TEAM_VI_BY_NAME={
+  'Czechia':'SÉC','South Africa':'NAM PHI','Portugal':'BỒ ĐÀO NHA','DR Congo':'CHDC CONGO','Congo DR':'CHDC CONGO',
+  'Germany':'ĐỨC','Sweden':'THỤY ĐIỂN','United States':'MỸ','Norway':'NA UY','Argentina':'ARGENTINA','England':'ANH',
+  'France':'PHÁP','Austria':'ÁO','Colombia':'COLOMBIA','Mexico':'MEXICO','Australia':'ÚC','South Korea':'HÀN QUỐC',
+  'Korea Republic':'HÀN QUỐC','Scotland':'SCOTLAND','Ivory Coast':'BỜ BIỂN NGÀ','Ghana':'GHANA','Iran':'IRAN',
+  'Japan':'NHẬT BẢN','New Zealand':'NEW ZEALAND','Canada':'CANADA','Bosnia and Herzegovina':'BOSNIA','Qatar':'QATAR',
+  'Switzerland':'THỤY SĨ','Brazil':'BRAZIL','Morocco':'MOROCCO','Belgium':'BỈ','Egypt':'AI CẬP',
+  'Saudi Arabia':'SAUDI ARABIA','Uruguay':'URUGUAY','Spain':'TÂY BAN NHA','Cape Verde Islands':'CAPE VERDE',
+  'Haiti':'HAITI','Tunisia':'TUNISIA','Panama':'PANAMA','Croatia':'CROATIA','Senegal':'SENEGAL','Jordan':'JORDAN',
+  'Iraq':'IRAQ','Turkey':'THỔ NHĨ KỲ','Paraguay':'PARAGUAY','Algeria':'ALGERIA','Curacao':'CURAÇAO','Ecuador':'ECUADOR',
+  'Uzbekistan':'UZBEKISTAN','Netherlands':'HÀ LAN'
+};
+const TEAM_CODE_BY_NAME={
+  'Czechia':'CZE','South Africa':'RSA','Portugal':'POR','DR Congo':'COD','Congo DR':'COD','Germany':'GER','Sweden':'SWE',
+  'United States':'USA','Norway':'NOR','Argentina':'ARG','England':'ENG','France':'FRA','Austria':'AUT','Colombia':'COL',
+  'Mexico':'MEX','Australia':'AUS','South Korea':'KOR','Korea Republic':'KOR','Scotland':'SCO','Ivory Coast':'CIV',
+  'Ghana':'GHA','Iran':'IRN','Japan':'JPN','New Zealand':'NZL','Canada':'CAN','Bosnia and Herzegovina':'BIH',
+  'Qatar':'QAT','Switzerland':'SUI','Brazil':'BRA','Morocco':'MAR','Belgium':'BEL','Egypt':'EGY','Saudi Arabia':'KSA',
+  'Uruguay':'URU','Spain':'ESP','Cape Verde Islands':'CPV','Haiti':'HTI','Tunisia':'TUN','Panama':'PAN','Croatia':'CRO',
+  'Senegal':'SEN','Jordan':'JOR','Iraq':'IRQ','Turkey':'TUR','Paraguay':'PAR','Algeria':'DZA','Curacao':'CUW',
+  'Ecuador':'ECU','Uzbekistan':'UZB','Netherlands':'NED'
+};
+const FLAG_BY_CODE={CZE:'🇨🇿',RSA:'🇿🇦',POR:'🇵🇹',COD:'🇨🇩',GER:'🇩🇪',SWE:'🇸🇪',USA:'🇺🇸',NOR:'🇳🇴',ARG:'🇦🇷',ENG:'🏴',FRA:'🇫🇷',AUT:'🇦🇹',COL:'🇨🇴',MEX:'🇲🇽',AUS:'🇦🇺',KOR:'🇰🇷',SCO:'🏴',CIV:'🇨🇮',GHA:'🇬🇭',IRN:'🇮🇷',JPN:'🇯🇵',NZL:'🇳🇿',CAN:'🇨🇦',BIH:'🇧🇦',QAT:'🇶🇦',SUI:'🇨🇭',BRA:'🇧🇷',MAR:'🇲🇦',BEL:'🇧🇪',EGY:'🇪🇬',KSA:'🇸🇦',URU:'🇺🇾',ESP:'🇪🇸',CPV:'🇨🇻',HTI:'🇭🇹',TUN:'🇹🇳',PAN:'🇵🇦',CRO:'🇭🇷',SEN:'🇸🇳',JOR:'🇯🇴',IRQ:'🇮🇶',TUR:'🇹🇷',PAR:'🇵🇾',DZA:'🇩🇿',CUW:'🇨🇼',ECU:'🇪🇨',UZB:'🇺🇿',NED:'🇳🇱'};
+
+function safeText(id,val){const el=document.getElementById(id); if(el) el.textContent=val}
+function safeHtml(id,val){const el=document.getElementById(id); if(el) el.innerHTML=val}
+
+function getScoreValue(match, side){
+  const s=match?.score || {};
+  const candidates=[s.fullTime,s.regularTime,s.halfTime,s.current];
+  for(const obj of candidates){
+    if(obj && obj[side]!==null && obj[side]!==undefined) return obj[side];
+  }
+  return 0;
+}
+
+function statusToVi(match){
+  const st=match?.status || '';
+  if(st==='IN_PLAY') return '● Đang trực tiếp';
+  if(st==='PAUSED') return '● Tạm nghỉ';
+  if(st==='FINISHED') return 'Kết thúc';
+  if(st==='TIMED' || st==='SCHEDULED') return 'Sắp diễn ra';
+  return 'Đang cập nhật';
+}
+
+function chooseBestMatch(matches){
+  if(!Array.isArray(matches) || !matches.length) return null;
+  return matches.find(m=>m.status==='IN_PLAY') ||
+         matches.find(m=>m.status==='PAUSED') ||
+         matches.find(m=>m.status==='TIMED' || m.status==='SCHEDULED') ||
+         matches[0];
+}
+
+function applyMatchToHeader(match){
+  if(!match || !match.homeTeam || !match.awayTeam) return;
+
+  const homeRaw=match.homeTeam.name || '';
+  const awayRaw=match.awayTeam.name || '';
+  const homeCode=TEAM_CODE_BY_NAME[homeRaw] || match.homeTeam.tla || '';
+  const awayCode=TEAM_CODE_BY_NAME[awayRaw] || match.awayTeam.tla || '';
+
+  safeText('homeName', TEAM_VI_BY_NAME[homeRaw] || homeRaw.toUpperCase());
+  safeText('awayName', TEAM_VI_BY_NAME[awayRaw] || awayRaw.toUpperCase());
+  safeText('homeCode', homeCode);
+  safeText('awayCode', awayCode);
+  safeText('homeFlag', FLAG_BY_CODE[homeCode] || homeCode || '⚽');
+  safeText('awayFlag', FLAG_BY_CODE[awayCode] || awayCode || '⚽');
+  safeText('homeScore', getScoreValue(match,'home'));
+  safeText('awayScore', getScoreValue(match,'away'));
+  safeText('statusText', statusToVi(match));
+
+  const groupText = match.group ? match.group.replace('GROUP_','Bảng ') : 'World Cup';
+  safeText('leagueText', groupText + ' · World Cup');
+
+  const time = new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
+  const status = document.getElementById('scoreAutoStatus');
+  if(status){
+    status.className='autoLiveLine';
+    status.textContent='Tự cập nhật API · '+time;
+  }
+}
+
+async function loadLiveHeaderFromApi(){
+  try{
+    const res=await fetch('/api/matches?season=2026',{cache:'no-store'});
+    if(!res.ok) throw new Error('Không gọi được /api/matches');
+    const data=await res.json();
+    const match=chooseBestMatch(data.matches || []);
+    if(!match) throw new Error('Không có trận đấu');
+    applyMatchToHeader(match);
+  }catch(err){
+    const status=document.getElementById('scoreAutoStatus');
+    if(status){
+      status.className='autoLiveLine err';
+      status.textContent='Dùng dữ liệu dự phòng · API chưa sẵn sàng';
+    }
+  }
+}
+
+setTimeout(loadLiveHeaderFromApi, 1800);
+setInterval(loadLiveHeaderFromApi, 30000);
+
 </script>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";

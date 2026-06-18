@@ -1,0 +1,24 @@
+WC LIVE V4 FULL AUTO API
+
+Đã thêm tự động cập nhật từ Football-Data API:
+- Tên đội trên bảng live
+- Mã đội
+- Cờ đội
+- Tỷ số
+- Trạng thái trận
+- Bảng đấu
+- BXH API
+- Lịch thi đấu
+
+API cần có trong GitHub:
+- api/standings.js
+- api/matches.js
+
+Vercel cần biến môi trường:
+FOOTBALL_DATA_TOKEN
+
+Sau khi upload GitHub:
+1. Commit changes
+2. Vercel tự deploy hoặc bấm Redeploy
+3. Mở https://bongdatv.vercel.app/api/matches để kiểm tra JSON
+4. Mở trang chủ và đợi 1-2 giây, phần live header sẽ tự đổi theo API
