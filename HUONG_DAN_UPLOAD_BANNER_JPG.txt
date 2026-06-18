@@ -1,0 +1,16 @@
+BẢN HOÀN CHỈNH - ĐÃ GẮN 2 ẢNH JPG BẠN GỬI
+
+Đã thêm:
+- assets/banner-left.jpg  = ảnh World Cup cúp bạn gửi
+- assets/banner-right.jpg = ảnh cầu thủ bạn gửi
+- assets/banner-top.jpg   = banner ngang được cắt từ ảnh World Cup
+
+Đã sửa index.html để dùng ảnh JPG thật.
+Giữ nguyên stream/video, API, lịch, BXH, bình luận.
+
+Cách upload:
+1. Giải nén ZIP này.
+2. Upload toàn bộ file lên GitHub, nhớ giữ thư mục assets.
+3. Commit changes.
+4. Chờ Vercel Ready.
+5. Mở web và nhấn Ctrl + F5.
