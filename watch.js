@@ -3,9 +3,75 @@ let match = null;
 let currentTab = 'commentary';
 let hlsInstance = null;
 
+const TEAM_VI = {
+  Czechia: 'SÉC',
+  'South Africa': 'NAM PHI',
+  Germany: 'ĐỨC',
+  Sweden: 'THỤY ĐIỂN',
+  Portugal: 'BỒ ĐÀO NHA',
+  'Congo DR': 'CHDC CONGO',
+  'DR Congo': 'CHDC CONGO',
+  France: 'PHÁP',
+  England: 'ANH',
+  Japan: 'NHẬT BẢN',
+  Brazil: 'BRAZIL',
+  Argentina: 'ARGENTINA'
+};
+
+function viName(name) {
+  return TEAM_VI[name] || name;
+}
+
+function scoreOf(m, side) {
+  const s = m.score || {};
+  return s.fullTime?.[side] ?? s.regularTime?.[side] ?? s.halfTime?.[side] ?? 0;
+}
+
+async function loadApiMatches() {
+  const res = await fetch('/api/matches', { cache: 'no-store' });
+  const data = await res.json();
+
+  return (data.matches || []).map(m => ({
+    id: String(m.id),
+    home: viName(m.homeTeam.name),
+    away: viName(m.awayTeam.name),
+    homeLogo: m.homeTeam.crest || '',
+    awayLogo: m.awayTeam.crest || '',
+    homeScore: scoreOf(m, 'home'),
+    awayScore: scoreOf(m, 'away'),
+    time: new Date(m.utcDate).toLocaleString('vi-VN', {
+      hour: '2-digit',
+      minute: '2-digit',
+      day: '2-digit',
+      month: '2-digit'
+    }),
+    status: m.status === 'FINISHED' ? 'Kết thúc' :
+            m.status === 'IN_PLAY' ? 'Đang trực tiếp' :
+            m.status === 'PAUSED' ? 'Tạm nghỉ' :
+            'Sắp diễn ra',
+    statusKey: m.status === 'IN_PLAY' ? 'live' :
+               m.status === 'FINISHED' ? 'finished' : 'upcoming',
+    servers: [{ name: 'WC LIVE', type: 'embed', url: match?.servers?.[0]?.url || '' }],
+    commentary: [
+      `${viName(m.homeTeam.name)} vs ${viName(m.awayTeam.name)}`,
+      `Trạng thái: ${m.status}`,
+      `Cập nhật tự động từ API World Cup`
+    ],
+    stats: [],
+    lineup: []
+  }));
+}
+
 async function initWatch() {
-  const matches = await loadMatches();
-  match = matches.find(m => m.id === params.get('id')) || matches[0];
+  let matches = [];
+
+  try {
+    matches = await loadApiMatches();
+  } catch (e) {
+    matches = await loadMatches();
+  }
+
+  match = matches.find(m => m.id === params.get('id')) || matches.find(m => m.statusKey === 'live') || matches[0];
 
   if (!match) {
     document.querySelector('.left-col').innerHTML = '<div class="empty-state">Hiện chưa có trận nào để xem.</div>';
@@ -16,11 +82,15 @@ async function initWatch() {
   renderServers();
   renderTab();
   renderChat();
-  playServer(match.servers[0]);
+
+  if (match.servers && match.servers[0]) {
+    playServer(match.servers[0]);
+  }
 }
 
 function renderMatchInfo(matches) {
-  document.title = `${match.home} vs ${match.away} - B79 TV`;
+  document.title = `${match.home} vs ${match.away} - WC LIVE`;
+
   homeLogo.src = match.homeLogo;
   awayLogo.src = match.awayLogo;
   homeName.textContent = match.home;
@@ -30,16 +100,16 @@ function renderMatchInfo(matches) {
   matchTime.textContent = `${match.time} • ${match.status}`;
   articleTitle.textContent = `Trực tiếp ${match.home} vs ${match.away}`;
 
-  otherMatches.innerHTML = matches.filter(m => m.id !== match.id).map(m => `
+  otherMatches.innerHTML = matches.filter(m => m.id !== match.id).slice(0, 8).map(m => `
     <a class="mini-match" href="watch.html?id=${m.id}">
       <img src="${m.homeLogo}"> ${m.home} vs ${m.away}
-      <small>${m.time} • ${m.status}</small>
+      <small>${m.homeScore} - ${m.awayScore} • ${m.time} • ${m.status}</small>
     </a>
   `).join('') || '<p>Không có trận khác.</p>';
 }
 
 function renderServers() {
-  if (!match.servers.length) {
+  if (!match.servers || !match.servers.length || !match.servers[0].url) {
     serverButtons.innerHTML = '<span class="server-note">Chưa có link phát.</span>';
     return;
   }
@@ -79,10 +149,6 @@ function playServer(server) {
     return;
   }
 
-  if (match.statusKey === 'upcoming') {
-    videoNotice.textContent = 'Trận chưa bắt đầu. Khi OBS phát, video sẽ tự có tín hiệu.';
-  }
-
   if (server.type === 'embed') {
     videoFrame.style.display = 'block';
     videoFrame.src = server.url;
@@ -90,19 +156,7 @@ function playServer(server) {
   }
 
   videoPlayer.style.display = 'block';
-  if (server.type === 'hls' || server.url.includes('.m3u8')) {
-    if (Hls.isSupported()) {
-      hlsInstance = new Hls({ liveSyncDurationCount: 3 });
-      hlsInstance.loadSource(server.url);
-      hlsInstance.attachMedia(videoPlayer);
-    } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
-      videoPlayer.src = server.url;
-    } else {
-      videoNotice.textContent = 'Trình duyệt này chưa hỗ trợ HLS.';
-    }
-  } else {
-    videoPlayer.src = server.url;
-  }
+  videoPlayer.src = server.url;
 }
 
 function renderTab() {
@@ -118,8 +172,7 @@ document.querySelectorAll('.tab').forEach(btn => btn.onclick = () => {
 });
 
 function renderChat() {
-  const demoChats = ['Anh em xem link có mượt không?', 'B79 TV lên hình đẹp quá', 'Dự đoán trận này hòa 1-1'];
-  chatMessages.innerHTML = demoChats.map(t => `<div><b>Fan:</b> ${t}</div>`).join('');
+  chatMessages.innerHTML = '';
 }
 
 sendChat.onclick = () => {
@@ -131,4 +184,4 @@ sendChat.onclick = () => {
 };
 
 initWatch();
-setInterval(initWatch, B79_CONFIG.refreshSeconds * 1000);
+setInterval(initWatch, 30000);
