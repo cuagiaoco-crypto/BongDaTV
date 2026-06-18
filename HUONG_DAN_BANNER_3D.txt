@@ -1,0 +1,11 @@
+BẢN BANNER 3D WORLD CUP
+
+Đã thêm:
+- Banner trái 3D có cúp World Cup + nút NHẬN 999K.
+- Banner phải 3D có đội tuyển + nút CƯỢC NGAY.
+- Banner ngang trên cùng FIFA WORLD CUP 2026 LIVE.
+- Không đụng luồng stream/video.
+
+Sau này gắn link:
+- Nút trái id="leftAdLink"
+- Nút phải id="rightAdLink"

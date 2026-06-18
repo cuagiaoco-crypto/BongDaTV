@@ -467,6 +467,33 @@ header,.top,.nav,main,.layout,.card,aside,section{position:relative;z-index:1}
   .ad,.redAd,.blueAd{font-size:18px !important;padding:12px 18px !important}
 }
 
+
+/* ===== 3D WORLD CUP BANNERS ADS - keep stream ===== */
+.wc-shell{max-width:1540px;margin:0 auto;display:grid;grid-template-columns:220px minmax(860px,1fr) 220px;gap:18px;padding:0 14px}
+.wc-main{min-width:0}.wc-side{position:sticky;top:92px;align-self:start}
+.wc-3d-banner{position:relative;min-height:760px;border-radius:18px;overflow:hidden;border:2px solid rgba(255,203,63,.95);background:radial-gradient(circle at 50% 18%,rgba(255,221,97,.35),transparent 24%),radial-gradient(circle at 50% 55%,rgba(255,45,80,.16),transparent 32%),linear-gradient(180deg,#071425,#020711 75%);box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 32px rgba(255,196,54,.38),inset 0 0 80px rgba(255,174,0,.10)}
+.wc-3d-banner:before{content:"";position:absolute;inset:-30%;background:conic-gradient(from 20deg,transparent,rgba(255,210,63,.22),transparent,rgba(36,156,255,.16),transparent);animation:wcSpinLight 9s linear infinite}
+.wc-3d-banner:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 18% 12%,#ffda50 0 4px,transparent 5px),radial-gradient(circle at 78% 22%,#ff334f 0 3px,transparent 4px),radial-gradient(circle at 25% 70%,#1ab3ff 0 3px,transparent 4px),radial-gradient(circle at 82% 78%,#ffda50 0 4px,transparent 5px);animation:wcConfetti 3.5s ease-in-out infinite alternate;opacity:.9}
+@keyframes wcSpinLight{to{transform:rotate(360deg)}}@keyframes wcConfetti{to{transform:translateY(14px)}}
+.wc-banner-inner{position:relative;z-index:2;height:100%;padding:22px 16px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.wc-cup{font-size:118px;line-height:1;margin-top:24px;filter:drop-shadow(0 0 25px rgba(255,215,70,.9));animation:trophyFloat 3.2s ease-in-out infinite}
+@keyframes trophyFloat{50%{transform:translateY(-10px) rotateY(12deg)}}
+.wc-title-big{margin-top:18px;font-size:32px;line-height:1.08;font-weight:1000;color:#ffd45a;text-shadow:0 3px 0 #8b3a00,0 0 24px rgba(255,210,70,.9)}
+.wc-year{font-size:50px;color:#fff;text-shadow:0 0 22px rgba(255,255,255,.55),0 4px 0 rgba(0,0,0,.3)}
+.wc-stat{width:100%;margin-top:20px;padding:14px 8px;border-radius:14px;background:linear-gradient(180deg,rgba(17,38,70,.95),rgba(8,21,42,.95));border:1px solid rgba(255,212,90,.26);display:grid;grid-template-columns:42px 1fr;align-items:center;gap:8px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.wc-stat .ico{font-size:30px}.wc-stat b{font-size:28px;color:#fff}.wc-stat span{display:block;color:#dce9ff;font-size:13px}
+.wc-ad-btn{width:100%;margin-top:18px;border-radius:14px;padding:16px 10px;color:white;font-weight:1000;font-size:20px;text-transform:uppercase;border:2px solid #ffdf40;background:linear-gradient(180deg,#ff1d1d,#b80000);box-shadow:0 0 0 4px rgba(255,0,0,.22),0 0 25px rgba(255,0,0,.55),inset 0 1px 0 rgba(255,255,255,.3);text-shadow:0 2px 0 rgba(0,0,0,.35)}
+.wc-ad-sub{margin-top:10px;color:#ffd45a;font-size:18px;text-shadow:0 0 12px rgba(255,212,90,.55)}
+.wc-right-teams{width:100%;margin-top:18px;border-radius:16px;background:radial-gradient(circle at 50% 18%,rgba(32,130,255,.35),transparent 28%),linear-gradient(180deg,#142a4a,#081527);border:1px solid rgba(255,212,90,.22);display:flex;flex-direction:column;gap:14px;padding:18px 14px}
+.wc-team-card{display:flex;align-items:center;gap:10px;padding:9px;border-radius:12px;background:rgba(0,0,0,.24);border:1px solid rgba(255,255,255,.08);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.wc-avatar{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#fff,#ffca32);font-size:24px;box-shadow:0 0 15px rgba(255,212,90,.28)}
+.wc-team-card b{font-size:14px}.wc-team-card span{display:block;color:#9fb6d8;font-size:11px;margin-top:3px}
+.wc-top-hero{margin:0 auto 14px;min-height:108px;border-radius:14px;border:1px solid rgba(255,212,90,.38);background:radial-gradient(circle at 78% 40%,rgba(255,212,90,.40),transparent 16%),linear-gradient(90deg,#07182f,#12376c 50%,#07182f);box-shadow:0 0 30px rgba(0,108,255,.23),inset 0 1px 0 rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between;padding:18px 24px;overflow:hidden;position:relative}
+.wc-top-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.18),transparent 44%);animation:wcHeroShine 4s infinite}
+@keyframes wcHeroShine{from{transform:translateX(-80%)}to{transform:translateX(80%)}}
+.wc-top-title{position:relative;z-index:2;text-align:center;flex:1}.wc-top-title b{display:block;font-size:34px;color:#ffd45a;text-shadow:0 2px 0 #9a3d00,0 0 18px rgba(255,212,90,.7)}.wc-top-title span{font-size:16px;color:#fff}.wc-top-cup{position:relative;z-index:2;font-size:58px;filter:drop-shadow(0 0 16px rgba(255,212,90,.7))}
+@media(max-width:1250px){.wc-shell{grid-template-columns:1fr}.wc-side{display:none}}
+
 </style>
 </head>
 <body>
@@ -475,7 +502,7 @@ header,.top,.nav,main,.layout,.card,aside,section{position:relative;z-index:1}
   <a id="promo1" class="promoBtn" href="#" target="_blank" rel="noopener"><small>Nhận</small><span>999K</span></a>
   <a id="promo2" class="promoBtn blue" href="#" target="_blank" rel="noopener"><span>Cược ngay</span></a>
 </div>
-<main>
+<div class="wc-shell"><div class="wc-side wc-left"><div class="wc-3d-banner"><div class="wc-banner-inner"><div class="wc-cup">🏆</div><div class="wc-title-big">FIFA<br>WORLD CUP</div><div class="wc-year">2026</div><div class="wc-stat"><div class="ico">🏆</div><div><b>48</b><span>ĐỘI TUYỂN</span></div></div><div class="wc-stat"><div class="ico">⚽</div><div><b>104</b><span>TRẬN ĐẤU</span></div></div><a class="wc-ad-btn" id="leftAdLink" href="#" target="_blank">NHẬN 999K</a><div class="wc-ad-sub">FULL HD • LIVE</div></div></div></div><div class="wc-main"><main><div class="wc-top-hero"><div class="wc-top-cup">🏆</div><div class="wc-top-title"><b>FIFA WORLD CUP 2026 <span style="background:#ff3155;color:#fff;border-radius:8px;padding:5px 9px;font-size:20px">LIVE</span></b><span>XEM TRỰC TIẾP • LỊCH THI ĐẤU • BẢNG XẾP HẠNG</span></div><div class="wc-top-cup">⚽</div></div>
   <section class="layout" id="live">
     <div class="card">
       <div class="scoreTop">
@@ -525,7 +552,7 @@ header,.top,.nav,main,.layout,.card,aside,section{position:relative;z-index:1}
     <tbody id="wcScheduleBody"></tbody>
   </table>
 </section>
-</main>
+</main></div><div class="wc-side wc-right"><div class="wc-3d-banner"><div class="wc-banner-inner"><div class="wc-right-teams"><div class="wc-team-card"><div class="wc-avatar">🇫🇷</div><div><b>FRANCE</b><span>Ứng viên vô địch</span></div></div><div class="wc-team-card"><div class="wc-avatar">🇧🇷</div><div><b>BRAZIL</b><span>Samba bùng nổ</span></div></div><div class="wc-team-card"><div class="wc-avatar">🇦🇷</div><div><b>ARGENTINA</b><span>Đương kim mạnh mẽ</span></div></div><div class="wc-team-card"><div class="wc-avatar">🇵🇹</div><div><b>PORTUGAL</b><span>Ngôi sao châu Âu</span></div></div></div><div class="wc-cup">🏆</div><div class="wc-title-big">WORLD CUP<br>LIVE</div><div class="wc-year">2026</div><a class="wc-ad-btn" id="rightAdLink" href="#" target="_blank">CƯỢC NGAY</a></div></div></div></div>
 
 <script>
 function makeDemoComments(count){return []}
@@ -952,6 +979,15 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
   }catch(e){}
 });
+</script>
+
+
+<script>
+(function(){
+  var l=document.getElementById('leftAdLink'), r=document.getElementById('rightAdLink');
+  if(l) l.href=localStorage.getItem('wc_left_ad_url') || '#';
+  if(r) r.href=localStorage.getItem('wc_right_ad_url') || '#';
+})();
 </script>
 
 </body>
