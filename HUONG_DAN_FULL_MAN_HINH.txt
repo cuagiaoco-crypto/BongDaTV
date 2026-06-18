@@ -1,0 +1,11 @@
+BẢN FULL MÀN HÌNH RESPONSIVE
+
+Đã sửa:
+- Giao diện bung full chiều ngang máy tính.
+- Banner trái/phải tự co theo màn hình.
+- Laptop nhỏ vẫn vừa màn.
+- Tablet/điện thoại tự ẩn banner 2 bên để nội dung không bị bó.
+- Không đụng luồng stream/video.
+- Không đụng API.
+
+Upload toàn bộ lên GitHub, Commit, chờ Vercel Ready, rồi nhấn Ctrl + F5.
