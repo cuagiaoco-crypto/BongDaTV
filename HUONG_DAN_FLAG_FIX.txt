@@ -1,0 +1,11 @@
+BẢN SỬA TỐI THIỂU - GIỮ NGUYÊN LUỒNG VIDEO
+
+Chỉ sửa lỗi không hiện lá cờ:
+- BXH dùng logo/cờ thật từ API football-data (team.crest), không dùng emoji flag.
+- Header trận đang phát dùng logo/cờ thật từ API.
+- Lịch thi đấu có logo/cờ nhỏ hai đội.
+- Không sửa khung video, không đụng stream đang có.
+- Giữ nguyên giao diện và các phần khác.
+
+Upload toàn bộ file lên GitHub rồi chờ Vercel deploy.
+Sau đó nhấn Ctrl + F5.

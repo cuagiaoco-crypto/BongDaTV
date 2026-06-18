@@ -195,6 +195,11 @@
 .autoLiveLine{font-size:12px;color:#80ffb0;font-weight:900;margin-top:5px;text-shadow:0 0 8px rgba(71,255,142,.25)}
 .autoLiveLine.err{color:#ffd45a}
 
+
+.flag img,.teamFlagImg{width:42px;height:42px;object-fit:contain;display:block}
+.rankFlagImg{width:22px;height:22px;object-fit:contain;display:block;border-radius:50%;background:#132540}
+.scheduleFlagImg{width:18px;height:18px;object-fit:contain;vertical-align:middle;margin:0 5px}
+
 </style>
 </head>
 <body>
@@ -393,7 +398,9 @@ async function loadScheduleFromApi(){
       const t=date.toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
       const hs=scoreFromApi(m,'home'), as=scoreFromApi(m,'away');
       const scoreText=(m.status==='FINISHED'||m.status==='IN_PLAY'||m.status==='PAUSED') ? ` <b>${hs} - ${as}</b> ` : ' vs ';
-      return `<tr><td>${d}</td><td class="scheduleMatch">${viTeamName(m.homeTeam?.name)}${scoreText}${viTeamName(m.awayTeam?.name)}</td><td class="scheduleTime">${t}</td></tr>`;
+      const hLogo=m.homeTeam?.crest?`<img class="scheduleFlagImg" src="${m.homeTeam.crest}" alt="">`:'';
+      const aLogo=m.awayTeam?.crest?`<img class="scheduleFlagImg" src="${m.awayTeam.crest}" alt="">`:'';
+      return `<tr><td>${d}</td><td class="scheduleMatch">${hLogo}${viTeamName(m.homeTeam?.name)}${scoreText}${viTeamName(m.awayTeam?.name)}${aLogo}</td><td class="scheduleTime">${t}</td></tr>`;
     }).join('');
   }catch(e){}
 }
@@ -442,11 +449,13 @@ function drawStandings(rows, isApi=false){
  const body=document.getElementById('rankBody');
  if(!body)return;
  body.innerHTML=rows.slice(0,16).map((x,i)=>{
-   const flag=x.flag || FLAG_BY_TLA[x.tla] || '⚽';
+   const flagHtml=x.crest
+     ? `<img class="rankFlagImg" src="${x.crest}" alt="${x.tla||x.team||''}">`
+     : `<span class="rankFlag">${x.flag || FLAG_BY_TLA[x.tla] || '⚽'}</span>`;
    const team=x.team || '';
    return `<tr class="${i===0?'rankTop1':''}">
      <td>${x.pos || i+1}</td>
-     <td><div class="rankTeam"><span class="rankFlag">${flag}</span><span class="rankName">${team}</span></div></td>
+     <td><div class="rankTeam">${flagHtml}<span class="rankName">${team}</span></div></td>
      <td>${x.played ?? 0}</td>
      <td>${x.gd ?? 0}</td>
      <td>${x.gf ?? 0}</td>
@@ -464,6 +473,7 @@ function normalizeFootballDataStandings(data){
    team:VI_NAME[r.team?.name] || r.team?.name || '',
    tla:r.team?.tla || '',
    flag:FLAG_BY_TLA[r.team?.tla] || '',
+   crest:r.team?.crest || '',
    played:r.playedGames,
    gd:r.goalDifference,
    gf:r.goalsFor,
@@ -561,8 +571,8 @@ function applyMatchToHeader(match){
   safeText('awayName', TEAM_VI_BY_NAME[awayRaw] || awayRaw.toUpperCase());
   safeText('homeCode', homeCode);
   safeText('awayCode', awayCode);
-  safeText('homeFlag', FLAG_BY_CODE[homeCode] || homeCode || '⚽');
-  safeText('awayFlag', FLAG_BY_CODE[awayCode] || awayCode || '⚽');
+  safeHtml('homeFlag', match.homeTeam.crest ? `<img class="teamFlagImg" src="${match.homeTeam.crest}" alt="${homeCode}">` : (FLAG_BY_CODE[homeCode] || homeCode || '⚽'));
+  safeHtml('awayFlag', match.awayTeam.crest ? `<img class="teamFlagImg" src="${match.awayTeam.crest}" alt="${awayCode}">` : (FLAG_BY_CODE[awayCode] || awayCode || '⚽'));
   safeText('homeScore', getScoreValue(match,'home'));
   safeText('awayScore', getScoreValue(match,'away'));
   safeText('statusText', statusToVi(match));
