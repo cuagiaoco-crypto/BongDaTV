@@ -1,0 +1,17 @@
+ĐÃ THÊM TỰ CẬP NHẬT API
+
+Tự cập nhật từ Football-Data API:
+- Tên đội trên bảng live
+- Mã đội
+- Cờ đội
+- Tỷ số
+- Trạng thái trận
+- Bảng đấu
+- BXH vẫn tự cập nhật
+
+API mới:
+- /api/matches
+- /api/standings
+
+Vercel cần có FOOTBALL_DATA_TOKEN.
+Sau khi upload GitHub nhớ Redeploy Vercel.
