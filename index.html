@@ -1076,6 +1076,251 @@ main{
   .team,.team.away{justify-content:center!important;text-align:center!important}
 }
 
+
+/* ===== UI GIỐNG ẢNH MẪU 100% - RESPONSIVE - GIỮ STREAM ===== */
+:root{
+  --gold:#ffcc43;
+  --gold2:#ff8a00;
+  --red:#f02b45;
+  --blue:#0b2340;
+  --panel:#07182c;
+  --line:#1f456c;
+  --text:#ffffff;
+}
+*{box-sizing:border-box}
+html,body{width:100%!important;min-width:0!important;margin:0!important;overflow-x:hidden!important}
+body{
+  color:#fff!important;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(23,86,160,.22),transparent 34%),
+    linear-gradient(180deg,#030914 0%,#071524 58%,#020711 100%)!important;
+  font-family:Arial,Helvetica,sans-serif!important;
+  font-weight:800!important;
+}
+body:before{
+  content:""!important;position:fixed!important;inset:0!important;pointer-events:none!important;
+  background:
+    radial-gradient(circle at 22% 12%,rgba(255,204,67,.07),transparent 20%),
+    radial-gradient(circle at 83% 18%,rgba(0,115,255,.08),transparent 26%)!important;
+  z-index:0!important;opacity:1!important;
+}
+.top,header{
+  position:sticky!important;top:0!important;z-index:50!important;
+  background:#030914!important;border-bottom:1px solid rgba(90,140,205,.25)!important;
+  box-shadow:0 8px 26px rgba(0,0,0,.42)!important;
+}
+.nav{
+  width:100%!important;max-width:1500px!important;margin:0 auto!important;height:66px!important;
+  padding:0 16px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;
+}
+.logo{display:flex!important;align-items:center!important;gap:10px!important}
+.ball,.logo .ball{
+  width:42px!important;height:42px!important;border-radius:50%!important;display:grid!important;place-items:center!important;
+  background:linear-gradient(135deg,#fff8c6,#ffc233 55%,#c37a00)!important;
+  box-shadow:0 0 0 3px rgba(255,204,67,.18),0 0 18px rgba(255,204,67,.45)!important;
+}
+.brand,.logo .brand{font-size:26px!important;line-height:1!important;font-weight:1000!important;text-shadow:0 2px 10px #000!important}
+.brand small,.logo .brand small{display:block!important;color:#ffd34d!important;font-size:11px!important;margin-top:4px!important}
+.menu{display:flex!important;gap:24px!important;align-items:center!important}
+.menu a{font-size:14px!important;font-weight:1000!important;text-transform:uppercase!important;color:#fff!important}
+.menu .liveBtn,.liveBtn,.menu a:first-child{
+  background:#ed2f49!important;border-radius:999px!important;padding:14px 30px!important;color:#fff!important;
+  box-shadow:0 0 18px rgba(237,47,73,.24)!important;border:1px solid rgba(255,255,255,.12)!important;
+}
+
+/* 3 cột full giống mẫu */
+.wc-shell{
+  width:100%!important;max-width:1500px!important;margin:0 auto!important;
+  display:grid!important;grid-template-columns:220px minmax(0,1fr) 220px!important;
+  gap:16px!important;padding:10px 12px 22px!important;align-items:start!important;position:relative!important;z-index:1!important;
+}
+.wc-main{width:100%!important;min-width:0!important}
+main{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+
+/* Banner ngang World Cup */
+.wc-top-hero{
+  position:relative!important;width:100%!important;min-height:104px!important;margin:0 0 10px!important;
+  border-radius:12px!important;border:1px solid rgba(255,204,67,.55)!important;overflow:hidden!important;
+  background:
+    linear-gradient(rgba(2,9,20,.25),rgba(2,9,20,.45)),
+    radial-gradient(circle at 82% 52%,rgba(255,210,68,.42),transparent 15%),
+    radial-gradient(circle at 24% 12%,rgba(0,132,255,.35),transparent 27%),
+    linear-gradient(90deg,#061228 0%,#12346a 48%,#07142b 100%)!important;
+  box-shadow:0 0 22px rgba(255,204,67,.18),inset 0 0 35px rgba(0,0,0,.28)!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;padding:16px 26px!important;
+}
+.wc-top-hero:before{
+  content:""!important;position:absolute!important;inset:0!important;
+  background:
+    linear-gradient(100deg,transparent 0 18%,rgba(255,255,255,.13) 25%,transparent 35%),
+    repeating-linear-gradient(0deg,transparent 0 7px,rgba(255,255,255,.018) 8px 9px)!important;
+}
+.wc-top-hero:after{
+  content:""!important;position:absolute!important;left:0!important;right:0!important;bottom:0!important;height:3px!important;
+  background:linear-gradient(90deg,transparent,#ffb000,transparent)!important;
+}
+.wc-top-title{position:relative!important;z-index:2!important;text-align:center!important;flex:1!important}
+.wc-top-title b{
+  display:block!important;color:#ffc33d!important;font-size:36px!important;line-height:1!important;font-weight:1000!important;
+  text-shadow:0 3px 0 rgba(94,40,0,.85),0 0 18px rgba(255,195,61,.6)!important;
+}
+.wc-top-title span{font-size:16px!important;color:#fff!important;font-weight:900!important}
+.wc-top-cup{position:relative!important;z-index:2!important;font-size:56px!important;filter:drop-shadow(0 0 16px rgba(255,204,67,.8))!important}
+.wc-top-title b span{vertical-align:middle}
+
+/* Banner trái phải giống ảnh */
+.wc-side{position:sticky!important;top:80px!important}
+.wc-3d-banner{
+  position:relative!important;min-height:805px!important;width:100%!important;border-radius:14px!important;overflow:hidden!important;
+  border:2px solid #ffb52e!important;
+  background:
+    linear-gradient(rgba(2,7,14,.05),rgba(2,7,14,.62)),
+    radial-gradient(circle at 50% 19%,rgba(255,221,86,.50),transparent 22%),
+    radial-gradient(circle at 50% 82%,rgba(255,92,0,.20),transparent 28%),
+    linear-gradient(180deg,#0b1b34 0%,#020711 100%)!important;
+  box-shadow:0 0 24px rgba(255,179,40,.35),inset 0 0 60px rgba(255,189,34,.08)!important;
+}
+.wc-3d-banner:before{
+  content:""!important;position:absolute!important;inset:0!important;animation:none!important;opacity:1!important;
+  background:
+    radial-gradient(circle at 50% 26%,rgba(255,219,83,.18),transparent 28%),
+    radial-gradient(circle at 17% 10%,#ffb900 0 3px,transparent 4px),
+    radial-gradient(circle at 82% 13%,#ff4a2e 0 3px,transparent 4px),
+    radial-gradient(circle at 30% 92%,#ffcc43 0 3px,transparent 4px),
+    radial-gradient(circle at 88% 88%,#1897ff 0 3px,transparent 4px),
+    linear-gradient(140deg,transparent 0 42%,rgba(255,255,255,.08) 44%,transparent 55%)!important;
+}
+.wc-3d-banner:after{
+  content:""!important;position:absolute!important;inset:auto 0 0 0!important;height:230px!important;animation:none!important;opacity:1!important;
+  background:linear-gradient(180deg,transparent,rgba(255,106,0,.12),rgba(255,204,67,.07))!important;
+}
+.wc-banner-inner{
+  position:relative!important;z-index:2!important;height:100%!important;padding:20px 14px!important;text-align:center!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;
+}
+.wc-cup{
+  font-size:134px!important;line-height:1!important;margin:26px 0 16px!important;
+  filter:drop-shadow(0 0 28px rgba(255,210,69,.85))!important;animation:none!important;
+}
+.wc-title-big{
+  color:#ffd04a!important;font-size:30px!important;line-height:1.08!important;font-weight:1000!important;
+  margin:6px 0!important;text-shadow:0 4px 0 rgba(92,40,0,.85),0 0 18px rgba(255,208,74,.58)!important;
+}
+.wc-year{font-size:54px!important;font-weight:1000!important;color:#fff!important;text-shadow:0 0 18px rgba(255,255,255,.5)!important}
+.wc-stat{
+  width:100%!important;margin-top:15px!important;padding:13px 10px!important;border-radius:12px!important;
+  background:rgba(9,24,48,.90)!important;border:1px solid rgba(255,255,255,.12)!important;
+  display:grid!important;grid-template-columns:42px 1fr!important;gap:8px!important;align-items:center!important;box-shadow:none!important;
+}
+.wc-stat .ico{font-size:30px!important}.wc-stat b{font-size:29px!important;color:#fff!important}.wc-stat span{display:block!important;font-size:13px!important;color:#fff!important}
+.wc-ad-btn{
+  width:100%!important;margin-top:20px!important;padding:15px 8px!important;border-radius:10px!important;
+  background:linear-gradient(180deg,#ff2a2a,#ab0000)!important;border:2px solid #ffc33d!important;color:#fff!important;
+  font-size:21px!important;font-weight:1000!important;box-shadow:0 0 20px rgba(255,34,34,.48)!important;text-shadow:0 2px 0 rgba(0,0,0,.45)!important;
+}
+.wc-ad-sub{margin-top:10px!important;color:#ffd04a!important;font-size:17px!important;font-weight:1000!important}
+
+/* Banner phải có cầu thủ kiểu ảnh mẫu nhưng không dùng hình bản quyền */
+.wc-right-teams{
+  width:100%!important;margin-top:18px!important;padding:10px!important;border-radius:12px!important;
+  background:rgba(7,20,40,.82)!important;border:1px solid rgba(255,255,255,.11)!important;
+  display:flex!important;flex-direction:column!important;gap:10px!important;
+}
+.wc-team-card{
+  min-height:60px!important;border-radius:11px!important;padding:8px!important;display:flex!important;gap:9px!important;align-items:center!important;
+  background:linear-gradient(90deg,rgba(255,255,255,.08),rgba(255,255,255,.035))!important;border:1px solid rgba(255,255,255,.10)!important;box-shadow:none!important;
+}
+.wc-avatar{
+  width:44px!important;height:44px!important;border-radius:50%!important;display:grid!important;place-items:center!important;
+  background:linear-gradient(135deg,#ffe693,#cf850f)!important;color:#fff!important;font-size:18px!important;font-weight:1000!important;
+}
+.wc-team-card b{font-size:13px!important;color:#fff!important}.wc-team-card span{font-size:10px!important;color:#c9d7ee!important}
+
+/* bỏ 2 nút quảng cáo cũ phía trên nếu có, để giống mẫu chỉ còn banner ngang */
+.ads,.promo,.bannerAds{display:none!important}
+
+/* Nội dung chính */
+.grid,.layout,.main-grid{
+  display:grid!important;grid-template-columns:minmax(0,1fr) 330px!important;gap:12px!important;align-items:start!important;width:100%!important;
+}
+.card{
+  width:100%!important;max-width:none!important;background:linear-gradient(180deg,#102441,#09192d)!important;
+  border:1px solid rgba(84,142,205,.38)!important;border-radius:11px!important;box-shadow:0 0 14px rgba(0,0,0,.20)!important;overflow:hidden!important;
+}
+.score,.scoreTop{
+  background:#122947!important;border-bottom:1px solid rgba(255,255,255,.09)!important;padding:18px 20px!important;
+}
+.name,#homeName,#awayName{font-size:24px!important;font-weight:1000!important;text-transform:uppercase!important;text-shadow:none!important}
+.code,#homeCode,#awayCode{color:#c4d7f2!important;font-size:12px!important}
+.scoreNum,#homeScore,#awayScore{font-size:62px!important;font-weight:1000!important;color:#ff3659!important;text-shadow:none!important}
+.status,.live{
+  color:#ff5470!important;background:rgba(255,54,89,.13)!important;border:1px solid rgba(255,54,89,.70)!important;border-radius:999px!important;box-shadow:none!important;
+}
+.player{background:#000!important;border:0!important}
+.watermark{
+  background:#09192d!important;border:1px solid rgba(255,208,74,.45)!important;border-radius:8px!important;box-shadow:none!important;
+}
+.banner{
+  height:60px!important;background:linear-gradient(90deg,#ff8700 0%,#ffbd3d 50%,#ff8700 100%)!important;
+  box-shadow:0 -4px 12px rgba(255,128,0,.18)!important;font-size:28px!important;
+}
+.banner .btn{
+  background:linear-gradient(180deg,#fff068,#ffc429)!important;color:#0a4e96!important;border:2px solid #fff!important;border-radius:9px!important;box-shadow:none!important;
+}
+.badge,#leagueText{background:#061629!important;border:1px solid rgba(255,208,74,.35)!important;border-radius:999px!important;color:#fff!important}
+.chatBox{min-height:330px!important}
+.chatMsg,.chatMessages>div{background:#061629!important;border:1px solid rgba(84,142,205,.28)!important;border-radius:9px!important}
+.chatForm input,input{background:#061326!important;border:1px solid rgba(84,142,205,.34)!important;color:#fff!important}
+.chatForm button,#sendChat,button{
+  background:linear-gradient(180deg,#ffde62,#ffc230)!important;color:#071326!important;border-radius:9px!important;font-weight:1000!important;
+}
+.pill,.liveApi,#rankStatus{background:rgba(57,231,130,.12)!important;border:1px solid rgba(57,231,130,.60)!important;color:#57f59a!important;border-radius:999px!important}
+.rankTablePretty,.rankTable,.table,.scheduleTable{border-collapse:separate!important;border-spacing:0 6px!important}
+.rankTablePretty th,.rankTable th,.table th,.scheduleTable th{color:#ffd04a!important;text-transform:uppercase!important}
+.rankTablePretty td,.rankTable td,.table td,.scheduleTable td{
+  background:#061629!important;border-top:1px solid rgba(84,142,205,.16)!important;border-bottom:1px solid rgba(84,142,205,.16)!important;
+}
+.rankTop1 td,.pos1 td{background:linear-gradient(90deg,rgba(255,208,74,.24),#061629)!important}
+.schedule,.wcScheduleBox{margin-top:14px!important}
+.sectionTitle{font-weight:1000!important;text-transform:uppercase!important}
+
+/* desktop lớn */
+@media(min-width:1500px){
+  .wc-shell{grid-template-columns:220px minmax(0,1fr) 220px!important}
+  .grid,.layout,.main-grid{grid-template-columns:minmax(0,1fr) 340px!important}
+}
+
+/* laptop */
+@media(max-width:1320px){
+  .wc-shell{grid-template-columns:170px minmax(0,1fr) 170px!important;gap:12px!important}
+  .wc-cup{font-size:96px!important}.wc-title-big{font-size:24px!important}.wc-year{font-size:40px!important}
+  .wc-ad-btn{font-size:16px!important}.wc-stat b{font-size:22px!important}.wc-stat span{font-size:11px!important}
+  .grid,.layout,.main-grid{grid-template-columns:minmax(0,1fr) 300px!important}
+  .wc-top-title b{font-size:28px!important}
+}
+
+/* tablet và mobile full nội dung, ẩn banner 2 bên */
+@media(max-width:1080px){
+  .wc-shell{display:block!important;padding:10px!important}
+  .wc-side{display:none!important}
+  .grid,.layout,.main-grid{grid-template-columns:1fr!important}
+  .wc-top-hero{min-height:86px!important}
+}
+
+/* điện thoại */
+@media(max-width:700px){
+  .nav{height:auto!important;flex-wrap:wrap!important;padding:10px!important;gap:8px!important}
+  .menu{width:100%!important;justify-content:center!important;gap:8px!important;flex-wrap:wrap!important}
+  .menu a{font-size:12px!important;padding:10px 12px!important}
+  .brand,.logo .brand{font-size:22px!important}
+  .wc-top-hero{min-height:74px!important;padding:10px!important}
+  .wc-top-title b{font-size:18px!important}.wc-top-title span{font-size:11px!important}.wc-top-cup{font-size:30px!important}
+  .score,.scoreTop{grid-template-columns:1fr!important;text-align:center!important;padding:14px!important}
+  .team,.team.away{justify-content:center!important;text-align:center!important}
+  .name,#homeName,#awayName{font-size:20px!important}.scoreNum,#homeScore,#awayScore{font-size:44px!important}
+  .banner{font-size:18px!important;height:50px!important}
+}
+
 </style>
 </head>
 <body>
@@ -1134,7 +1379,7 @@ main{
     <tbody id="wcScheduleBody"></tbody>
   </table>
 </section>
-</main></div><div class="wc-side wc-right"><div class="wc-3d-banner"><div class="wc-banner-inner"><div class="wc-right-teams"><div class="wc-team-card"><div class="wc-avatar">🇫🇷</div><div><b>FRANCE</b><span>Ứng viên vô địch</span></div></div><div class="wc-team-card"><div class="wc-avatar">🇧🇷</div><div><b>BRAZIL</b><span>Samba bùng nổ</span></div></div><div class="wc-team-card"><div class="wc-avatar">🇦🇷</div><div><b>ARGENTINA</b><span>Đương kim mạnh mẽ</span></div></div><div class="wc-team-card"><div class="wc-avatar">🇵🇹</div><div><b>PORTUGAL</b><span>Ngôi sao châu Âu</span></div></div></div><div class="wc-cup">🏆</div><div class="wc-title-big">WORLD CUP<br>LIVE</div><div class="wc-year">2026</div><a class="wc-ad-btn" id="rightAdLink" href="#" target="_blank">CƯỢC NGAY</a></div></div></div></div>
+</main></div><div class="wc-side wc-right"><div class="wc-3d-banner"><div class="wc-banner-inner"><div class="wc-right-teams"><div class="wc-team-card"><div class="wc-avatar">FR</div><div><b>FRANCE</b><span>Ứng viên vô địch</span></div></div><div class="wc-team-card"><div class="wc-avatar">BR</div><div><b>BRAZIL</b><span>Samba bùng nổ</span></div></div><div class="wc-team-card"><div class="wc-avatar">AR</div><div><b>ARGENTINA</b><span>Đương kim mạnh mẽ</span></div></div><div class="wc-team-card"><div class="wc-avatar">PT</div><div><b>PORTUGAL</b><span>Ngôi sao châu Âu</span></div></div></div><div class="wc-cup">🏆</div><div class="wc-title-big">WORLD CUP<br>LIVE</div><div class="wc-year">2026</div><a class="wc-ad-btn" id="rightAdLink" href="#" target="_blank">CƯỢC NGAY</a></div></div></div></div>
 
 <script>
 function makeDemoComments(count){return []}

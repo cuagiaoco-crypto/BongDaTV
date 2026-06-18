@@ -1,0 +1,12 @@
+BẢN GIAO DIỆN GIỐNG ẢNH MẪU 100% + RESPONSIVE
+
+Đã làm:
+- Layout 3 cột: banner trái, nội dung giữa, banner phải.
+- Banner ngang World Cup 2026 LIVE.
+- Banner trái: Cúp + 48 đội tuyển + 104 trận đấu + nút NHẬN 999K.
+- Banner phải: đội tuyển + cúp + nút CƯỢC NGAY.
+- Mobile/tablet tự ẩn banner 2 bên để nội dung full màn.
+- Giữ nguyên luồng stream/video.
+- Giữ nguyên API, lịch, BXH.
+
+Upload toàn bộ lên GitHub -> Commit -> chờ Vercel Ready -> Ctrl + F5.
