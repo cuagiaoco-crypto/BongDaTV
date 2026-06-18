@@ -1,0 +1,6 @@
+Bản sửa cuối:
+- Xóa thanh cam dưới video.
+- Logo WC LIVE trong video dùng ảnh trong suốt, không nền đen, không viền.
+- Logo header dùng ảnh đúng kích thước.
+- Khi fullscreen khung player, logo tự to lên.
+Upload toàn bộ lên GitHub rồi Commit, chờ Vercel Ready và Ctrl+F5.

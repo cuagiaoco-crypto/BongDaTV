@@ -1568,6 +1568,149 @@ box-shadow:none!important;
 .ad-banner,.bottom-banner,.promo-banner{display:none!important}
 .player iframe,.video-container iframe,.videoBox iframe{width:100%!important;height:100%!important}
 </style>
+<style>
+
+/* ===== FINAL FIX: logo trong suốt + xóa thanh cam ===== */
+
+/* Logo header dùng đúng ảnh mark trong suốt, không bị bé xíu */
+.logo{
+  width:220px!important;
+  height:66px!important;
+  min-width:220px!important;
+  display:block!important;
+  background-image:url('assets/wc-live-mark.png')!important;
+  background-size:contain!important;
+  background-position:left center!important;
+  background-repeat:no-repeat!important;
+  background-color:transparent!important;
+  border:none!important;
+  box-shadow:none!important;
+  overflow:hidden!important;
+}
+.logo *{display:none!important}
+
+/* Logo trên video: bỏ nền đen, bỏ viền, bỏ bóng, chỉ hiện ảnh WC LIVE trong suốt */
+.maskTopRight,
+.watermark,
+.wc-watermark,
+#wcWatermark{
+  position:absolute!important;
+  top:clamp(8px,1vw,18px)!important;
+  right:clamp(8px,1vw,18px)!important;
+  z-index:999999!important;
+
+  width:clamp(170px,14vw,340px)!important;
+  height:clamp(54px,4.5vw,108px)!important;
+
+  background-image:url('assets/wc-live-mark.png')!important;
+  background-size:contain!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  background-color:transparent!important;
+
+  border:none!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+
+  color:transparent!important;
+  font-size:0!important;
+  text-indent:-9999px!important;
+  overflow:visible!important;
+  pointer-events:none!important;
+}
+.maskTopRight:before,
+.watermark:before,
+.wc-watermark:before,
+#wcWatermark:before{
+  display:none!important;
+  content:none!important;
+}
+
+/* Tắt lớp che phụ cũ tạo nền đen / khung xấu */
+.player:after,
+.videoBox:after,
+.video-wrap:after,
+.video-container:after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+
+/* XÓA hẳn thanh màu cam dưới video */
+.maskBottomFull,
+.bannerMain,
+.bannerRegister,
+.bannerBall,
+.maskLive{
+  display:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  height:0!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+}
+
+/* Xóa các lớp cam sinh từ bản vá cũ */
+.player:before,
+.videoBox:before,
+.video-wrap:before,
+.video-container:before{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  height:0!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+
+/* Khi phóng to bằng fullscreen của khung player, logo tự phóng lớn theo */
+.player:fullscreen .maskTopRight,
+.videoBox:fullscreen .maskTopRight,
+.video-wrap:fullscreen .maskTopRight,
+.video-container:fullscreen .maskTopRight,
+.player:fullscreen .watermark,
+.videoBox:fullscreen .watermark,
+.video-wrap:fullscreen .watermark,
+.video-container:fullscreen .watermark,
+.player:fullscreen .wc-watermark,
+.videoBox:fullscreen .wc-watermark,
+.video-wrap:fullscreen .wc-watermark,
+.video-container:fullscreen .wc-watermark,
+.player:fullscreen #wcWatermark,
+.videoBox:fullscreen #wcWatermark,
+.video-wrap:fullscreen #wcWatermark,
+.video-container:fullscreen #wcWatermark{
+  top:22px!important;
+  right:22px!important;
+  width:clamp(260px,18vw,460px)!important;
+  height:clamp(82px,6vw,150px)!important;
+}
+
+/* Mở layout rộng hơn nhưng không vỡ màn */
+.wc-shell{
+  width:calc(100vw - 24px)!important;
+  max-width:1680px!important;
+  margin:0 auto!important;
+}
+.wc-main{min-width:0!important}
+@media(min-width:1400px){
+  .wc-shell{grid-template-columns:250px minmax(0,1fr) 250px!important}
+}
+@media(max-width:700px){
+  .logo{width:160px!important;height:52px!important;min-width:160px!important}
+  .maskTopRight,.watermark,.wc-watermark,#wcWatermark{
+    width:128px!important;
+    height:44px!important;
+    top:6px!important;
+    right:6px!important;
+  }
+}
+
+</style>
 </head>
 <body>
 <header><div class="bar"><div><div class="logo"><span>⚽</span><div>WC LIVE<div class="sub">XEM BÓNG ĐÁ TRỰC TIẾP</div></div></div></div><nav><a class="navbtn active" href="/">TRỰC TIẾP</a><a class="navbtn" href="/">LỊCH THI ĐẤU</a><a class="navbtn" href="/">BXH</a></nav></div></header>
