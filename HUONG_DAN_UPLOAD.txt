@@ -1,0 +1,19 @@
+BẢN WC LIVE 100% AUTO API
+
+Đã sửa hoàn chỉnh:
+- Trang chủ tự cập nhật tên đội, tỷ số, trạng thái, lịch thi đấu, BXH từ API.
+- /api/matches và /api/standings đã nằm đúng thư mục api.
+- app.js và watch.js cũng đã đổi sang dùng API.
+- Xóa bình luận ảo, chỉ còn bình luận thật lưu localStorage.
+- Lịch thi đấu và BXH tự cập nhật, admin không cần sửa tay.
+
+Cách upload:
+1. Giải nén ZIP.
+2. Upload toàn bộ file lên GitHub.
+3. Đảm bảo GitHub có đúng:
+   api/matches.js
+   api/standings.js
+4. Vercel cần Environment Variable:
+   FOOTBALL_DATA_TOKEN
+5. Chờ Vercel deploy Ready.
+6. Mở trang và nhấn Ctrl + F5.
