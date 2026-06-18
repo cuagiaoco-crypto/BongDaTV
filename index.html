@@ -172,7 +172,26 @@
 @media(max-width:560px){.scheduleTable th,.scheduleTable td{padding:10px 8px;font-size:13px}.scheduleMatch{font-size:13px}}
 .sectionTitle{font-size:22px;font-weight:900;margin:0 0 16px}.comments{height:410px;overflow:auto;padding-right:5px}.comment{border:1px solid #263a5b;background:#0c182b;padding:12px;border-radius:12px;margin-bottom:10px}.comment b{color:#ffd45a}.chatForm{display:grid;grid-template-columns:1fr 1fr 56px;gap:8px;margin-top:12px}.inp{width:100%;background:#091524;border:1px solid #2a4165;color:#fff;border-radius:10px;padding:12px}.btn{border:0;border-radius:10px;background:#ffd45a;color:#07111f;font-weight:900;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.match{border:1px solid #263a5b;background:#0c182b;border-radius:14px;padding:14px;cursor:pointer}.match:hover{border-color:#ff3547}.matchLive{border-color:#ff3547}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.small{font-size:13px;color:#9fb1ca}.stand table{width:100%;border-collapse:collapse}.stand th,.stand td{border-bottom:1px solid #243653;padding:10px;text-align:left}.newsbar{display:flex;gap:22px;white-space:nowrap;overflow:hidden;background:#081321;border-top:1px solid #1f304b;padding:14px 0;color:#e8f1ff}.ticker{animation:ticker 28s linear infinite}@keyframes ticker{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
     @media(max-width:980px){.topPromos{gap:10px;padding:0 10px}.promoBtn{min-width:142px;padding:11px 14px}.promoBtn span{font-size:25px}.promoBtn.blue span{font-size:23px}.layout{grid-template-columns:1fr}.scoreTop{grid-template-columns:1fr}.team,.team.away{justify-content:center;text-align:center}.player{height:280px}.grid{grid-template-columns:1fr}nav{gap:4px}.navbtn{padding:9px 10px;font-size:13px}.bar{height:auto;padding:12px;flex-direction:column;gap:10px}}
-  </style>
+  
+.rankHeader{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.rankLiveStatus{font-size:11px;font-weight:900;color:#7fffb0;border:1px solid rgba(127,255,176,.35);background:rgba(20,90,55,.22);border-radius:999px;padding:6px 9px;white-space:nowrap}
+.rankLiveStatus.err{color:#ffd45a;border-color:rgba(255,212,90,.35);background:rgba(255,170,0,.12)}
+.rankUpdated{font-size:11px;color:#9fb3cf;margin:-4px 0 10px}
+.rankTablePretty{width:100%;border-collapse:separate;border-spacing:0 7px}
+.rankTablePretty thead th{font-size:12px;color:#ffd45a;padding:5px 6px;text-align:center}
+.rankTablePretty thead th.teamHead{text-align:left}
+.rankTablePretty tbody tr{background:linear-gradient(90deg,rgba(16,34,58,.96),rgba(10,24,42,.96));box-shadow:inset 0 0 0 1px rgba(70,105,150,.32)}
+.rankTablePretty tbody td{padding:9px 6px;text-align:center;color:#fff;font-weight:800}
+.rankTablePretty tbody td:first-child{border-radius:10px 0 0 10px;color:#ffd45a}
+.rankTablePretty tbody td:last-child{border-radius:0 10px 10px 0}
+.rankTeam{display:flex;align-items:center;gap:8px;text-align:left;font-weight:1000;white-space:nowrap;overflow:hidden}
+.rankFlag{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:#132540;box-shadow:0 0 0 1px rgba(255,255,255,.12);font-size:15px;flex:0 0 auto}
+.rankName{overflow:hidden;text-overflow:ellipsis}
+.rankPts{color:#ffd45a!important;font-size:15px!important}
+.rankTop1 td{background:linear-gradient(90deg,rgba(255,196,34,.26),rgba(16,34,58,.96))}
+@media(max-width:820px){.rankTablePretty thead th:nth-child(5),.rankTablePretty tbody td:nth-child(5),.rankTablePretty thead th:nth-child(6),.rankTablePretty tbody td:nth-child(6){display:none}.rankTeam{max-width:120px}.rankLiveStatus{font-size:10px}}
+
+</style>
 </head>
 <body>
 <header><div class="bar"><div><div class="logo"><span>⚽</span><div>WC LIVE<div class="sub">XEM BÓNG ĐÁ TRỰC TIẾP</div></div></div></div><nav><a class="navbtn active" href="/">TRỰC TIẾP</a><a class="navbtn" href="/">LỊCH THI ĐẤU</a><a class="navbtn" href="/">BXH</a></nav></div></header>
@@ -193,7 +212,28 @@
     </div>
     <aside>
       <div class="card pad"><h2 class="sectionTitle">Bình Luận</h2><div id="pinnedComment" class="pinnedComment" style="display:none"></div><div class="comments" id="comments"></div><div class="chatForm"><input class="inp" id="cName" placeholder="Tên"><input class="inp" id="cMsg" placeholder="Nhập bình luận..."><button class="btn" onclick="addComment()">Gửi</button></div></div>
-      <div class="card pad stand" id="rank" style="margin-top:14px"><h2 class="sectionTitle">Bảng xếp hạng</h2><table><thead><tr><th>#</th><th>Đội</th><th>Tr</th><th>HS</th><th>Đ</th></tr></thead><tbody id="rankBody"></tbody></table></div>
+      
+<div class="card pad stand" id="rank" style="margin-top:14px">
+  <div class="rankHeader">
+    <h2 class="sectionTitle" style="margin:0">Bảng xếp hạng</h2>
+    <span id="rankStatus" class="rankLiveStatus err">Đang tải API</span>
+  </div>
+  <div id="rankUpdated" class="rankUpdated">Tự động cập nhật mỗi 60 giây</div>
+  <table class="rankTablePretty">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th class="teamHead">Đội</th>
+        <th>Tr</th>
+        <th>HS</th>
+        <th>GF</th>
+        <th>GA</th>
+        <th>Đ</th>
+      </tr>
+    </thead>
+    <tbody id="rankBody"></tbody>
+  </table>
+</div>
     </aside>
   </section>
   <section id="schedule" class="wcScheduleBox">
@@ -316,32 +356,76 @@ function renderMatches(d){
  body.innerHTML=window.WC_SCHEDULE.map(x=>`<tr><td>${x.date}</td><td class="scheduleMatch">${x.match}</td><td class="scheduleTime">${x.time}</td></tr>`).join('');
 }
 
+
+const FLAG_BY_TLA={
+ GER:'🇩🇪', SWE:'🇸🇪', USA:'🇺🇸', NOR:'🇳🇴', ARG:'🇦🇷', ENG:'🏴', FRA:'🇫🇷', AUT:'🇦🇹',
+ COL:'🇨🇴', MEX:'🇲🇽', AUS:'🇦🇺', KOR:'🇰🇷', SCO:'🏴󠁧󠁢󠁳󠁣󠁴󠁿', CIV:'🇨🇮', GHA:'🇬🇭', IRI:'🇮🇷',
+ JPN:'🇯🇵', NZL:'🇳🇿', CAN:'🇨🇦', BIH:'🇧🇦', QAT:'🇶🇦', SUI:'🇨🇭', BRA:'🇧🇷', MAR:'🇲🇦',
+ BEL:'🇧🇪', EGY:'🇪🇬', KSA:'🇸🇦', URU:'🇺🇾', POR:'🇵🇹', COD:'🇨🇩', ESP:'🇪🇸', CPV:'🇨🇻',
+ HTI:'🇭🇹', CZE:'🇨🇿', TUN:'🇹🇳', PAN:'🇵🇦', CRO:'🇭🇷', SEN:'🇸🇳', JOR:'🇯🇴', IRQ:'🇮🇶',
+ RSA:'🇿🇦', TUR:'🇹🇷', PAR:'🇵🇾', DZA:'🇩🇿', CUW:'🇨🇼', ECU:'🇪🇨', UZB:'🇺🇿'
+};
+
+const VI_NAME={
+ Germany:'Đức', Sweden:'Thụy Điển', 'United States':'Mỹ', Norway:'Na Uy', Argentina:'Argentina', England:'Anh',
+ France:'Pháp', Austria:'Áo', Colombia:'Colombia', Mexico:'Mexico', Australia:'Úc', 'Korea Republic':'Hàn Quốc',
+ Scotland:'Scotland', 'Ivory Coast':'Bờ Biển Ngà', Ghana:'Ghana', Iran:'Iran', Japan:'Nhật Bản',
+ 'New Zealand':'New Zealand', Canada:'Canada', 'Bosnia and Herzegovina':'Bosnia & Herzegovina', Qatar:'Qatar',
+ Switzerland:'Thụy Sĩ', Brazil:'Brazil', Morocco:'Morocco', Belgium:'Bỉ', Egypt:'Ai Cập', 'Saudi Arabia':'Saudi Arabia',
+ Uruguay:'Uruguay', Portugal:'Bồ Đào Nha', 'Congo DR':'CHDC Congo', Spain:'Tây Ban Nha', 'Cape Verde Islands':'Cape Verde',
+ Haiti:'Haiti', Czechia:'Czechia', Tunisia:'Tunisia', Panama:'Panama', Croatia:'Croatia', Senegal:'Senegal',
+ Jordan:'Jordan', Iraq:'Iraq', 'South Africa':'Nam Phi', Turkey:'Thổ Nhĩ Kỳ', Paraguay:'Paraguay',
+ Algeria:'Algeria', Curacao:'Curaçao', Ecuador:'Ecuador', Uzbekistan:'Uzbekistan'
+};
+
 const FALLBACK_STANDINGS=[
-  {pos:1,team:'Bồ Đào Nha',played:1,gd:0,points:1},
-  {pos:2,team:'CHDC Congo',played:1,gd:0,points:1},
-  {pos:3,team:'Uzbekistan',played:1,gd:-2,points:0},
-  {pos:4,team:'Colombia',played:1,gd:2,points:3}
+  {pos:1,team:'Đức',tla:'GER',played:1,gd:6,gf:7,ga:1,points:3},
+  {pos:2,team:'Thụy Điển',tla:'SWE',played:1,gd:4,gf:5,ga:1,points:3},
+  {pos:3,team:'Mỹ',tla:'USA',played:1,gd:3,gf:4,ga:1,points:3},
+  {pos:4,team:'Na Uy',tla:'NOR',played:1,gd:3,gf:4,ga:1,points:3},
+  {pos:5,team:'Argentina',tla:'ARG',played:1,gd:3,gf:3,ga:0,points:3},
+  {pos:6,team:'Anh',tla:'ENG',played:1,gd:2,gf:4,ga:2,points:3},
+  {pos:7,team:'Pháp',tla:'FRA',played:1,gd:2,gf:3,ga:1,points:3},
+  {pos:8,team:'Áo',tla:'AUT',played:1,gd:2,gf:3,ga:1,points:3}
 ];
+
+function setRankStatus(ok, msg){
+ const s=document.getElementById('rankStatus');
+ if(s){s.className='rankLiveStatus '+(ok?'':'err');s.textContent=msg}
+ const u=document.getElementById('rankUpdated');
+ if(u){u.textContent='Cập nhật: '+new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})+' · tự động mỗi 60 giây'}
+}
 
 function drawStandings(rows, isApi=false){
  const body=document.getElementById('rankBody');
  if(!body)return;
- body.innerHTML=rows.slice(0,8).map((x,i)=>`<tr>
-   <td>${x.pos || i+1}</td>
-   <td>${x.team}</td>
-   <td>${x.played ?? 0}</td>
-   <td>${x.gd ?? 0}</td>
-   <td>${x.points ?? 0}</td>
- </tr>`).join('');
+ body.innerHTML=rows.slice(0,16).map((x,i)=>{
+   const flag=x.flag || FLAG_BY_TLA[x.tla] || '⚽';
+   const team=x.team || '';
+   return `<tr class="${i===0?'rankTop1':''}">
+     <td>${x.pos || i+1}</td>
+     <td><div class="rankTeam"><span class="rankFlag">${flag}</span><span class="rankName">${team}</span></div></td>
+     <td>${x.played ?? 0}</td>
+     <td>${x.gd ?? 0}</td>
+     <td>${x.gf ?? 0}</td>
+     <td>${x.ga ?? 0}</td>
+     <td class="rankPts">${x.points ?? 0}</td>
+   </tr>`;
+ }).join('');
+ setRankStatus(isApi, isApi?'LIVE API':'Dữ liệu dự phòng');
 }
 
 function normalizeFootballDataStandings(data){
  const table=data?.standings?.find(s=>s.type==='TOTAL')?.table || data?.standings?.[0]?.table || [];
  return table.map(r=>({
    pos:r.position,
-   team:r.team?.name || '',
+   team:VI_NAME[r.team?.name] || r.team?.name || '',
+   tla:r.team?.tla || '',
+   flag:FLAG_BY_TLA[r.team?.tla] || '',
    played:r.playedGames,
    gd:r.goalDifference,
+   gf:r.goalsFor,
+   ga:r.goalsAgainst,
    points:r.points
  }));
 }
@@ -361,6 +445,7 @@ async function loadStandings(){
 
 function renderRank(ms){drawStandings(FALLBACK_STANDINGS,false);loadStandings()}
 setInterval(loadStandings,60000);
+
 
 function setLive(id){const d=data();d.liveId=id;save(d);render();scrollTo(0,0)}
 function addComment(){if(window.addCommentFirebase){window.addCommentFirebase();return}const d=data();const n=document.getElementById('cName').value||'Khách';const m=document.getElementById('cMsg').value;if(!m.trim())return;d.comments.push({n,m});save(d);document.getElementById('cMsg').value='';renderComments(d.comments)}
