@@ -1,0 +1,15 @@
+BongDaTV FINAL WORLD CUP
+
+Đã đóng gói full theo file đang có:
+- Banner trái JPG thật: assets/banner-left.jpg
+- Banner phải JPG thật: assets/banner-right.jpg
+- Banner trên JPG thật: assets/banner-top.jpg
+- API: api/matches.js và api/standings.js
+- Giữ stream/API/lịch/BXH theo source hiện tại.
+
+Cách up:
+1. Giải nén ZIP.
+2. Upload toàn bộ file/thư mục lên GitHub.
+3. Commit changes.
+4. Vercel chờ Ready.
+5. Mở web và nhấn Ctrl + F5.
