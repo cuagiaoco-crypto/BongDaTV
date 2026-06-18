@@ -1,0 +1,16 @@
+BẢN NÂNG GIAO DIỆN WORLD CUP - GIỮ NGUYÊN LUỒNG
+
+Chỉ nâng giao diện:
+- Font chữ đẹp hơn.
+- Nền có hiệu ứng World Cup, ánh sáng, lưới sân.
+- Banner NHẬN 999K / CƯỢC NGAY đẹp hơn.
+- Card video, bình luận, BXH, lịch đấu đẹp hơn.
+- Không thay đổi luồng video/stream.
+- Không thay đổi API chính.
+
+Cách dùng:
+1. Giải nén ZIP.
+2. Upload toàn bộ lên GitHub.
+3. Commit changes.
+4. Chờ Vercel Ready.
+5. Ctrl + F5 trên trình duyệt.
