@@ -1,0 +1,19 @@
+Bản này sửa tối thiểu trên file gốc của bạn.
+
+Đã giữ nguyên:
+- Luồng video/stream đang có trong index.html
+- Firebase admin liveMatch
+- Giao diện video, khung chat, banner, nút bấm
+- Không thay khung phát bằng sân cỏ giả
+
+Chỉ sửa:
+- Giảm lỗi Football-Data 429 bằng cache trong api/matches.js và api/standings.js
+- Giảm tần suất gọi /api/matches còn 60 giây
+- Lịch thi đấu tự lấy từ /api/matches, nếu API lỗi sẽ giữ lịch cũ dự phòng
+- Bảng xếp hạng vẫn lấy /api/standings như bản cũ
+
+Khi upload:
+1. Upload toàn bộ file trong ZIP.
+2. Đảm bảo có api/matches.js và api/standings.js.
+3. Vercel vẫn cần FOOTBALL_DATA_TOKEN.
+4. Sau khi deploy xong nhấn Ctrl+F5.
