@@ -1,0 +1,19 @@
+HƯỚNG DẪN BẬT BẢNG XẾP HẠNG TỰ ĐỘNG
+
+Website đã có sẵn API route:
+  /api/standings
+
+Bạn cần tạo API token miễn phí/trả phí tại:
+  https://www.football-data.org/
+
+Sau đó vào Vercel:
+  Project -> Settings -> Environment Variables
+
+Thêm biến:
+  Name: FOOTBALL_DATA_TOKEN
+  Value: token của bạn
+
+Sau đó Redeploy website.
+
+Khi bật xong, index.html sẽ tự gọi /api/standings mỗi 60 giây để cập nhật bảng xếp hạng World Cup.
+Nếu chưa thêm token, web vẫn hiển thị bảng dự phòng.
