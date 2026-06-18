@@ -214,7 +214,7 @@
 <script>
 function makeDemoComments(count){return []}
 
-const WC_SCHEDULE=[
+window.WC_SCHEDULE=[
   {date:'18/06',match:'Czechia vs Nam Phi',time:'23:00'},
   {date:'19/06',match:'Thụy Sĩ vs Bosnia & Herzegovina',time:'02:00'},
   {date:'19/06',match:'Canada vs Qatar',time:'05:00'},
@@ -251,6 +251,23 @@ const DEFAULT={
  ],
  comments:[]
 };
+
+(function cleanOldAutoCommentsOnce(){
+  try{
+    if(!localStorage.getItem('wclive_cleaned_auto_comments_v1')){
+      const raw=localStorage.getItem('football_v13');
+      if(raw){
+        const d=JSON.parse(raw);
+        if(d && Array.isArray(d.comments)){
+          d.comments=[];
+          localStorage.setItem('football_v13', JSON.stringify(d));
+        }
+      }
+      localStorage.setItem('wclive_cleaned_auto_comments_v1','1');
+    }
+  }catch(e){}
+})();
+
 function data(){return JSON.parse(localStorage.getItem('football_v13')||JSON.stringify(DEFAULT))}
 function save(d){localStorage.setItem('football_v13',JSON.stringify(d))}
 function pickLive(d){return d.matches.find(x=>x.id===d.liveId)||d.matches.find(x=>x.status==='Đang trực tiếp')||d.matches[0]}
@@ -296,7 +313,7 @@ function renderComments(c){const box=document.getElementById('comments');box.inn
 function renderMatches(d){
  const body=document.getElementById('wcScheduleBody');
  if(!body)return;
- body.innerHTML=WC_SCHEDULE.map(x=>`<tr><td>${x.date}</td><td class="scheduleMatch">${x.match}</td><td class="scheduleTime">${x.time}</td></tr>`).join('');
+ body.innerHTML=window.WC_SCHEDULE.map(x=>`<tr><td>${x.date}</td><td class="scheduleMatch">${x.match}</td><td class="scheduleTime">${x.time}</td></tr>`).join('');
 }
 
 const FALLBACK_STANDINGS=[
@@ -342,17 +359,12 @@ async function loadStandings(){
  }
 }
 
-function renderRank(ms){loadStandings()}
+function renderRank(ms){drawStandings(FALLBACK_STANDINGS,false);loadStandings()}
 setInterval(loadStandings,60000);
 
 function setLive(id){const d=data();d.liveId=id;save(d);render();scrollTo(0,0)}
 function addComment(){if(window.addCommentFirebase){window.addCommentFirebase();return}const d=data();const n=document.getElementById('cName').value||'Khách';const m=document.getElementById('cMsg').value;if(!m.trim())return;d.comments.push({n,m});save(d);document.getElementById('cMsg').value='';renderComments(d.comments)}
 function esc(s){return String(s).replace(/[&<>"]/g,a=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[a]))}
-
-
-
-setTimeout(addAutoCommentToBox, 1200);
-
 window.renderPlayer=renderPlayer;window.renderComments=renderComments;window.addEventListener('storage',render); render();
 </script>
 <script type="module">
@@ -418,6 +430,18 @@ document.addEventListener('DOMContentLoaded',()=>{
       a.addEventListener('click',e=>{e.preventDefault();document.getElementById('rank')?.scrollIntoView({behavior:'smooth'});history.replaceState(null,'','/');});
     }
   });
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  try{
+    const scheduleBody=document.getElementById('wcScheduleBody');
+    if(scheduleBody && !scheduleBody.children.length && Array.isArray(window.WC_SCHEDULE)){
+      scheduleBody.innerHTML=window.WC_SCHEDULE.map(x=>`<tr><td>${x.date}</td><td class="scheduleMatch">${x.match}</td><td class="scheduleTime">${x.time}</td></tr>`).join('');
+    }
+  }catch(e){}
 });
 </script>
 
