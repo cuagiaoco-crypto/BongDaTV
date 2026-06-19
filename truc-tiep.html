@@ -109,6 +109,171 @@ html,body{width:100%!important;min-width:0!important;margin:0!important;overflow
   .player:after,.videoBox:after,.video-wrap:after,.video-container:after{width:125px!important;height:44px!important}
 }
 
+
+/* ===== SUA DUNG YEU CAU: GIU BANNER CAM, CHI SUA LOGO WC LIVE ===== */
+/* 1) Khôi phục logo header gốc, không dùng ảnh banner làm logo */
+header .logo,
+.logo{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  background:none!important;
+  background-image:none!important;
+  border:none!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  color:#fff!important;
+  font-weight:900!important;
+  font-size:25px!important;
+  line-height:1!important;
+}
+header .logo *, .logo *{display:initial!important;visibility:visible!important;color:inherit!important;text-indent:0!important;font-size:inherit!important;}
+header .logo span,
+.logo span,
+.logo .ball,
+.ball{
+  display:grid!important;
+  place-items:center!important;
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  border-radius:50%!important;
+  background:#ffb84d!important;
+  color:#07111f!important;
+  font-size:22px!important;
+  line-height:1!important;
+  box-shadow:none!important;
+  border:none!important;
+}
+header .logo>div,
+.logo>div,
+.logo .brand,
+.brand{
+  display:block!important;
+  color:#fff!important;
+  font-size:25px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+  background:none!important;
+  border:none!important;
+  box-shadow:none!important;
+  text-shadow:0 2px 8px rgba(0,0,0,.45)!important;
+}
+.logo .sub,
+.brand small,
+.logo .brand small{
+  display:block!important;
+  color:#ffd45a!important;
+  font-size:12px!important;
+  margin-top:4px!important;
+  font-weight:900!important;
+  letter-spacing:.2px!important;
+}
+
+/* 2) Logo trong video: xóa vạch/nền đen, chỉ giữ ảnh logo trong suốt */
+.maskTopRight,
+.watermark,
+.wc-watermark,
+#wcWatermark{
+  position:absolute!important;
+  top:8px!important;
+  right:8px!important;
+  z-index:99999!important;
+  width:clamp(180px, 16vw, 300px)!important;
+  height:clamp(56px, 5.4vw, 92px)!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+  background-color:transparent!important;
+  background-image:url('assets/wc-live-mark.png')!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+  border:none!important;
+  box-shadow:none!important;
+  outline:none!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  text-indent:-9999px!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+.maskTopRight::before,.maskTopRight::after,
+.watermark::before,.watermark::after,
+.wc-watermark::before,.wc-watermark::after,
+#wcWatermark::before,#wcWatermark::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* 3) Xóa các lớp che sai tạo nền đen hoặc banner giả, nhưng KHÔNG xóa banner cam thật */
+.player:after,.videoBox:after,.video-wrap:after,.video-container:after{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+.player:before,.videoBox:before,.video-wrap:before,.video-container:before{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+}
+
+/* 4) Giữ nguyên banner cam HOÀN 100% BÓNG ĐÁ ở dưới video */
+.maskBottomFull,
+.banner,
+.ad-strip,
+.bannerMain,
+.bannerRegister,
+.bannerBall{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.maskBottomFull{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  z-index:9000!important;
+}
+.bannerMain{
+  flex:1!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.bannerRegister,.bannerBall{
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+/* 5) Khi phóng to khung player, logo tự lớn hơn để che logo nguồn */
+.player:fullscreen .maskTopRight,
+.videoBox:fullscreen .maskTopRight,
+.video-wrap:fullscreen .maskTopRight,
+.video-container:fullscreen .maskTopRight,
+.player:fullscreen .watermark,
+.videoBox:fullscreen .watermark,
+.video-wrap:fullscreen .watermark,
+.video-container:fullscreen .watermark{
+  top:18px!important;
+  right:18px!important;
+  width:clamp(260px, 18vw, 430px)!important;
+  height:clamp(82px, 7vw, 140px)!important;
+}
+
+@media(max-width:700px){
+  header .logo span,.logo span,.logo .ball,.ball{width:34px!important;height:34px!important;min-width:34px!important;font-size:18px!important}
+  header .logo>div,.logo>div,.logo .brand,.brand{font-size:20px!important}
+  .logo .sub,.brand small,.logo .brand small{font-size:9px!important}
+  .maskTopRight,.watermark,.wc-watermark,#wcWatermark{width:132px!important;height:44px!important;top:6px!important;right:6px!important}
+}
+
 </style>
 
 <style id="final-ui-fix">
@@ -130,6 +295,171 @@ background-position:center center!important;
 @media(min-width:1200px){
 .left-banner,.right-banner{width:180px!important;}
 }
+
+/* ===== SUA DUNG YEU CAU: GIU BANNER CAM, CHI SUA LOGO WC LIVE ===== */
+/* 1) Khôi phục logo header gốc, không dùng ảnh banner làm logo */
+header .logo,
+.logo{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  background:none!important;
+  background-image:none!important;
+  border:none!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  color:#fff!important;
+  font-weight:900!important;
+  font-size:25px!important;
+  line-height:1!important;
+}
+header .logo *, .logo *{display:initial!important;visibility:visible!important;color:inherit!important;text-indent:0!important;font-size:inherit!important;}
+header .logo span,
+.logo span,
+.logo .ball,
+.ball{
+  display:grid!important;
+  place-items:center!important;
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  border-radius:50%!important;
+  background:#ffb84d!important;
+  color:#07111f!important;
+  font-size:22px!important;
+  line-height:1!important;
+  box-shadow:none!important;
+  border:none!important;
+}
+header .logo>div,
+.logo>div,
+.logo .brand,
+.brand{
+  display:block!important;
+  color:#fff!important;
+  font-size:25px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+  background:none!important;
+  border:none!important;
+  box-shadow:none!important;
+  text-shadow:0 2px 8px rgba(0,0,0,.45)!important;
+}
+.logo .sub,
+.brand small,
+.logo .brand small{
+  display:block!important;
+  color:#ffd45a!important;
+  font-size:12px!important;
+  margin-top:4px!important;
+  font-weight:900!important;
+  letter-spacing:.2px!important;
+}
+
+/* 2) Logo trong video: xóa vạch/nền đen, chỉ giữ ảnh logo trong suốt */
+.maskTopRight,
+.watermark,
+.wc-watermark,
+#wcWatermark{
+  position:absolute!important;
+  top:8px!important;
+  right:8px!important;
+  z-index:99999!important;
+  width:clamp(180px, 16vw, 300px)!important;
+  height:clamp(56px, 5.4vw, 92px)!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+  background-color:transparent!important;
+  background-image:url('assets/wc-live-mark.png')!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+  border:none!important;
+  box-shadow:none!important;
+  outline:none!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  text-indent:-9999px!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+.maskTopRight::before,.maskTopRight::after,
+.watermark::before,.watermark::after,
+.wc-watermark::before,.wc-watermark::after,
+#wcWatermark::before,#wcWatermark::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* 3) Xóa các lớp che sai tạo nền đen hoặc banner giả, nhưng KHÔNG xóa banner cam thật */
+.player:after,.videoBox:after,.video-wrap:after,.video-container:after{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+.player:before,.videoBox:before,.video-wrap:before,.video-container:before{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+}
+
+/* 4) Giữ nguyên banner cam HOÀN 100% BÓNG ĐÁ ở dưới video */
+.maskBottomFull,
+.banner,
+.ad-strip,
+.bannerMain,
+.bannerRegister,
+.bannerBall{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.maskBottomFull{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  z-index:9000!important;
+}
+.bannerMain{
+  flex:1!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.bannerRegister,.bannerBall{
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+/* 5) Khi phóng to khung player, logo tự lớn hơn để che logo nguồn */
+.player:fullscreen .maskTopRight,
+.videoBox:fullscreen .maskTopRight,
+.video-wrap:fullscreen .maskTopRight,
+.video-container:fullscreen .maskTopRight,
+.player:fullscreen .watermark,
+.videoBox:fullscreen .watermark,
+.video-wrap:fullscreen .watermark,
+.video-container:fullscreen .watermark{
+  top:18px!important;
+  right:18px!important;
+  width:clamp(260px, 18vw, 430px)!important;
+  height:clamp(82px, 7vw, 140px)!important;
+}
+
+@media(max-width:700px){
+  header .logo span,.logo span,.logo .ball,.ball{width:34px!important;height:34px!important;min-width:34px!important;font-size:18px!important}
+  header .logo>div,.logo>div,.logo .brand,.brand{font-size:20px!important}
+  .logo .sub,.brand small,.logo .brand small{font-size:9px!important}
+  .maskTopRight,.watermark,.wc-watermark,#wcWatermark{width:132px!important;height:44px!important;top:6px!important;right:6px!important}
+}
+
 </style>
 
 
@@ -145,6 +475,171 @@ box-shadow:none!important;
 }
 
 .player iframe,.video-container iframe,.videoBox iframe{width:100%!important;height:100%!important}
+
+/* ===== SUA DUNG YEU CAU: GIU BANNER CAM, CHI SUA LOGO WC LIVE ===== */
+/* 1) Khôi phục logo header gốc, không dùng ảnh banner làm logo */
+header .logo,
+.logo{
+  display:flex!important;
+  align-items:center!important;
+  gap:12px!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  background:none!important;
+  background-image:none!important;
+  border:none!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  color:#fff!important;
+  font-weight:900!important;
+  font-size:25px!important;
+  line-height:1!important;
+}
+header .logo *, .logo *{display:initial!important;visibility:visible!important;color:inherit!important;text-indent:0!important;font-size:inherit!important;}
+header .logo span,
+.logo span,
+.logo .ball,
+.ball{
+  display:grid!important;
+  place-items:center!important;
+  width:42px!important;
+  height:42px!important;
+  min-width:42px!important;
+  border-radius:50%!important;
+  background:#ffb84d!important;
+  color:#07111f!important;
+  font-size:22px!important;
+  line-height:1!important;
+  box-shadow:none!important;
+  border:none!important;
+}
+header .logo>div,
+.logo>div,
+.logo .brand,
+.brand{
+  display:block!important;
+  color:#fff!important;
+  font-size:25px!important;
+  font-weight:1000!important;
+  line-height:1!important;
+  background:none!important;
+  border:none!important;
+  box-shadow:none!important;
+  text-shadow:0 2px 8px rgba(0,0,0,.45)!important;
+}
+.logo .sub,
+.brand small,
+.logo .brand small{
+  display:block!important;
+  color:#ffd45a!important;
+  font-size:12px!important;
+  margin-top:4px!important;
+  font-weight:900!important;
+  letter-spacing:.2px!important;
+}
+
+/* 2) Logo trong video: xóa vạch/nền đen, chỉ giữ ảnh logo trong suốt */
+.maskTopRight,
+.watermark,
+.wc-watermark,
+#wcWatermark{
+  position:absolute!important;
+  top:8px!important;
+  right:8px!important;
+  z-index:99999!important;
+  width:clamp(180px, 16vw, 300px)!important;
+  height:clamp(56px, 5.4vw, 92px)!important;
+  min-width:0!important;
+  padding:0!important;
+  margin:0!important;
+  background-color:transparent!important;
+  background-image:url('assets/wc-live-mark.png')!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+  border:none!important;
+  box-shadow:none!important;
+  outline:none!important;
+  color:transparent!important;
+  font-size:0!important;
+  line-height:0!important;
+  text-indent:-9999px!important;
+  overflow:hidden!important;
+  pointer-events:none!important;
+}
+.maskTopRight::before,.maskTopRight::after,
+.watermark::before,.watermark::after,
+.wc-watermark::before,.wc-watermark::after,
+#wcWatermark::before,#wcWatermark::after{
+  display:none!important;
+  content:none!important;
+}
+
+/* 3) Xóa các lớp che sai tạo nền đen hoặc banner giả, nhưng KHÔNG xóa banner cam thật */
+.player:after,.videoBox:after,.video-wrap:after,.video-container:after{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+  border:none!important;
+  box-shadow:none!important;
+}
+.player:before,.videoBox:before,.video-wrap:before,.video-container:before{
+  display:none!important;
+  content:none!important;
+  background:none!important;
+}
+
+/* 4) Giữ nguyên banner cam HOÀN 100% BÓNG ĐÁ ở dưới video */
+.maskBottomFull,
+.banner,
+.ad-strip,
+.bannerMain,
+.bannerRegister,
+.bannerBall{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.maskBottomFull{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  z-index:9000!important;
+}
+.bannerMain{
+  flex:1!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.bannerRegister,.bannerBall{
+  align-items:center!important;
+  justify-content:center!important;
+}
+
+/* 5) Khi phóng to khung player, logo tự lớn hơn để che logo nguồn */
+.player:fullscreen .maskTopRight,
+.videoBox:fullscreen .maskTopRight,
+.video-wrap:fullscreen .maskTopRight,
+.video-container:fullscreen .maskTopRight,
+.player:fullscreen .watermark,
+.videoBox:fullscreen .watermark,
+.video-wrap:fullscreen .watermark,
+.video-container:fullscreen .watermark{
+  top:18px!important;
+  right:18px!important;
+  width:clamp(260px, 18vw, 430px)!important;
+  height:clamp(82px, 7vw, 140px)!important;
+}
+
+@media(max-width:700px){
+  header .logo span,.logo span,.logo .ball,.ball{width:34px!important;height:34px!important;min-width:34px!important;font-size:18px!important}
+  header .logo>div,.logo>div,.logo .brand,.brand{font-size:20px!important}
+  .logo .sub,.brand small,.logo .brand small{font-size:9px!important}
+  .maskTopRight,.watermark,.wc-watermark,#wcWatermark{width:132px!important;height:44px!important;top:6px!important;right:6px!important}
+}
+
 </style>
 
 </head><body><script>window.location.href="/";</script>
