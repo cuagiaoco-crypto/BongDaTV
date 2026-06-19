@@ -1,0 +1,18 @@
+BẢN FULL UI ĐÃ SỬA
+
+Đã sửa:
+- Logo trong video kéo ngang hơn để che phần cam phía sau.
+- 2 banner dưới video thấp lại, responsive mọi thiết bị.
+- 3 nhóm banner/nút đều có thể gắn link:
+  1) Nhận 999K: nút trên + banner trái + banner dưới.
+  2) Cược ngay: nút trên + banner phải.
+  3) Logo trong video cũng dùng link Nhận 999K.
+
+Cách gắn link nhanh:
+1. Mở web.
+2. Nhấn F12 > Console.
+3. Dán lệnh này, thay link của bạn:
+   setWCBannerLinks('https://link-nhan-999k.com','https://link-cuoc-ngay.com')
+
+Hoặc dùng URL:
+?receive=https://link-nhan-999k.com&bet=https://link-cuoc-ngay.com
