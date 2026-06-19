@@ -274,6 +274,30 @@ header .logo>div,
   .maskTopRight,.watermark,.wc-watermark,#wcWatermark{width:132px!important;height:44px!important;top:6px!important;right:6px!important}
 }
 
+
+/* ===== FINAL UI LINK BANNERS - FIXED ===== */
+:root{--receive-link:#;--bet-link:#}
+.logo{min-width:210px!important;height:64px!important;display:flex!important;align-items:center!important;gap:10px!important}
+.logo span{display:none!important}
+.logo:before{content:""!important;display:block!important;width:92px!important;height:48px!important;background:url('assets/wc-live-symbol.png') center/contain no-repeat!important;filter:drop-shadow(0 0 8px rgba(255,206,65,.55))!important}
+.logo>div{font-size:26px!important;line-height:1!important;color:#fff!important;text-shadow:0 2px 12px #000!important}.logo .sub{font-size:12px!important;color:#ffd45a!important}
+.maskTopRight.logoOnly{position:absolute!important;right:8px!important;top:8px!important;width:155px!important;height:58px!important;z-index:60!important;background:url('assets/wc-live-symbol.png') center/contain no-repeat!important;border:0!important;border-radius:0!important;box-shadow:none!important;text-indent:-9999px!important;overflow:hidden!important;pointer-events:auto!important;display:block!important}
+.maskTopRight.logoOnly:before,.maskTopRight.logoOnly:after{display:none!important;content:none!important}
+/* Không dùng các lớp giả cũ đè lên video */
+.player:before,.player:after,.videoBox:before,.videoBox:after,.video-wrap:before,.video-wrap:after,.video-container:before,.video-container:after{display:none!important;content:none!important;background:none!important}
+.videoAdStack{position:absolute!important;left:0!important;right:0!important;bottom:0!important;z-index:58!important;height:72px!important;display:grid!important;grid-template-rows:36px 36px!important;gap:2px!important;pointer-events:auto!important;padding:0 0 2px!important}
+.videoAd{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;text-decoration:none!important;color:#fff!important;font-family:Arial,Helvetica,sans-serif!important;font-weight:1000!important;letter-spacing:.2px!important;overflow:hidden!important;border:1px solid rgba(255,214,80,.72)!important;text-shadow:0 2px 0 rgba(0,0,0,.65)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 -4px 14px rgba(0,0,0,.45)!important}
+.videoAd:before{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(110deg,transparent 0%,rgba(255,255,255,.28) 22%,transparent 43%)!important;transform:translateX(-120%)!important;animation:adShine 2.8s infinite!important;pointer-events:none!important}
+@keyframes adShine{0%{transform:translateX(-120%)}55%,100%{transform:translateX(120%)}}
+.videoAdPrimary{background:radial-gradient(circle at 94% 50%,rgba(255,220,90,.42),transparent 14%),linear-gradient(90deg,#150707 0%,#7d0b00 35%,#1c0808 64%,#a30b00 100%)!important;font-size:22px!important;text-transform:uppercase!important;border-radius:8px 8px 0 0!important}
+.videoAdPrimary .miniReceive{background:linear-gradient(180deg,#0b2345,#061122)!important;color:#fff!important;border-right:1px solid rgba(255,220,90,.55)!important;align-self:stretch!important;display:flex!important;align-items:center!important;padding:0 16px!important;font-size:17px!important}.videoAdPrimary .miniReceive b{font-size:28px!important;color:#ffd64d!important;margin-left:5px!important;text-shadow:0 0 12px #ff5a00!important}.videoAdPrimary strong{color:#fff!important}.videoAdPrimary em{font-style:normal!important;background:linear-gradient(180deg,#fff68d,#ffb300)!important;color:#130900!important;border-radius:8px!important;padding:5px 12px!important;font-size:14px!important;text-shadow:none!important}
+.videoAdSecond{background:linear-gradient(90deg,#081a33 0%,#10294b 26%,#8a1600 48%,#10294b 74%,#081a33 100%)!important;font-size:18px!important;border-radius:0 0 8px 8px!important;text-transform:uppercase!important}.videoAdSecond b{font-size:34px!important;color:#ffd44d!important;text-shadow:0 0 14px #ff5a00,0 3px 0 #6b0000!important}.videoAdSecond span{white-space:nowrap!important}
+/* Ẩn banner cam cũ bên trong player để không chồng, banner mới vẫn giữ nội dung Hoàn 100% */
+.maskBottomFull{display:none!important}
+.bannerRegister,.bannerMain,.bannerBall{display:none!important}
+@media(max-width:980px){.maskTopRight.logoOnly{width:118px!important;height:44px!important}.videoAdStack{height:58px!important;grid-template-rows:28px 28px!important}.videoAdPrimary{font-size:15px!important}.videoAdPrimary .miniReceive{font-size:12px!important;padding:0 8px!important}.videoAdPrimary .miniReceive b{font-size:20px!important}.videoAdPrimary em{font-size:11px!important;padding:3px 7px!important}.videoAdSecond{font-size:12px!important}.videoAdSecond b{font-size:24px!important}.logo{min-width:170px!important}.logo:before{width:72px!important;height:40px!important}.logo>div{font-size:22px!important}}
+@media(max-width:560px){.videoAdStack{height:48px!important;grid-template-rows:23px 23px!important}.videoAd{gap:5px!important}.videoAdPrimary{font-size:12px!important}.videoAdPrimary .miniReceive{display:none!important}.videoAdPrimary em{display:none!important}.videoAdSecond{font-size:10px!important}.videoAdSecond b{font-size:19px!important}.maskTopRight.logoOnly{width:95px!important;height:36px!important}}
+
 </style>
 
 <style id="final-ui-fix">
@@ -657,12 +681,21 @@ header .logo>div,
 })();
 </script>
 
-</body></html>
-<!-- PATCH UI -->
+
 <script>
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.watermark,.wc-watermark,#wcWatermark').forEach(el=>{
-    el.innerHTML='';
-  });
-});
+/* Link cho 5 banner: top đỏ, top xanh, trái, phải, 2 banner dưới video */
+(function(){
+  function setHref(sel, url){document.querySelectorAll(sel).forEach(a=>{a.href=url||'#';});}
+  function applyBannerLinks(){
+    var receive=(document.getElementById('promo1')&&document.getElementById('promo1').href)||localStorage.getItem('wc_receive_link')||localStorage.getItem('wc_left_ad_url')||'#';
+    var bet=(document.getElementById('promo2')&&document.getElementById('promo2').href)||localStorage.getItem('wc_bet_link')||localStorage.getItem('wc_right_ad_url')||'#';
+    setHref('[data-link-slot="receive"],#leftAdLink', receive);
+    setHref('[data-link-slot="bet"],#rightAdLink', bet);
+  }
+  window.applyBannerLinks=applyBannerLinks;
+  document.addEventListener('DOMContentLoaded',applyBannerLinks);
+  setInterval(applyBannerLinks,1500);
+})();
 </script>
+
+</body></html>

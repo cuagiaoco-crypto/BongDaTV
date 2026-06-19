@@ -1,0 +1,10 @@
+Bản này đã sửa UI theo yêu cầu:
+- Logo trên video chỉ còn ảnh logo, không có chữ WC LIVE.
+- Banner dưới video gồm 2 dòng thấp hơn để ít che video.
+- Dòng 1: HOÀN 100% BÓNG ĐÁ + Nhận 999K.
+- Dòng 2: ĐĂNG KÝ NHẬN NGAY 999K CHO THỂ THAO.
+- Các banner có thể gắn link:
+  + link1 / promo1 / Nhận 999K dùng cho top đỏ, banner trái, banner dưới dòng 2, logo overlay.
+  + link2 / promo2 / Cược ngay dùng cho top xanh, banner phải, banner dưới dòng 1.
+- Giữ nguyên stream, lịch, BXH, bình luận.
+Upload toàn bộ file lên GitHub rồi Commit. Chờ Vercel Ready và nhấn Ctrl+F5.
